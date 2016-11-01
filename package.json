@@ -1,0 +1,41 @@
+{
+  "name": "interactive-atom-template",
+  "version": "1.0.0",
+  "description": "Interactive atom base template",
+  "main": "src/render.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-plugin-external-helpers": "^6.18.0",
+    "babel-plugin-transform-import-bangtext-node": "^0.1.4",
+    "babel-preset-es2015": "^6.18.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-file": "^0.3.0",
+    "gulp-s3-upload": "^1.6.1",
+    "gulp-sass": "^2.3.2",
+    "gulp-size": "^2.1.0",
+    "gulp-sourcemaps": "^2.2.0",
+    "gulp-template": "^4.0.0",
+    "gulp-util": "^3.0.7",
+    "gulp-webserver": "^0.9.1",
+    "inquirer": "^1.2.2",
+    "request-promise-native": "^1.0.3",
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-commonjs": "^5.0.5",
+    "rollup-plugin-json": "^2.0.2",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-string": "^2.0.2",
+    "rollup-plugin-uglify": "^1.0.1",
+    "rollup-stream": "^1.14.0",
+    "run-sequence": "^1.2.2",
+    "sass-mq": "^3.3.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {}
+}

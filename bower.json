@@ -1,0 +1,21 @@
+{
+  "name": "interactive-atom-template",
+  "description": "Interactive atom base template",
+  "authors": [
+    "Will Franklin <will.franklin@guardian.co.uk>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/guardian/interactive-atom-template",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "guss-typography": "^3.1.1"
+  }
+}
