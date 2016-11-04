@@ -40,7 +40,7 @@ const rollupPlugins = [
         'include': '**/*.html'
     }),
     require('rollup-plugin-node-resolve')({
-        'jsnext': true
+        'jsnext': true, 'browser': true
     }),
     require('rollup-plugin-commonjs')({
         'include': ['node_modules/**']
@@ -54,6 +54,10 @@ const rollupPlugins = [
     isDeploy && require('rollup-plugin-uglify')()
 ];
 
+function showError(plugin, err) {
+    console.error(new gutil.PluginError(plugin, err.message).toString());
+}
+
 function buildJS(filename) {
     return () => {
         return rollup({
@@ -61,6 +65,13 @@ function buildJS(filename) {
                 'sourceMap': true,
                 'plugins': rollupPlugins,
                 'format': 'iife'
+            })
+            .on('error', function (err) {
+                showError('rollup', err);
+                if (err instanceof SyntaxError) {
+                    console.error(err.codeFrame);
+                }
+                this.emit('end');
             })
             .pipe(source(filename, './src/js'))
             .pipe(buffer())
@@ -85,6 +96,14 @@ function requireUncached(module) {
     return require(module);
 }
 
+function readOpt(fn) {
+    try {
+        return fs.readFileSync(fn);
+    } catch (err) {
+        return '';
+    }
+}
+
 gulp.task('clean', () => del(buildDir));
 
 gulp.task('build:css', () => {
@@ -103,16 +122,22 @@ gulp.task('build:js.app', buildJS('app.js'));
 gulp.task('build:js', ['build:js.main', 'build:js.app']);
 
 gulp.task('build:html', cb => {
-    let render = requireUncached('./src/render.js').render;
+    try {
+        let render = requireUncached('./src/render.js').render;
 
-    Promise.resolve(render()).then(html => {
-        file('main.html', html, {'src': true})
-            .pipe(template({path}))
-            .pipe(gulp.dest(buildDir))
-            .on('end', cb);
-    }).catch(err => {
-        gutil.log(err);
-    });
+        Promise.resolve(render()).then(html => {
+            file('main.html', html, {'src': true})
+                .pipe(template({path}))
+                .pipe(gulp.dest(buildDir))
+                .on('end', cb);
+        }).catch(err => {
+            showError('render.js', err);
+            cb();
+        });
+    } catch (err) {
+        showError('render.js', err);
+        cb();
+    }
 });
 
 gulp.task('build:assets', () => {
@@ -150,16 +175,17 @@ gulp.task('deploy', ['build'], cb => {
 gulp.task('local', ['build'], () => {
     return gulp.src('harness/*')
         .pipe(template({
-            'css': fs.readFileSync(`${buildDir}/main.css`),
-            'html': fs.readFileSync(`${buildDir}/main.html`),
-            'js': fs.readFileSync(`${buildDir}/main.js`)
+            'css': readOpt(`${buildDir}/main.css`),
+            'html': readOpt(`${buildDir}/main.html`),
+            'js': readOpt(`${buildDir}/main.js`)
         }))
         .pipe(gulp.dest(buildDir));
 });
 
 gulp.task('default', ['local'], () => {
     gulp.watch('src/**/*', ['local']).on('change', evt => {
-        gutil.log(`File ${evt.path} was ${evt.type}`);
+        console.log();
+        gutil.log(gutil.colors.yellow(`${evt.path} was ${evt.type}`));
     });
 
     gulp.src(buildDir).pipe(webserver());
