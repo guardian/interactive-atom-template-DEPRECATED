@@ -1,23 +1,24 @@
 import config from './config.json'
 
 import gulp from 'gulp'
-import gutil from 'gulp-util'
-import sourcemaps from 'gulp-sourcemaps'
-import sass from 'gulp-sass'
-import template from 'gulp-template'
 import file from 'gulp-file'
+import gutil from 'gulp-util'
+import insert from 'gulp-insert'
 import s3 from 'gulp-s3-upload';
+import sass from 'gulp-sass'
 import size from 'gulp-size'
+import sourcemaps from 'gulp-sourcemaps'
+import template from 'gulp-template'
 import webserver from 'gulp-webserver'
 
-import fs from 'fs'
-import del from 'del'
-import runSequence from 'run-sequence'
-import source from 'vinyl-source-stream'
 import buffer from 'vinyl-buffer'
+import del from 'del'
+import fs from 'fs'
 import inquirer from 'inquirer'
 import rollup from 'rollup-stream'
 import rp from 'request-promise-native'
+import runSequence from 'run-sequence'
+import source from 'vinyl-source-stream'
 
 const buildDir = '.build';
 const cdnUrl = 'https://interactive.guim.co.uk';
@@ -88,7 +89,7 @@ gulp.task('clean', () => del(buildDir));
 
 gulp.task('build:css', () => {
     return gulp.src('src/css/*.scss')
-        .pipe(template({path}))
+        .pipe(insert.prepend(`$path: '${path}';`))
         .pipe(sourcemaps.init())
         .pipe(sass({
             'outputStyle': isDeploy ? 'compressed' : 'expanded'
@@ -170,7 +171,8 @@ gulp.task('url', () => {
 
 gulp.task('log', () => {
     function log(type) {
-        return rp(`${cdnUrl}/atoms/${config.path}/${type}.log`).then(log => {
+        let url = `${cdnUrl}/atoms/${config.path}/${type}.log?${Date.now()}`;
+        return rp(url).then(log => {
             gutil.log(gutil.colors.green(`Got ${type} log:`));
             console.log(log);
         }).catch(err => {

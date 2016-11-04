@@ -16,6 +16,7 @@
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-file": "^0.3.0",
+    "gulp-insert": "^0.5.0",
     "gulp-s3-upload": "^1.6.1",
     "gulp-sass": "^2.3.2",
     "gulp-size": "^2.1.0",
