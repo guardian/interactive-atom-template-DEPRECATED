@@ -53,7 +53,7 @@ const rollupPlugins = [
     isDeploy && require('rollup-plugin-uglify')()
 ];
 
-function showError(plugin, err) {
+function logError(plugin, err) {
     console.error(new gutil.PluginError(plugin, err.message).toString());
     if (err instanceof SyntaxError) {
         console.error(err.codeFrame);
@@ -69,7 +69,7 @@ function buildJS(filename) {
                 'format': 'iife'
             })
             .on('error', function (err) {
-                showError('rollup', err);
+                logError('rollup', err);
                 this.emit('end');
             })
             .pipe(source(filename, './src/js'))
@@ -130,11 +130,11 @@ gulp.task('build:html', cb => {
                 .pipe(gulp.dest(buildDir))
                 .on('end', cb);
         }).catch(err => {
-            showError('render.js', err);
+            logError('render.js', err);
             cb();
         });
     } catch (err) {
-        showError('render.js', err);
+        logError('render.js', err);
         cb();
     }
 });
