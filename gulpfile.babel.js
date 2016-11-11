@@ -3,7 +3,6 @@ import config from './config.json'
 import gulp from 'gulp'
 import file from 'gulp-file'
 import gutil from 'gulp-util'
-import insert from 'gulp-insert'
 import s3 from 'gulp-s3-upload';
 import sass from 'gulp-sass'
 import size from 'gulp-size'
@@ -108,12 +107,12 @@ gulp.task('clean', () => del(buildDir));
 
 gulp.task('build:css', () => {
     return gulp.src('src/css/*.scss')
-        .pipe(insert.prepend(`$path: '${path}';\n`))
         .pipe(sourcemaps.init())
         .pipe(sass({
             'outputStyle': isDeploy ? 'compressed' : 'expanded'
         }).on('error', sass.logError))
         .pipe(sourcemaps.write('.'))
+        .pipe(template({path}))
         .pipe(gulp.dest(buildDir));
 });
 

@@ -15,7 +15,7 @@ For a non-immersive interactive go to <http://localhost:8000/interactive.html>
 
 ### Deploying
 Fill out `config.json`:
-```
+```json
 {
     "title": "Title of your interactive",
     "docData": "Any associated external data",
@@ -55,9 +55,18 @@ Resources must be loaded with absolute paths, otherwise they won't work when dep
 Use the template string `<%= path %>` in any CSS, HTML or JS, it will be replaced
 with the correct absolute path.
 
+```html
+<img src="<%= path %>/assets/image.png" />
 ```
-CORRECT   <img src="<%= path %>/assets/image.png" />
-INCORRECT <img src="assets/image.png" />
+
+```css
+.test {
+    background-image: url('<%= path %>/assets/image.png');
+}
+```
+
+```js
+var url = '<%= path %>/assets/image.png';
 ```
 
 ### Atom size
