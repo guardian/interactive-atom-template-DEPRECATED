@@ -1,10 +1,12 @@
 # Interactive atom template
 
-You will need [gulp](http://gulpjs.com/) (at least version 3.9.0).
+```
+npm install
+```
 
 ### Running locally
 ```
-gulp
+npm start
 ```
 
 For an immersive interactive go to <http://localhost:8000/immersive.html>
@@ -23,20 +25,20 @@ Fill out `config.json`:
 
 Then run
 ```
-gulp deploy
+npm run deploy
 ```
 
 #### Checking the deploy
 You can check the deploy log by running
 ```
-gulp log
+npm run log
 ```
 <b>NOTE:</b> Updates can take up to 30 seconds to show in the logs
 
 #### Embedding into Composer
 Run the command below, copy the URL into Composer and click embed.
 ```
-gulp url
+npm run url
 ```
 
 ## Usage guide

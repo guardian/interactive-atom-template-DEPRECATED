@@ -5,8 +5,10 @@
   "main": "src/render.js",
   "scripts": {
     "start": "gulp",
-    "postinstall": "bower install",
-    "deploy": "gulp deploy"
+    "deploy": "gulp deploy",
+    "log": "gulp log",
+    "url": "gulp url",
+    "postinstall": "bower install"
   },
   "author": "",
   "license": "ISC",
