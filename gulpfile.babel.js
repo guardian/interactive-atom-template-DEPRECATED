@@ -160,11 +160,13 @@ gulp.task('deploy', ['build'], cb => {
         message: 'Where would you like to deploy to?',
         choices: ['preview', 'live']
     }).then(res => {
+        let isLive = res.env === 'live';
         gulp.src(`${buildDir}/**/*`)
             .pipe(s3Upload('max-age=31536000', s3VersionPath))
             .on('end', () => {
                 gulp.src('config.json')
-                    .pipe(file(res.env, version))
+                    .pipe(file('preview', version))
+                    .pipe(isLive ? file('live', version) : gutil.noop())
                     .pipe(s3Upload('max-age=30', s3Path))
                     .on('end', cb);
             });
