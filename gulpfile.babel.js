@@ -55,6 +55,9 @@ const rollupPlugins = [
 
 function showError(plugin, err) {
     console.error(new gutil.PluginError(plugin, err.message).toString());
+    if (err instanceof SyntaxError) {
+        console.error(err.codeFrame);
+    }
 }
 
 function buildJS(filename) {
@@ -67,9 +70,6 @@ function buildJS(filename) {
             })
             .on('error', function (err) {
                 showError('rollup', err);
-                if (err instanceof SyntaxError) {
-                    console.error(err.codeFrame);
-                }
                 this.emit('end');
             })
             .pipe(source(filename, './src/js'))
