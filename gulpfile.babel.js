@@ -8,8 +8,8 @@ import sass from 'gulp-sass'
 import size from 'gulp-size'
 import sourcemaps from 'gulp-sourcemaps'
 import template from 'gulp-template'
-import webserver from 'gulp-webserver'
 
+import browserSync from 'browser-sync'
 import buffer from 'vinyl-buffer'
 import del from 'del'
 import fs from 'fs'
@@ -18,6 +18,8 @@ import rollup from 'rollup-stream'
 import rp from 'request-promise-native'
 import runSequence from 'run-sequence'
 import source from 'vinyl-source-stream'
+
+const browser = browserSync.create();
 
 const buildDir = '.build';
 const cdnUrl = 'https://interactive.guim.co.uk';
@@ -113,7 +115,8 @@ gulp.task('build:css', () => {
         }).on('error', sass.logError))
         .pipe(sourcemaps.write('.'))
         .pipe(template({path}))
-        .pipe(gulp.dest(buildDir));
+        .pipe(gulp.dest(buildDir))
+        .pipe(browser.stream({'match': '**/*.css'}));
 });
 
 gulp.task('build:js.main', buildJS('main.js'));
@@ -189,7 +192,10 @@ gulp.task('default', ['local'], () => {
         gutil.log(gutil.colors.yellow(`${evt.path} was ${evt.type}`));
     });
 
-    gulp.src(buildDir).pipe(webserver());
+    browser.init({
+        'server': {'baseDir': buildDir},
+        'port': 8000
+    });
 });
 
 gulp.task('url', () => {
