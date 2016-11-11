@@ -1,5 +1,5 @@
 import mainTemplate from './src/templates/main.html!text'
 
-export function render() {
+export async function render() {
     return mainTemplate;
 }

@@ -1,8 +1,14 @@
 {
   "presets": [
-    "es2015"
+    "latest"
   ],
   "plugins": [
-    "transform-import-bangtext-node"
+    "transform-import-bangtext-node",
+    [
+      "transform-runtime", {
+        "polyfill": false,
+        "regenerator": true
+      }
+    ]
   ]
 }

@@ -23,7 +23,7 @@ import source from 'vinyl-source-stream'
 const buildDir = '.build';
 const cdnUrl = 'https://interactive.guim.co.uk';
 
-const isDeploy = gutil.env._.includes('deploy');
+const isDeploy = gutil.env._.indexOf('deploy') > -1;
 
 const version = `v/${Date.now()}`;
 const s3Path = `atoms/${config.path}`;
@@ -32,7 +32,7 @@ const path = isDeploy ? `${cdnUrl}/${s3VersionPath}` : '.';
 
 // hack to use same presets for rollup, but with custom es2015
 const babelrc = JSON.parse(fs.readFileSync('.babelrc'));
-const presets = babelrc.presets.filter(p => p !== 'es2015');
+const presets = babelrc.presets.filter(p => p !== 'latest');
 
 const rollupPlugins = [
     require('rollup-plugin-json')(),
@@ -46,7 +46,7 @@ const rollupPlugins = [
         'include': ['node_modules/**']
     }),
     require('rollup-plugin-babel')({
-        'presets': [['es2015', {'modules': false}], ...presets],
+        'presets': [['latest', {'es2015': {'modules': false}}], ...presets],
         'plugins': ['external-helpers'],
         'babelrc': false,
         'exclude': 'node_modules/**'
@@ -108,7 +108,7 @@ gulp.task('clean', () => del(buildDir));
 
 gulp.task('build:css', () => {
     return gulp.src('src/css/*.scss')
-        .pipe(insert.prepend(`$path: '${path}';`))
+        .pipe(insert.prepend(`$path: '${path}';\n`))
         .pipe(sourcemaps.init())
         .pipe(sass({
             'outputStyle': isDeploy ? 'compressed' : 'expanded'
