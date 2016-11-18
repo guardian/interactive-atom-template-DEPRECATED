@@ -3,11 +3,13 @@ import config from './config.json'
 import gulp from 'gulp'
 import file from 'gulp-file'
 import gutil from 'gulp-util'
-import s3 from 'gulp-s3-upload';
+import install from 'gulp-install'
+import s3 from 'gulp-s3-upload'
 import sass from 'gulp-sass'
 import size from 'gulp-size'
 import sourcemaps from 'gulp-sourcemaps'
 import template from 'gulp-template'
+import zip from 'gulp-zip'
 
 import browserSync from 'browser-sync'
 import buffer from 'vinyl-buffer'
@@ -22,6 +24,7 @@ import source from 'vinyl-source-stream'
 const browser = browserSync.create();
 
 const buildDir = '.build';
+const packageDir = '.package';
 const cdnUrl = 'https://interactive.guim.co.uk';
 
 const isDeploy = gutil.env._.indexOf('deploy') > -1;
@@ -106,7 +109,7 @@ function readOpt(fn) {
     }
 }
 
-gulp.task('clean', () => del(buildDir));
+gulp.task('clean', () => del([buildDir, packageDir]));
 
 gulp.task('build:css', () => {
     return gulp.src('src/css/*.scss')
@@ -157,7 +160,24 @@ gulp.task('build', ['_build'], () => {
         .pipe(size({'gzip': true, 'showFiles': true}))
 });
 
-gulp.task('deploy', ['build'], cb => {
+gulp.task('package.src', ['clean'], () => {
+    return gulp.src('src/**/*').pipe(gulp.dest(`${packageDir}/src`));
+});
+
+gulp.task('package.npm', ['clean'], () => {
+    return gulp.src('./package.json')
+        .pipe(gulp.dest(packageDir))
+        .pipe(install({'production': true, 'ignoreScripts': true}));
+});
+
+gulp.task('package', ['package.src', 'package.npm'], () => {
+    return gulp.src(`${packageDir}/**/*`)
+        .pipe(zip('update.zip'))
+        .pipe(gulp.dest(packageDir));
+});
+
+const deployTasks = config.autoUpdate ? ['build', 'package'] : ['build'];
+gulp.task('deploy', deployTasks, cb => {
     inquirer.prompt({
         type: 'list',
         name: 'env',
@@ -168,7 +188,7 @@ gulp.task('deploy', ['build'], cb => {
         gulp.src(`${buildDir}/**/*`)
             .pipe(s3Upload('max-age=31536000', s3VersionPath))
             .on('end', () => {
-                gulp.src('config.json')
+                gulp.src([`${packageDir}/update.zip`, 'config.json'])
                     .pipe(file('preview', version))
                     .pipe(isLive ? file('live', version) : gutil.noop())
                     .pipe(s3Upload('max-age=30', s3Path))

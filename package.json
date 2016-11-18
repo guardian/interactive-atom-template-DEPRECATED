@@ -13,24 +13,21 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel": "^6.5.2",
     "babel-plugin-external-helpers": "^6.18.0",
-    "babel-plugin-transform-import-bangtext-node": "^0.1.4",
-    "babel-plugin-transform-runtime": "^6.15.0",
-    "babel-preset-latest": "^6.16.0",
     "bower": "^1.8.0",
     "browser-sync": "^2.17.5",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-file": "^0.3.0",
+    "gulp-install": "^0.6.0",
     "gulp-s3-upload": "^1.6.1",
     "gulp-sass": "^2.3.2",
     "gulp-size": "^2.1.0",
     "gulp-sourcemaps": "^2.2.0",
     "gulp-template": "^4.0.0",
     "gulp-util": "^3.0.7",
+    "gulp-zip": "^3.2.0",
     "inquirer": "^1.2.2",
-    "request-promise-native": "^1.0.3",
     "rollup-plugin-babel": "^2.6.1",
     "rollup-plugin-commonjs": "^5.0.5",
     "rollup-plugin-json": "^2.0.2",
@@ -43,5 +40,12 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "babel": "^6.5.2",
+    "babel-plugin-transform-import-bangtext-node": "^0.1.4",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-latest": "^6.16.0",
+    "request": "^2.78.0",
+    "request-promise-native": "^1.0.3"
+  }
 }
