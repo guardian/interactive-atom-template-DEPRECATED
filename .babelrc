@@ -1,14 +1,26 @@
 {
-  "presets": [
-    "latest"
-  ],
-  "plugins": [
-    "transform-import-bangtext-node",
-    [
-      "transform-runtime", {
-        "polyfill": false,
-        "regenerator": true
-      }
-    ]
-  ]
+  "env": {
+    "development": {
+      "presets": [
+        "latest"
+      ],
+      "plugins": [
+        "transform-import-bangtext-node",
+        [
+          "transform-runtime", {
+            "polyfill": false,
+            "regenerator": true
+          }
+        ]
+      ]
+    },
+    "client": {
+      "presets": [
+        ["latest", {"es2015": {"modules": false}}]
+      ],
+      "plugins": [
+        "external-helpers"
+      ]
+    }
+  }
 }

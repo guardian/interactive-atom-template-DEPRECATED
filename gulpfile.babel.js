@@ -31,9 +31,11 @@ const s3Path = `atoms/${config.path}`;
 const s3VersionPath = `${s3Path}/${version}`;
 const path = isDeploy ? `${cdnUrl}/${s3VersionPath}` : '.';
 
-// hack to use same presets for rollup, but with custom es2015
+// hack to use .babelrc environments without env var, would be nice to
+// be able to pass "client" env through to babel
 const babelrc = JSON.parse(fs.readFileSync('.babelrc'));
-const presets = babelrc.presets.filter(p => p !== 'latest');
+const presets = (babelrc.presets || []).concat(babelrc.env.client.presets);
+const plugins = (babelrc.plugins || []).concat(babelrc.env.client.plugins);
 
 const rollupPlugins = [
     require('rollup-plugin-json')(),
@@ -47,10 +49,9 @@ const rollupPlugins = [
         'include': ['node_modules/**']
     }),
     require('rollup-plugin-babel')({
-        'presets': [['latest', {'es2015': {'modules': false}}], ...presets],
-        'plugins': ['external-helpers'],
+        'exclude': 'node_modules/**',
         'babelrc': false,
-        'exclude': 'node_modules/**'
+        presets, plugins
     }),
     isDeploy && require('rollup-plugin-uglify')()
 ];
