@@ -1,6 +1,7 @@
 import config from './config.json'
 
 import gulp from 'gulp'
+import babel from 'gulp-babel'
 import file from 'gulp-file'
 import gutil from 'gulp-util'
 import install from 'gulp-install'
@@ -161,7 +162,14 @@ gulp.task('build', ['_build'], () => {
 });
 
 gulp.task('package.src', ['clean'], () => {
-    return gulp.src('src/**/*').pipe(gulp.dest(`${packageDir}/src`));
+    return gulp.src(['src/**/*', '!src/render.js'])
+        .pipe(gulp.dest(`${packageDir}/src`));
+});
+
+gulp.task('package.render', ['clean'], () => {
+    return gulp.src('src/render.js')
+        .pipe(babel())
+        .pipe(gulp.dest(`${packageDir}/src`));
 });
 
 gulp.task('package.npm', ['clean'], () => {
@@ -170,7 +178,7 @@ gulp.task('package.npm', ['clean'], () => {
         .pipe(install({'production': true, 'ignoreScripts': true}));
 });
 
-gulp.task('package', ['package.src', 'package.npm'], () => {
+gulp.task('package', ['package.src', 'package.render', 'package.npm'], () => {
     return gulp.src(`${packageDir}/**/*`)
         .pipe(zip('update.zip'))
         .pipe(gulp.dest(packageDir));
