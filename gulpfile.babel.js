@@ -162,30 +162,29 @@ gulp.task('build', ['_build'], () => {
 });
 
 gulp.task('package.src', ['clean'], () => {
-    return gulp.src(['src/**/*', '!src/render.js'])
+    return gulp.src('src/**/!(*.js)')
         .pipe(gulp.dest(`${packageDir}/src`));
 });
 
-gulp.task('package.render', ['clean'], () => {
-    return gulp.src('src/render.js')
+gulp.task('package.js', ['clean'], () => {
+    return gulp.src('src/**/*.js')
         .pipe(babel())
         .pipe(gulp.dest(`${packageDir}/src`));
 });
 
-gulp.task('package.npm', ['clean'], () => {
-    return gulp.src('./package.json')
+gulp.task('package.base', ['clean'], () => {
+    return gulp.src(['./package.json', './config.json'])
         .pipe(gulp.dest(packageDir))
         .pipe(install({'production': true, 'ignoreScripts': true}));
 });
 
-gulp.task('package', ['package.src', 'package.render', 'package.npm'], () => {
+gulp.task('package', ['package.src', 'package.js', 'package.base'], () => {
     return gulp.src(`${packageDir}/**/*`)
         .pipe(zip('update.zip'))
         .pipe(gulp.dest(packageDir));
 });
 
-const deployTasks = config.autoUpdate ? ['build', 'package'] : ['build'];
-gulp.task('deploy', deployTasks, cb => {
+gulp.task('deploy', config.autoUpdate ? ['build', 'package'] : ['build'], cb => {
     inquirer.prompt({
         type: 'list',
         name: 'env',
