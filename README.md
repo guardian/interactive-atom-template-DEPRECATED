@@ -9,13 +9,7 @@ npm install
 npm start
 ```
 
-For an immersive interactive go to <http://localhost:8000/immersive.html>
-
-For a non-immersive interactive go to <http://localhost:8000/interactive.html>
-
-For embeds in immersive articles go to <http://localhost:8000/immersive-article.html>
-
-For embeds in normal articles go to <http://localhost:8000/article.html>
+Go to <http://localhost:8000>
 
 ### Deploying
 Fill out `config.json`:
