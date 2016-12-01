@@ -1,0 +1,46 @@
+.interactive-header {
+	background-size: cover;
+	background-position: center;
+	width: 100%;
+	position: relative;
+	margin-bottom: 12px;
+
+	height: calc(100vh - 48px);
+
+	@each $bp in (tablet, desktop, leftCol, wide) {
+        @include mq($bp) {
+            height: calc(#{map-get($mq-breakpoints, $bp)}*(3/5));
+        }
+    }
+
+    .interactive-header__text {
+    	color: #000;
+    	position: absolute;
+    	right: 0;
+    	bottom: 0;
+    	margin: auto;
+    	background-color: #fff;
+    	padding-left: 10px;
+    	padding-top: 6px;
+
+	    @each $bp in (tablet, desktop, leftCol, wide) {
+	        @include mq($bp) {
+	            width: map-get($mq-breakpoints, $bp) - (map-get($mq-breakpoints, $bp) - 620px)/2;
+	        }
+	    }
+    }
+
+    h1 {
+    	@include fs-headline(9);
+    	font-size: 54x;
+    	font-weight: 700;
+    }
+
+    h2 {
+    	padding-top: 4px;
+    	max-width: 620px;
+    	@include fs-bodyHeading(3);
+    	color: #333;
+    }
+
+}
