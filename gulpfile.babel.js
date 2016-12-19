@@ -200,7 +200,7 @@ gulp.task('default', ['local'], () => {
 });
 
 gulp.task('url', () => {
-    gutil.log(gutil.colors.green(`Atom URL: https://content.guardianapis.com/atom/interactive/${config.path}`));
+    gutil.log(gutil.colors.green(`Atom URL: https://content.guardianapis.com/atom/interactive/interactives/${config.path}`));
 });
 
 gulp.task('log', () => {
