@@ -8,7 +8,9 @@
     "deploy": "gulp deploy",
     "log": "gulp log",
     "url": "gulp url",
-    "postinstall": "bower install"
+    "postinstall": "bower install",
+    "deploylive": "gulp deploylive",
+    "deploypreview": "gulp deploypreview",
   },
   "author": "",
   "license": "ISC",
