@@ -158,6 +158,11 @@ gulp.task('build', ['_build'], () => {
 });
 
 gulp.task('deploy', ['build'], cb => {
+    if(s3Path === "atoms/2016/05/blah") {
+        console.error("ERROR: You need to change the deploy path from its default value")
+        return;
+    }
+
     inquirer.prompt({
         type: 'list',
         name: 'env',

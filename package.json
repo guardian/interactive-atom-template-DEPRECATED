@@ -10,7 +10,7 @@
     "url": "gulp url",
     "postinstall": "bower install",
     "deploylive": "gulp deploylive",
-    "deploypreview": "gulp deploypreview",
+    "deploypreview": "gulp deploypreview"
   },
   "author": "",
   "license": "ISC",
