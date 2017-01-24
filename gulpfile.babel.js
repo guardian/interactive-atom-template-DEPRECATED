@@ -183,6 +183,11 @@ gulp.task('deploy', ['build'], cb => {
 });
 
 gulp.task('deploylive', ['build'], cb => {
+    if(s3Path === "atoms/2016/05/blah") {
+        console.error("ERROR: You need to change the deploy path from its default value")
+        return;
+    }
+
     gulp.src(`${buildDir}/**/*`)
         .pipe(s3Upload('max-age=31536000', s3VersionPath))
         .on('end', () => {
@@ -195,6 +200,11 @@ gulp.task('deploylive', ['build'], cb => {
 });
 
 gulp.task('deploypreview', ['build'], cb => {
+    if(s3Path === "atoms/2016/05/blah") {
+        console.error("ERROR: You need to change the deploy path from its default value")
+        return;
+    }
+    
     gulp.src(`${buildDir}/**/*`)
         .pipe(s3Upload('max-age=31536000', s3VersionPath))
         .on('end', () => {
