@@ -90,6 +90,8 @@ function s3Upload(cacheControl, keyPrefix) {
         'ACL': 'public-read',
         'CacheControl': cacheControl,
         'keyTransform': fn => `${keyPrefix}/${fn}`
+    }, {
+      credentials: new AWS.SharedIniFileCredentials({profile: "interactives"})
     });
 }
 
