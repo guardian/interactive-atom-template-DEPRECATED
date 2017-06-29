@@ -19,7 +19,8 @@ import source from 'vinyl-source-stream'
 import named from 'vinyl-named'
 import buffer from 'vinyl-buffer'
 
-import webpack from 'webpack2-stream-watch'
+import webpack from 'webpack'
+import wsw from 'webpack2-stream-watch'
 const debug = require('gulp-debug');
 import through from 'through2'
 
@@ -52,7 +53,7 @@ function buildJS(filename) {
     return () => {
         return gulp.src(`./src/js/${filename}`)
             .pipe(named())
-            .pipe(webpack({
+            .pipe(wsw({
                 watch: false,
                 module: {
                     loaders: [{
@@ -60,8 +61,11 @@ function buildJS(filename) {
                         loader: 'style!css'
                     }, ],
                 },
-                devtool: 'source-map'
-            }))
+                devtool: 'source-map',
+                plugins: [
+                    new webpack.HotModuleReplacementPlugin() // Enable HMR
+                ]
+            }, webpack))
             .pipe(template({
                 path
             }))

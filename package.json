@@ -49,6 +49,7 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-named": "^1.1.0",
     "vinyl-source-stream": "^1.1.0",
+    "webpack": "^3.0.0",
     "webpack2-stream-watch": "^3.2.2"
   },
   "dependencies": {}
