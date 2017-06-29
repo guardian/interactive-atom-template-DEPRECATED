@@ -61,9 +61,28 @@ function buildJS(filename) {
                         loader: 'style!css'
                     }, ],
                 },
+                module: {
+                    rules: [
+                        {
+                            test: /\.js$/,
+                            exclude: /node_modules/,
+                            use: 'babel-loader'
+                        }]
+                },
                 devtool: 'source-map',
                 plugins: [
-                    new webpack.HotModuleReplacementPlugin() // Enable HMR
+                    new webpack.HotModuleReplacementPlugin(), // Enable HMR
+                    new webpack.LoaderOptionsPlugin({
+                        options: {
+                            babel: {
+                                presets: [
+                                    ['es2015', {
+                                        modules: false
+                                    }]
+                                ]
+                            }
+                        }
+                    }),
                 ]
             }, webpack))
             .pipe(template({
