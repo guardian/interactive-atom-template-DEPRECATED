@@ -23,6 +23,7 @@ import webpack from 'webpack'
 import wsw from 'webpack2-stream-watch'
 const debug = require('gulp-debug');
 import through from 'through2'
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const browser = browserSync.create();
 
@@ -83,6 +84,8 @@ function buildJS(filename) {
                             }
                         }
                     }),
+                    // to-do: sort sourcemaps
+                    new UglifyJSPlugin()
                 ]
             }, webpack))
             .pipe(template({
