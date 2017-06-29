@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add vinyl-named
+  /usr/local/bin/node /usr/local/bin/yarn add through2
 
 PATH: 
   /Library/Frameworks/Python.framework/Versions/2.7/bin:/Users/jholder/.rbenv/shims:/Users/jholder/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:/usr/local/MacGPG2/bin
@@ -62,6 +62,7 @@ npm manifest:
       "run-sequence": "^1.2.2",
       "sass-mq": "^3.3.1",
       "vinyl-buffer": "^1.0.0",
+      "vinyl-named": "^1.1.0",
       "vinyl-source-stream": "^1.1.0",
       "webpack2-stream-watch": "^3.2.2"
     },

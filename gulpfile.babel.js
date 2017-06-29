@@ -20,6 +20,8 @@ import named from 'vinyl-named'
 import buffer from 'vinyl-buffer'
 
 import webpack from 'webpack2-stream-watch'
+const debug = require('gulp-debug');
+import through from 'through2'
 
 const browser = browserSync.create();
 
@@ -48,23 +50,6 @@ function logError(plugin, err) {
 
 function buildJS(filename) {
     return () => {
-        // return rollup({
-        //         'entry': `./src/js/${filename}`,
-        //         'sourceMap': true,
-        //         'plugins': rollupPlugins,
-        //         'format': 'iife'
-        //     })
-        //     .on('error', function (err) {
-        //         logError('rollup', err);
-        //         this.emit('end');
-        //     })
-        //     .pipe(source(filename, './src/js'))
-        //     .pipe(buffer())
-        //     .pipe(template({path}))
-        //     .pipe(sourcemaps.init({'loadMaps': true}))
-        //     .pipe(sourcemaps.write('.'))
-        //     .pipe(gulp.dest(buildDir));
-
         return gulp.src(`./src/js/${filename}`)
             .pipe(named())
             .pipe(webpack({
@@ -75,12 +60,11 @@ function buildJS(filename) {
                         loader: 'style!css'
                     }, ],
                 },
+                devtool: 'source-map'
             }))
-            .pipe(source(filename, './src/js'))
-            // .pipe(buffer())
-            .pipe(template({path}))
-            .pipe(sourcemaps.init({'loadMaps': true}))
-            .pipe(sourcemaps.write('.'))
+            .pipe(template({
+                path
+            }))
             .pipe(gulp.dest(buildDir));
 
     }
