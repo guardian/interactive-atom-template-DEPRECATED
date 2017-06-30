@@ -280,11 +280,3 @@ gulp.task('log', () => {
 
     return Promise.all([log('live'), log('preview')]);
 });
-
-var git = require('gulp-git');
-
-gulp.task('status', function(){
-  git.status({args: '--porcelain'}, function (err, stdout) {
-    console.log(stdout.length);
-  });
-});
