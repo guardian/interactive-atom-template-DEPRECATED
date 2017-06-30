@@ -36,6 +36,7 @@
     "gulp-template": "^4.0.0",
     "gulp-util": "^3.0.7",
     "inquirer": "^1.2.2",
+    "raw-loader": "^0.5.1",
     "request-promise-native": "^1.0.3",
     "run-sequence": "^1.2.2",
     "sass-mq": "^3.3.1",

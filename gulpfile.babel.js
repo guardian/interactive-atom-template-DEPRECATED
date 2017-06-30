@@ -50,6 +50,24 @@ function logError(plugin, err) {
     }
 }
 
+let webpackPlugins = [
+    new webpack.LoaderOptionsPlugin({
+        options: {
+            babel: {
+                presets: [
+                    ['es2015', {
+                        modules: false
+                    }]
+                ]
+            }
+        }
+    })
+];
+
+if(isDeploy) {
+    plugins.push(new UglifyJSPlugin());
+}
+
 function buildJS(filename) {
     return () => {
         return gulp.src(`./src/js/${filename}`)
@@ -68,25 +86,14 @@ function buildJS(filename) {
                             test: /\.js$/,
                             exclude: /node_modules/,
                             use: 'babel-loader'
+                        },
+                        {
+                            test: /\.html$/,
+                            use: 'raw-loader'
                         }]
                 },
                 devtool: 'source-map',
-                plugins: [
-                    // new webpack.HotModuleReplacementPlugin(), // Enable HMR
-                    new webpack.LoaderOptionsPlugin({
-                        options: {
-                            babel: {
-                                presets: [
-                                    ['es2015', {
-                                        modules: false
-                                    }]
-                                ]
-                            }
-                        }
-                    }),
-                    // to-do: sort sourcemaps
-                    // new UglifyJSPlugin()
-                ]
+                plugins: webpackPlugins
             }, webpack))
             .pipe(template({
                 path

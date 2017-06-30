@@ -3,6 +3,6 @@ el.src = '<%= path %>/app.js';
 document.body.appendChild(el);
 
 
-let josh = "<%= path %>/assets/josh.png"
+var josh = "<%= path %>/assets/josh.png"
 
 console.log(josh);

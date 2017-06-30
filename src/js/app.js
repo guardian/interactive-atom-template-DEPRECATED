@@ -1,5 +1,5 @@
-let josh = "<%= path %>/assets/josh.png"
+import * as d3 from 'd3'
+import mainHTML from '../templates/main.html'
 
-// console.log(josh, d3.scaleLinear);
-
-console.log(josh) 
+console.log(mainHTML)
+d3.select(".here").html(mainHTML);
