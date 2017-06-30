@@ -72,7 +72,7 @@ function buildJS(filename) {
                 },
                 devtool: 'source-map',
                 plugins: [
-                    new webpack.HotModuleReplacementPlugin(), // Enable HMR
+                    // new webpack.HotModuleReplacementPlugin(), // Enable HMR
                     new webpack.LoaderOptionsPlugin({
                         options: {
                             babel: {
@@ -85,7 +85,7 @@ function buildJS(filename) {
                         }
                     }),
                     // to-do: sort sourcemaps
-                    new UglifyJSPlugin()
+                    // new UglifyJSPlugin()
                 ]
             }, webpack))
             .pipe(template({
@@ -215,9 +215,34 @@ gulp.task('local', ['build'], () => {
         .pipe(gulp.dest(buildDir));
 });
 
+gulp.task('local:html', ['build:html'], () => {
+    return gulp.src('harness/*')
+        .pipe(template({
+            'css': readOpt(`${buildDir}/main.css`),
+            'html': readOpt(`${buildDir}/main.html`),
+            'js': readOpt(`${buildDir}/main.js`)
+        }))
+        .pipe(gulp.dest(buildDir));
+});
+
 gulp.task('default', ['local'], () => {
-    gulp.watch('src/**/*', ['local']).on('change', evt => {
-        console.log();
+    gulp.watch(['src/**/*', '!src/css/*', '!src/js/app.js', '!src/render.js', '!src/assets/*'], ['local']).on('change', evt => {
+        gutil.log(gutil.colors.yellow(`${evt.path} was ${evt.type}`));
+    });
+
+    gulp.watch(['src/css/*'], ['build:css']).on('change', evt => {
+        gutil.log(gutil.colors.yellow(`${evt.path} was ${evt.type}`));
+    });
+
+    gulp.watch(['src/js/app.js'], ['build:js']).on('change', evt => {
+        gutil.log(gutil.colors.yellow(`${evt.path} was ${evt.type}`));
+    });
+
+    gulp.watch(['src/render.js'], ['local:html']).on('change', evt => {
+        gutil.log(gutil.colors.yellow(`${evt.path} was ${evt.type}`));
+    });
+
+    gulp.watch(['src/assets/*'], ['build:assets']).on('change', evt => {
         gutil.log(gutil.colors.yellow(`${evt.path} was ${evt.type}`));
     });
 
