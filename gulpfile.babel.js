@@ -54,11 +54,7 @@ let webpackPlugins = [
     new webpack.LoaderOptionsPlugin({
         options: {
             babel: {
-                presets: [
-                    ['es2015', {
-                        modules: false
-                    }]
-                ]
+                presets, plugins
             }
         }
     })
