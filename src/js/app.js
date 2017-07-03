@@ -1,5 +1,8 @@
-import * as d3 from 'd3'
-import mainHTML from '../templates/main.html'
+import Counter from './counter.svelte';
 
-console.log(mainHTML)
-d3.select(".here").html(mainHTML);
+const app = new Counter({
+  target: document.querySelector('.here'),
+  data: { name: 'world'}
+});
+
+app.set({ name: 'everybody'});

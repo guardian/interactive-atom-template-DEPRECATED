@@ -82,8 +82,9 @@ function buildJS(filename) {
                             use: 'babel-loader'
                         },
                         {
-                            test: /\.html$/,
-                            use: 'raw-loader'
+                            test: /\.(html|svelte)$/,
+                            exclude: /node_modules/,
+                            use: 'svelte-loader'
                         }]
                 },
                 devtool: 'source-map',
@@ -174,11 +175,7 @@ gulp.task('_build', ['clean'], cb => {
 
 // TODO: less hacky build/_build?
 gulp.task('build', ['_build'], () => {
-    return gulp.src(`${buildDir}/**/!(*.map)`)
-        .pipe(size({
-            'gzip': true,
-            'showFiles': true
-        }))
+    return;
 });
 
 gulp.task('deploy', ['build'], cb => {

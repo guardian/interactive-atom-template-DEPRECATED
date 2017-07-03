@@ -1,8 +1,8 @@
-var el = document.createElement('script');
-el.src = '<%= path %>/app.js';
-document.body.appendChild(el);
+import Counter from './counter.svelte';
 
+const app = new Counter({
+  target: document.querySelector('.here'),
+  data: { name: 'world'}
+});
 
-var josh = "<%= path %>/assets/josh.png"
-
-console.log(josh);
+app.set({ name: 'everybody'});
