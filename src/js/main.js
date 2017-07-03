@@ -1,8 +1,3 @@
-import Counter from './counter.svelte';
-
-const app = new Counter({
-  target: document.querySelector('.here'),
-  data: { name: 'world'}
-});
-
-app.set({ name: 'everybody'});
+var el = document.createElement('script');
+el.src = '<%= path %>/app.js';
+document.body.appendChild(el);

@@ -82,7 +82,11 @@ function buildJS(filename) {
                             use: 'babel-loader'
                         },
                         {
-                            test: /\.(html|svelte)$/,
+                            test: /\.html$/,
+                            use: 'raw-loader'
+                        },
+                        {
+                            test: /\.(svelte)$/,
                             exclude: /node_modules/,
                             use: 'svelte-loader'
                         }]
