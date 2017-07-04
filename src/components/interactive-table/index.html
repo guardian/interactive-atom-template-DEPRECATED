@@ -1,0 +1,32 @@
+<InteractiveTable tableData='{{tableData}}'></InteractiveTable>
+
+<script>
+    import reqwest from "reqwest"
+    import InteractiveTable from './render.html'
+
+    export default {
+        data() {
+                return {
+                    tableData: []
+                }
+            },
+            oncreate() {
+                reqwest({
+                    url: this.get("sheet"),
+                    type: 'json',
+                    method: 'get',
+                    error: (err) => {
+                        console.log(err)
+                    },
+                    success: (resp) => {
+                        this.set({
+                            tableData: resp.sheets.tableDataSheet
+                        })
+                    }
+                })
+            },
+            components: {
+                InteractiveTable
+            }
+    };
+</script>

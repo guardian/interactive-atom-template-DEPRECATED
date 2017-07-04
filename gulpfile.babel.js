@@ -77,16 +77,12 @@ function buildJS(filename) {
                 module: {
                     rules: [
                         {
-                            test: /\.js$/,
+                            test: /\.(html|js)$/,
                             exclude: /node_modules/,
                             use: 'babel-loader'
                         },
                         {
-                            test: /\.html$/,
-                            use: 'raw-loader'
-                        },
-                        {
-                            test: /\.(svelte)$/,
+                            test: /\.(svelte|html)$/,
                             exclude: /node_modules/,
                             use: 'svelte-loader'
                         }]

@@ -1,0 +1,17 @@
+<div class="table">
+    <table>
+        <tbody>
+            {{#each tableData as row}}
+            <tr>
+                {{#each row as cell}}
+                <td>{{cell}}</td>
+                {{/each}}
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    console.log("table drawn")
+</script>
