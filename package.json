@@ -50,5 +50,11 @@
     "webpack": "^3.0.0",
     "webpack2-stream-watch": "^3.2.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "promise-polyfill": "^6.0.2",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
+    "require-uncached": "^1.0.3",
+    "unfetch": "^3.0.0"
+  }
 }

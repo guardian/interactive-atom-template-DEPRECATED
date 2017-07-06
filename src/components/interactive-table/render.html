@@ -1,17 +1,116 @@
-<div class="table">
-    <table>
-        <tbody>
-            {{#each tableData as row}}
-            <tr>
-                {{#each row as cell}}
-                <td>{{cell}}</td>
+{{#if tableData}}
+<div class="interactive-table {{serverside ? 'serverside' : ''}}">
+    {{#if tableTitle}}
+      <h2>{{tableTitle}}</h2>
+    {{/if}}
+    <SearchBox on:searching='filterData(event)'></SearchBox>
+    <div class="interactive-table__wrapper">
+        <table>
+            <thead>
+                {{#each headerData as row}}
+                <tr>
+                    {{#each row as cell}}
+                    <th>{{cell}}</th>
+                    {{/each}}
+                </tr>
                 {{/each}}
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {{#each bodyData as row}}
+                <tr class="{{row.hide ? 'hidden' : ''}}">
+                    {{#each row as cell}}
+                    <td data-header="{{cell.headerName}}">{{cell.content}}</td>
+                    {{/each}}
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
 </div>
-
+{{/if}}
 <script>
-    console.log("table drawn")
+import SearchBox from './searchBox.html'
+
+export default {
+    oncreate() {
+            this.observe("tableData", tableData => {
+                if (tableData && tableData.length) {
+                    //remove serverside rendered table, if it exists
+                    //TO DO: replace this with something cleaner
+                    if (!this.get("serversideRemoved")) {
+                        if (this.get("el") && this.get("el").querySelector(".serverside")) {
+                            let serversideTable = this.get("el").querySelector(".serverside");
+                            serversideTable.remove();
+                        }
+
+                        this.set({
+                            "serversideRemoved": true
+                        })
+                    }
+                }
+            })
+        },
+        computed: {
+            headerData: tableData => formatTableData(tableData).header,
+            bodyData: tableData => formatTableData(tableData).body
+        },
+
+        components: {
+            SearchBox
+        },
+
+        methods: {
+            filterData(event) {
+                let searchText = event.event.target.value;
+
+                let filteredData = this.get("tableData").map((r) => {
+                    r.hide = true;
+                    r.forEach((c) => {
+                        if (c.toLowerCase().indexOf(searchText.toLowerCase()) > -1) {
+                            r.hide = false;
+                        }
+                    });
+                    return r;
+                });
+
+                this.set({
+                    tableData: filteredData
+                });
+            }
+        }
+}
+
+function formatTableData(tableData) {
+    if (!tableData) {
+        return {
+            header: [],
+            body: []
+        }
+    }
+
+    let header = tableData.slice(0, 1).map((d) => d.map(c => c.replace(/\[bold\]/g, "")));
+    let body = tableData.slice(1);
+
+    body = body.map((b) => {
+      let hide = b.hide;
+      b = b.map((c, i) => {
+        return {
+          headerName: header[0][i],
+          content: c
+        }
+      });
+      b.hide = hide;
+      return b;
+    }); 
+
+    return {
+        header,
+        body
+    }
+}
 </script>
+<style>
+.hidden {
+    display: none;
+}
+</style>

@@ -1,22 +1,18 @@
-import mainTemplate from './src/templates/main.html!text'
+const requireUncached = require('require-uncached');
 
+import mainTemplate from './src/templates/main.html!text'
+import rp from "request-promise"
 import 'svelte/ssr/register'
 
-import Table from '../src/components/interactive-table/render.html'
+const Table = requireUncached('../src/components/interactive-table/render.html')
 
 export async function render() {
+	let tableData = JSON.parse(await rp("https://interactive.guim.co.uk/docsdata-test/17swcJIV-bGKvWApff2aRsazCOWK66lAZIVW9fUMAy6A.json")).sheets.tableDataSheet;
+    
     let html = Table.render({
-        tableData: [
-            [
-                "Afghanistan",
-                "32.5",
-                "33",
-                "57",
-                "19",
-                "43",
-                "13"
-            ]
-        ]
+    	tableTitle: "This is a test table",
+        tableData: tableData,
+        serverside: true
     });
 
     return `<div class="here">${html}</div>`;

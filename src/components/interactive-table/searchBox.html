@@ -1,0 +1,1 @@
+<input class="interactive-search-box" placeholder="Search" on:keyup="fire('searching', {event})">
