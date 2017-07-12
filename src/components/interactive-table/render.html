@@ -1,8 +1,7 @@
 {{#if tableData}}
-<div class="interactive-table {{serverside ? 'serverside' : ''}}">
+<div class="interactive-table {{serverside ? 'serverside' : ''}} {{collapseMobile ? 'collapse-mobile' : ''}}">
     {{#if tableTitle}}
-      <h2>{{tableTitle}}</h2>
-    {{/if}}
+    <h2>{{tableTitle}}</h2> {{/if}}
     <SearchBox on:searching='filterData(event)'></SearchBox>
     <div class="interactive-table__wrapper">
         <table>
@@ -25,6 +24,14 @@
                 {{/each}}
             </tbody>
         </table>
+        {{#if truncate}}
+            <button class="interactive-table__button" on:click='untruncate(event)'>
+                <svg width="18" height="18" viewBox="0 0 18 18" class="inline-plus__svg inline-icon__svg">
+                    <path d="M8.2 0h1.6l.4 7.8 7.8.4v1.6l-7.8.4-.4 7.8H8.2l-.4-7.8L0 9.8V8.2l7.8-.4.4-7.8z"></path>
+                </svg>
+                View all
+            </button>
+        {{/if}}
     </div>
 </div>
 {{/if}}
@@ -51,8 +58,8 @@ export default {
             })
         },
         computed: {
-            headerData: tableData => formatTableData(tableData).header,
-            bodyData: tableData => formatTableData(tableData).body
+            headerData: (tableData, truncate) => formatTableData(tableData, truncate).header,
+            bodyData: (tableData, truncate) => formatTableData(tableData, truncate).body
         },
 
         components: {
@@ -76,11 +83,16 @@ export default {
                 this.set({
                     tableData: filteredData
                 });
+            },
+            untruncate(event) {
+                this.set({
+                    truncate: false
+                });
             }
         }
 }
 
-function formatTableData(tableData) {
+function formatTableData(tableData, truncate) {
     if (!tableData) {
         return {
             header: [],
@@ -89,19 +101,19 @@ function formatTableData(tableData) {
     }
 
     let header = tableData.slice(0, 1).map((d) => d.map(c => c.replace(/\[bold\]/g, "")));
-    let body = tableData.slice(1);
+    let body = (truncate) ? tableData.slice(1, truncate + 1) : tableData.slice(1);
 
     body = body.map((b) => {
-      let hide = b.hide;
-      b = b.map((c, i) => {
-        return {
-          headerName: header[0][i],
-          content: c
-        }
-      });
-      b.hide = hide;
-      return b;
-    }); 
+        let hide = b.hide;
+        b = b.map((c, i) => {
+            return {
+                headerName: header[0][i],
+                content: c
+            }
+        });
+        b.hide = hide;
+        return b;
+    });
 
     return {
         header,

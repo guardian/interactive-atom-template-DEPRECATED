@@ -12,7 +12,9 @@ export async function render() {
     let html = Table.render({
     	tableTitle: "This is a test table",
         tableData: tableData,
-        serverside: true
+        serverside: true,
+        collapseMobile: true,
+        truncate: 10
     });
 
     return `<div class="here">${html}</div>`;
