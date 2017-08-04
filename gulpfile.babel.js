@@ -20,9 +20,8 @@ import named from 'vinyl-named'
 import buffer from 'vinyl-buffer'
 
 import webpack from 'webpack'
-import wsw from 'webpack2-stream-watch'
+import ws from 'webpack-stream'
 const debug = require('gulp-debug');
-import through from 'through2'
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const browser = browserSync.create();
@@ -57,6 +56,11 @@ let webpackPlugins = [
                 presets, plugins
             }
         }
+    }),
+    new webpack.DefinePlugin({
+        'process.env' : {
+            'PATH' : JSON.stringify(path)
+        }
     })
 ];
 
@@ -66,7 +70,7 @@ function buildJS(filename) {
     return () => {
         return gulp.src(`./src/js/${filename}`)
             .pipe(named())
-            .pipe(wsw({
+            .pipe(ws({
                 watch: false,
                 module: {
                     loaders: [{
@@ -90,9 +94,6 @@ function buildJS(filename) {
                 devtool: 'source-map',
                 plugins: webpackPlugins
             }, webpack))
-            .pipe(template({
-                path
-            }))
             .pipe(gulp.dest(buildDir));
 
     }
