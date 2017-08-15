@@ -1,0 +1,21 @@
+#map {
+    padding-bottom: 60%;
+
+    @include mq($until: tablet) {
+    	padding-bottom: 120%;
+    }
+}
+
+.info-window__title {
+	@include fs-headline(2);
+	margin: 0;
+	margin-bottom: 4px;
+	font-weight: 700;
+}
+
+.info-window__text {
+	@include fs-textSans(4);
+	padding: 0;
+	margin: 0;
+	color: #333;
+}

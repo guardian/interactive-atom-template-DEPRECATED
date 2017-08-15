@@ -1,0 +1,96 @@
+<div id="map"></div>
+<script>
+import { defaultMapStyle } from './defaultMapStyle'
+
+export default {
+    oncreate() {
+        markers = this.get("markers");
+        config = Object.assign(defaultConfig, this.get("config"));
+        markerConfig = Object.assign(defaultMarkerConfig, this.get("markerConfig"));
+        var el = document.createElement('script');
+
+        el.src = `https://maps.googleapis.com/maps/api/js?key=${this.get("key")}&callback=initMap`;
+        document.body.appendChild(el);
+    }
+}
+
+let infowindow;
+let markers;
+let config;
+let markerConfig;
+
+const defaultConfig = {
+    center: { lat: 30.7316306, lng: -94.9396368 },
+    scrollwheel: false,
+    mapTypeControl: false,
+    streetViewControl: false,
+    zoom: 4,
+    draggable: false,
+    panControl: false,
+    zoomControl: false
+}
+
+const defaultMarkerConfig = {
+    markerSize: 10,
+    infoWindowWidth: 250,
+    url: `${process.env.PATH}/assets/map-icon.png`
+}
+
+window.initMap = () => {
+    const map = new google.maps.Map(document.querySelector("#map"), Object.assign(defaultConfig, config));
+
+    const windowOrWindowParent = (inIframe) ? window.parent : window;
+
+    const isAndroidApp = (windowOrWindowParent.location.origin === "file://" && /(android)/i.test(navigator.userAgent)) ? true : false;
+
+    if (isAndroidApp) {
+        google.maps.event.addListener(map, "dragstart", function(event) {
+            windowOrWindowParent.GuardianJSInterface.registerRelatedCardsTouch(true);
+        }, true);
+        google.maps.event.addListener(map, "dragend", function(event) {
+            windowOrWindowParent.GuardianJSInterface.registerRelatedCardsTouch(false);
+        }, true);
+    }
+
+    map.mapTypes.set('styled_map', new google.maps.StyledMapType(defaultMapStyle));
+    map.setMapTypeId('styled_map');
+
+    if (markers && markers.length > 0) {
+        markers.forEach((m) => {
+            const markerSize = defaultMarkerConfig.markerSize;
+            const marker = new google.maps.Marker({
+                map: map,
+                position: m,
+                icon: {
+                    url: markerConfig.url,
+                    scaledSize: new google.maps.Size(markerConfig.markerSize, markerConfig.markerSize)
+                }
+            });
+
+            if (m.label) {
+                marker.addListener('click', function() {
+                    if (infowindow) {
+                        infowindow.close();
+                    }
+
+                    infowindow = new google.maps.InfoWindow({
+                        content: m.label,
+                        maxWidth: markerConfig.infoWindowWidth
+                    });
+
+                    infowindow.open(map, marker);
+
+                });
+            }
+        });
+    }
+}
+
+function inIframe() {
+    try {
+        return window.self !== window.top;
+    } catch (e) {
+        return true;
+    }
+}
+</script>
