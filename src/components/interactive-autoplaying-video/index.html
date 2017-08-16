@@ -1,0 +1,29 @@
+<div id="interactive-autoplaying-video">
+    <video preload="none" poster="{{poster}}">
+        <source src="{{bestSource}}" type="video/mp4">
+    </video>
+</div>
+<script>
+export default {
+    oncreate() {
+        const elWidth = this.get("el").clientWidth;
+        let videoSize;
+
+        //primitive video size selection
+        if (elWidth > 960) {
+            videoSize = "large";
+        } else if (elWidth > 700) {
+            videoSize = "medium";
+        } else {
+            videoSize = "small";
+        }
+
+        this.set({
+            "bestSource": this.get("sources")[videoSize],
+            "videoEl": this.get("el").querySelector("video")
+        })
+
+        this.get("videoEl").load()
+    }
+}
+</script>

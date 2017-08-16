@@ -25,9 +25,9 @@ const defaultConfig = {
     mapTypeControl: false,
     streetViewControl: false,
     zoom: 4,
-    draggable: false,
-    panControl: false,
-    zoomControl: false
+    draggable: true,
+    panControl: true,
+    zoomControl: true
 }
 
 const defaultMarkerConfig = {
@@ -82,6 +82,11 @@ window.initMap = () => {
 
                 });
             }
+
+            var ctaLayer = new google.maps.KmlLayer({
+                url: 'http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml',
+                map: map
+            });
         });
     }
 }
