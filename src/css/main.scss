@@ -2,15 +2,67 @@
 @import "fonts";
 
 // Uncomment for embeds
-//@import "embed";
-
+// @import "embed";
 // Uncomment for full screen (including immersive article main media)
 //@import "fullscreen";
-
-.element-atom,
 .interactive-atom {
-    margin: 0 !important;
+    margin-left: -10px;
+    margin-right: -10px;
+    position: relative;
+
+    @include mq(desktop) {
+        margin-left: -20px;
+        margin-right: -20px;
+    }
 }
 
-@import "../components/interactive-google-map/styles";
-@import "../components/interactive-autoplaying-video/styles";
+.interactive-seabed__text-wrapper {
+    margin-top: -100vh;
+}
+
+.interactive-seabed__text {
+    height: 100vh;
+    position: relative;
+    z-index: 200;
+    max-width: 620px;
+
+    @include mq(desktop) {
+    	margin-left: 20px;
+    }
+
+    @include mq(leftCol) {
+    	margin-left: 180px;
+    }
+
+    @include mq(wide) {
+    	margin-left: 260px;
+	}
+
+    p {
+        display: inline;
+        background-color: rgba(255, 255, 255, 0.6);
+        color: #333;
+        padding: 5px 5px 5px 5px;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+        @include fs-headline(3);
+        line-height: 32px;
+    }
+}
+
+.interactive-seabed__video {
+	position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    line-height: 0;
+    height: 100vh;
+
+    video {
+        width: 100%;
+        line-height: 0;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
