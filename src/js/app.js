@@ -4,7 +4,7 @@ const pTags = [].slice.apply(document.querySelectorAll(".interactive-seabed__tex
 
 const videoEl = document.querySelector(".interactive-seabed__video video");
 
-const timings = [3, 14, 20, 40, 44];
+const timings = [1, 3.8, 6];
 
 const checkTags = () => {
     if (window.pageYOffset !== scrollPos) {
