@@ -10,7 +10,7 @@
     margin-right: -10px;
     position: relative;
 
-    @include mq(desktop) {
+    @include mq(mobileLandscape) {
         margin-left: -20px;
         margin-right: -20px;
     }
@@ -50,13 +50,39 @@
     }
 }
 
+.interactive-seabed__container {
+    .no-sticky & {
+        overflow: hidden;
+    }
+}
+
 .interactive-seabed__video {
+    position: absolute;
 	position: -webkit-sticky;
     position: sticky;
     top: 0;
-    width: 100%;
     line-height: 0;
     height: 100vh;
+    overflow: hidden; 
+
+    width: 100vw;
+
+    @include mq(tablet) {
+        width: 740px;
+        // margin-left: -10px;
+    }
+
+    @include mq(desktop) {
+        width: 980px;
+    }
+
+    @include mq(leftCol) {
+        width: 1140px;
+    }
+
+    @include mq(wide) {
+        width: 1300px;
+    }
 
     video {
         width: 100%;
