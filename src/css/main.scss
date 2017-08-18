@@ -40,13 +40,14 @@
 
     p {
         display: inline;
-        background-color: rgba(255, 255, 255, 0.6);
+        background-color: rgba(255, 255, 255, 0.76);
         color: #333;
         padding: 5px 5px 5px 5px;
         box-decoration-break: clone;
         -webkit-box-decoration-break: clone;
         @include fs-headline(3);
         line-height: 32px;
+        font-weight: 500;
     }
 }
 
