@@ -21,7 +21,7 @@ const videoElParent = videoElContainer.querySelector(".interactive-seabed__video
 
 const videoEl = videoElParent.querySelector("video");
 
-const timings = [1, 3.8, 6];
+const timings = [1, 3.5, 10];
 
 const supportsSticky = featureTest('position', 'sticky') || featureTest('position', '-webkit-sticky');
 
