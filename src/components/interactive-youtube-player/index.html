@@ -1,0 +1,86 @@
+<div ref:playerWrapper class="interactive-youtube-player">
+    <div ref:player></div>
+    <div class="play-sound" ref:playSound on:click='unmute(event)'>Click to play with sound</div>
+</div>
+<script>
+export default {
+    oncreate() {
+        this.initYouTubeAPI();
+        this.initPlayer();
+    },
+    methods: {
+        initYouTubeAPI: function() {
+            if (!(typeof window.YT !== "undefined" && window.YT && window.YT.Player)) {
+                const tag = document.createElement('script');
+
+                tag.src = "https://www.youtube.com/iframe_api";
+                const firstScriptTag = document.getElementsByTagName('script')[0];
+                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            }
+        },
+        initPlayer: function() {
+            if (typeof window.YT !== "undefined" && window.YT && window.YT.Player) {
+                const player = new YT.Player(this.refs.player, {
+                    height: "100%",
+                    width: '100%',
+                    videoId: this.get("video"),
+                    events: {
+                        'onReady': this.onPlayerReady
+                    },
+                    playerVars: {
+                        'controls': 0,
+                        'autohide': 1,
+                        'wmode': 'opaque',
+                        'showinfo': 0,
+                        'rel': 0,
+                        'modestbranding': 1,
+                        'playsinline': 1,
+                        'mute': 1,
+                        'loop': this.get("loop") ? 1 : 0
+                    }
+                });
+
+                this.set({ "player": player, "scrollPos": 0 });
+
+                window.requestAnimationFrame(() => {
+                    this.checkIfInView();
+                });
+
+            } else {
+                setTimeout(() => {
+                    this.initPlayer();
+                }, 250);
+            }
+        },
+        onPlayerReady: function(event) {
+
+        },
+        checkIfInView: function() {
+            if (this.get("scrollPos") !== window.scrollY) {
+                const bbox = this.refs.playerWrapper.getBoundingClientRect();
+                if (bbox.top > 0 && bbox.bottom < window.innerHeight) {
+                    try {
+                        this.get("player").playVideo();
+                    } catch (err) {}
+                } else {
+                    try {
+                        this.get("player").pauseVideo();
+                    } catch (err) {}
+                }
+
+                this.set({ "scrollPos": window.scrollY });
+            }
+
+            setTimeout(() => {
+                window.requestAnimationFrame(() => {
+                    this.checkIfInView();
+                });
+            }, 250);
+        },
+        unmute: function(e) {
+            this.get("player").unMute();
+            this.refs.playSound.style.display = "none";
+        }
+    }
+};
+</script>
