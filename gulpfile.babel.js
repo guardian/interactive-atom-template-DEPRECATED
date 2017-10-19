@@ -29,7 +29,7 @@ const browser = browserSync.create();
 const buildDir = '.build';
 const cdnUrl = 'https://interactive.guim.co.uk';
 
-const isDeploy = gutil.env._.indexOf('deploy') > -1;
+const isDeploy = gutil.env._.indexOf('deploy') > -1 || gutil.env._.indexOf('deploylive') > -1 || gutil.env._.indexOf('deploypreview') > -1;
 
 const version = `v/${Date.now()}`;
 const s3Path = `atoms/${config.path}`;
@@ -251,6 +251,39 @@ gulp.task('default', ['local'], () => {
         },
         'port': 8000
     });
+});
+
+gulp.task('deploylive', ['build'], cb => {
+    if(s3Path === "atoms/2016/05/blah") {
+        console.error("ERROR: You need to change the deploy path from its default value")
+        return;
+    }
+
+    gulp.src(`${buildDir}/**/*`)
+        .pipe(s3Upload('max-age=31536000', s3VersionPath))
+        .on('end', () => {
+            gulp.src('config.json')
+                .pipe(file('preview', version))
+                .pipe(file('live', version))
+                .pipe(s3Upload('max-age=30', s3Path))
+                .on('end', cb);
+        });
+});
+
+gulp.task('deploypreview', ['build'], cb => {
+    if(s3Path === "atoms/2016/05/blah") {
+        console.error("ERROR: You need to change the deploy path from its default value")
+        return;
+    }
+    
+    gulp.src(`${buildDir}/**/*`)
+        .pipe(s3Upload('max-age=31536000', s3VersionPath))
+        .on('end', () => {
+            gulp.src('config.json')
+                .pipe(file('preview', version))
+                .pipe(s3Upload('max-age=30', s3Path))
+                .on('end', cb);
+        });
 });
 
 gulp.task('url', () => {
