@@ -7,5 +7,15 @@ import 'svelte/ssr/register'
 const Table = requireUncached('../src/components/interactive-table/render.html')
 
 export async function render() {
-    return `<div class="here"></div>`;
+	let tableData = JSON.parse(await rp("https://interactive.guim.co.uk/docsdata-test/17swcJIV-bGKvWApff2aRsazCOWK66lAZIVW9fUMAy6A.json")).sheets.tableDataSheet;
+    
+    let html = Table.render({
+    	tableTitle: "This is a test table",
+        tableData: tableData,
+        serverside: true,
+        collapseMobile: true,
+        truncate: 10
+    });
+
+    return `<div class="here">${html}</div>`;
 }
