@@ -10,21 +10,26 @@ import sourcemaps from 'gulp-sourcemaps'
 import template from 'gulp-template'
 
 import browserSync from 'browser-sync'
-import buffer from 'vinyl-buffer'
 import del from 'del'
 import fs from 'fs'
 import inquirer from 'inquirer'
-import rollup from 'rollup-stream'
 import rp from 'request-promise-native'
 import runSequence from 'run-sequence'
 import source from 'vinyl-source-stream'
+import named from 'vinyl-named'
+import buffer from 'vinyl-buffer'
+
+import webpack from 'webpack'
+import ws from 'webpack-stream'
+const debug = require('gulp-debug');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const browser = browserSync.create();
 
 const buildDir = '.build';
 const cdnUrl = 'https://interactive.guim.co.uk';
 
-const isDeploy = gutil.env._.indexOf('deploy') > -1;
+const isDeploy = gutil.env._.indexOf('deploy') > -1 || gutil.env._.indexOf('deploylive') > -1 || gutil.env._.indexOf('deploypreview') > -1;
 
 const version = `v/${Date.now()}`;
 const s3Path = `atoms/${config.path}`;
@@ -37,25 +42,6 @@ const babelrc = JSON.parse(fs.readFileSync('.babelrc'));
 const presets = (babelrc.presets || []).concat(babelrc.env.client.presets);
 const plugins = (babelrc.plugins || []).concat(babelrc.env.client.plugins);
 
-const rollupPlugins = [
-    require('rollup-plugin-json')(),
-    require('rollup-plugin-string')({
-        'include': '**/*.html'
-    }),
-    require('rollup-plugin-node-resolve')({
-        'jsnext': true, 'browser': true
-    }),
-    require('rollup-plugin-commonjs')({
-        'include': ['node_modules/**']
-    }),
-    require('rollup-plugin-babel')({
-        'exclude': 'node_modules/**',
-        'babelrc': false,
-        presets, plugins
-    }),
-    isDeploy && require('rollup-plugin-uglify')()
-];
-
 function logError(plugin, err) {
     console.error(new gutil.PluginError(plugin, err.message).toString());
     if (err instanceof SyntaxError) {
@@ -63,24 +49,57 @@ function logError(plugin, err) {
     }
 }
 
+let webpackPlugins = [
+    new webpack.LoaderOptionsPlugin({
+        options: {
+            babel: {
+                presets,
+                plugins
+            }
+        }
+    }),
+    new webpack.DefinePlugin({
+        'process.env': {
+            'PATH': JSON.stringify(path)
+        }
+    })
+];
+
+if (isDeploy) webpackPlugins.push(new UglifyJSPlugin);
+
 function buildJS(filename) {
     return () => {
-        return rollup({
-                'entry': `./src/js/${filename}`,
-                'sourceMap': true,
-                'plugins': rollupPlugins,
-                'format': 'iife'
+        return gulp.src(`./src/js/${filename}`)
+            .pipe(named())
+            .pipe(ws({
+                watch: false,
+                module: {
+                    loaders: [{
+                        test: /\.css$/,
+                        loader: 'style!css'
+                    }, ],
+                },
+                module: {
+                    rules: [{
+                        test: /\.js$/,
+                        exclude: /node_modules/,
+                        use: 'babel-loader'
+                    }]
+                },
+                module: {
+                    rules: [{
+                        test: /\.html$/,
+                        use: 'raw-loader'
+                    }]
+                },
+                devtool: 'source-map',
+                plugins: webpackPlugins
+            }, webpack))
+            .on('error', function handleError() {
+                this.emit('end'); // Recover from errors
             })
-            .on('error', function (err) {
-                logError('rollup', err);
-                this.emit('end');
-            })
-            .pipe(source(filename, './src/js'))
-            .pipe(buffer())
-            .pipe(template({path}))
-            .pipe(sourcemaps.init({'loadMaps': true}))
-            .pipe(sourcemaps.write('.'))
             .pipe(gulp.dest(buildDir));
+
     }
 }
 
@@ -115,9 +134,13 @@ gulp.task('build:css', () => {
             'outputStyle': isDeploy ? 'compressed' : 'expanded'
         }).on('error', sass.logError))
         .pipe(sourcemaps.write('.'))
-        .pipe(template({path}))
+        .pipe(template({
+            path
+        }))
         .pipe(gulp.dest(buildDir))
-        .pipe(browser.stream({'match': '**/*.css'}));
+        .pipe(browser.stream({
+            'match': '**/*.css'
+        }));
 });
 
 gulp.task('build:js.main', buildJS('main.js'));
@@ -129,8 +152,12 @@ gulp.task('build:html', cb => {
         let render = requireUncached('./src/render.js').render;
 
         Promise.resolve(render()).then(html => {
-            file('main.html', html, {'src': true})
-                .pipe(template({path}))
+            file('main.html', html, {
+                    'src': true
+                })
+                .pipe(template({
+                    path
+                }))
                 .pipe(gulp.dest(buildDir))
                 .on('end', cb);
         }).catch(err => {
@@ -153,12 +180,11 @@ gulp.task('_build', ['clean'], cb => {
 
 // TODO: less hacky build/_build?
 gulp.task('build', ['_build'], () => {
-    return gulp.src(`${buildDir}/**/!(*.map)`)
-        .pipe(size({'gzip': true, 'showFiles': true}))
+    return;
 });
 
 gulp.task('deploy', ['build'], cb => {
-    if(s3Path === "atoms/2016/05/blah") {
+    if (s3Path === "atoms/2016/05/blah") {
         console.error("ERROR: You need to change the deploy path from its default value")
         return;
     }
@@ -182,8 +208,57 @@ gulp.task('deploy', ['build'], cb => {
     });
 });
 
+gulp.task('local', ['build'], () => {
+    return gulp.src('harness/*')
+        .pipe(template({
+            'css': readOpt(`${buildDir}/main.css`),
+            'html': readOpt(`${buildDir}/main.html`),
+            'js': readOpt(`${buildDir}/main.js`)
+        }))
+        .pipe(gulp.dest(buildDir));
+});
+
+gulp.task('local:html', ['build:html'], () => {
+    return gulp.src('harness/*')
+        .pipe(template({
+            'css': readOpt(`${buildDir}/main.css`),
+            'html': readOpt(`${buildDir}/main.html`),
+            'js': readOpt(`${buildDir}/main.js`)
+        }))
+        .pipe(gulp.dest(buildDir));
+});
+
+gulp.task('default', ['local'], () => {
+    gulp.watch(['src/**/*', '!src/css/*', '!src/js/app.js', '!src/render.js', '!src/assets/*'], ['local']).on('change', evt => {
+        gutil.log(gutil.colors.yellow(`${evt.path} was ${evt.type}`));
+    });
+
+    gulp.watch(['src/css/*'], ['build:css']).on('change', evt => {
+        gutil.log(gutil.colors.yellow(`${evt.path} was ${evt.type}`));
+    });
+
+    gulp.watch(['src/js/app.js'], ['build:js']).on('change', evt => {
+        gutil.log(gutil.colors.yellow(`${evt.path} was ${evt.type}`));
+    });
+
+    gulp.watch(['src/render.js'], ['local:html']).on('change', evt => {
+        gutil.log(gutil.colors.yellow(`${evt.path} was ${evt.type}`));
+    });
+
+    gulp.watch(['src/assets/*'], ['build:assets']).on('change', evt => {
+        gutil.log(gutil.colors.yellow(`${evt.path} was ${evt.type}`));
+    });
+
+    browser.init({
+        'server': {
+            'baseDir': buildDir
+        },
+        'port': 8000
+    });
+});
+
 gulp.task('deploylive', ['build'], cb => {
-    if(s3Path === "atoms/2016/05/blah") {
+    if (s3Path === "atoms/2016/05/blah") {
         console.error("ERROR: You need to change the deploy path from its default value")
         return;
     }
@@ -200,11 +275,11 @@ gulp.task('deploylive', ['build'], cb => {
 });
 
 gulp.task('deploypreview', ['build'], cb => {
-    if(s3Path === "atoms/2016/05/blah") {
+    if (s3Path === "atoms/2016/05/blah") {
         console.error("ERROR: You need to change the deploy path from its default value")
         return;
     }
-    
+
     gulp.src(`${buildDir}/**/*`)
         .pipe(s3Upload('max-age=31536000', s3VersionPath))
         .on('end', () => {
@@ -213,28 +288,6 @@ gulp.task('deploypreview', ['build'], cb => {
                 .pipe(s3Upload('max-age=30', s3Path))
                 .on('end', cb);
         });
-});
-
-gulp.task('local', ['build'], () => {
-    return gulp.src('harness/*')
-        .pipe(template({
-            'css': readOpt(`${buildDir}/main.css`),
-            'html': readOpt(`${buildDir}/main.html`),
-            'js': readOpt(`${buildDir}/main.js`)
-        }))
-        .pipe(gulp.dest(buildDir));
-});
-
-gulp.task('default', ['local'], () => {
-    gulp.watch('src/**/*', ['local']).on('change', evt => {
-        console.log();
-        gutil.log(gutil.colors.yellow(`${evt.path} was ${evt.type}`));
-    });
-
-    browser.init({
-        'server': {'baseDir': buildDir},
-        'port': 8000
-    });
 });
 
 gulp.task('url', () => {

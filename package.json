@@ -17,6 +17,7 @@
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
+    "babel-loader": "^7.1.1",
     "babel-plugin-external-helpers": "^6.18.0",
     "babel-plugin-transform-import-bangtext-node": "^0.1.4",
     "babel-plugin-transform-runtime": "^6.15.0",
@@ -26,6 +27,7 @@
     "browser-sync": "^2.17.5",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
+    "gulp-debug": "^3.1.0",
     "gulp-file": "^0.3.0",
     "gulp-s3-upload": "^1.6.1",
     "gulp-sass": "^2.3.2",
@@ -34,18 +36,22 @@
     "gulp-template": "^4.0.0",
     "gulp-util": "^3.0.7",
     "inquirer": "^1.2.2",
+    "raw-loader": "^0.5.1",
     "request-promise-native": "^1.0.3",
-    "rollup-plugin-babel": "^2.6.1",
-    "rollup-plugin-commonjs": "^8.0.2",
-    "rollup-plugin-json": "^2.0.2",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-plugin-string": "^2.0.2",
-    "rollup-plugin-uglify": "^2.0.1",
-    "rollup-stream": "^1.14.0",
     "run-sequence": "^1.2.2",
     "sass-mq": "^3.3.1",
+    "uglifyjs-webpack-plugin": "^0.4.6",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-named": "^1.1.0",
+    "vinyl-source-stream": "^1.1.0",
+    "webpack": "^3.0.0",
+    "webpack-stream": "^3.2.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "promise-polyfill": "^6.0.2",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
+    "require-uncached": "^1.0.3",
+    "unfetch": "^3.0.0"
+  }
 }
