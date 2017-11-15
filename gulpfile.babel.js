@@ -53,18 +53,19 @@ let webpackPlugins = [
     new webpack.LoaderOptionsPlugin({
         options: {
             babel: {
-                presets, plugins
+                presets,
+                plugins
             }
         }
     }),
     new webpack.DefinePlugin({
-        'process.env' : {
-            'PATH' : JSON.stringify(path)
+        'process.env': {
+            'PATH': JSON.stringify(path)
         }
     })
 ];
 
-if(isDeploy) webpackPlugins.push(new UglifyJSPlugin);
+if (isDeploy) webpackPlugins.push(new UglifyJSPlugin);
 
 function buildJS(filename) {
     return () => {
@@ -79,17 +80,17 @@ function buildJS(filename) {
                     }, ],
                 },
                 module: {
-                    rules: [
-                        {
-                            test: /\.(html|js)$/,
-                            exclude: /node_modules/,
-                            use: 'babel-loader'
-                        },
-                        {
-                            test: /\.(svelte|html)$/,
-                            exclude: /node_modules/,
-                            use: 'svelte-loader'
-                        }]
+                    rules: [{
+                        test: /\.js$/,
+                        exclude: /node_modules/,
+                        use: 'babel-loader'
+                    }]
+                },
+                module: {
+                    rules: [{
+                        test: /\.html$/,
+                        use: 'raw-loader'
+                    }]
                 },
                 devtool: 'source-map',
                 plugins: webpackPlugins
@@ -254,7 +255,7 @@ gulp.task('default', ['local'], () => {
 });
 
 gulp.task('deploylive', ['build'], cb => {
-    if(s3Path === "atoms/2016/05/blah") {
+    if (s3Path === "atoms/2016/05/blah") {
         console.error("ERROR: You need to change the deploy path from its default value")
         return;
     }
@@ -271,11 +272,11 @@ gulp.task('deploylive', ['build'], cb => {
 });
 
 gulp.task('deploypreview', ['build'], cb => {
-    if(s3Path === "atoms/2016/05/blah") {
+    if (s3Path === "atoms/2016/05/blah") {
         console.error("ERROR: You need to change the deploy path from its default value")
         return;
     }
-    
+
     gulp.src(`${buildDir}/**/*`)
         .pipe(s3Upload('max-age=31536000', s3VersionPath))
         .on('end', () => {

@@ -40,8 +40,6 @@
     "request-promise-native": "^1.0.3",
     "run-sequence": "^1.2.2",
     "sass-mq": "^3.3.1",
-    "svelte": "^1.23.4",
-    "svelte-loader": "^2.0.1",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "vinyl-buffer": "^1.0.0",
     "vinyl-named": "^1.1.0",
