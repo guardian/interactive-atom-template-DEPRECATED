@@ -95,6 +95,9 @@ function buildJS(filename) {
                 devtool: 'source-map',
                 plugins: webpackPlugins
             }, webpack))
+            .on('error', function handleError() {
+                this.emit('end'); // Recover from errors
+            })
             .pipe(gulp.dest(buildDir));
 
     }
