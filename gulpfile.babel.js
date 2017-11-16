@@ -65,7 +65,7 @@ let webpackPlugins = [
     })
 ];
 
-//if (isDeploy) webpackPlugins.push(new UglifyJSPlugin);
+if (isDeploy) webpackPlugins.push(new UglifyJSPlugin);
 
 function buildJS(filename) {
     return () => {
