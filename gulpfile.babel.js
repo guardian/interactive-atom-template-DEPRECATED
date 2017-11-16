@@ -78,19 +78,17 @@ function buildJS(filename) {
                         test: /\.css$/,
                         loader: 'style!css'
                     }, ],
-                },
-                module: {
-                    rules: [{
-                        test: /\.js$/,
-                        exclude: /node_modules/,
-                        use: 'babel-loader'
-                    }]
-                },
-                module: {
-                    rules: [{
-                        test: /\.html$/,
-                        use: 'raw-loader'
-                    }]
+                    rules: [
+                        {
+                            test: /\.js$/,
+                            exclude: /node_modules/,
+                            use: 'babel-loader'
+                        },
+                        {
+                            test: /\.html$/,
+                            use: 'raw-loader'
+                        }
+                    ]
                 },
                 devtool: 'source-map',
                 plugins: webpackPlugins
