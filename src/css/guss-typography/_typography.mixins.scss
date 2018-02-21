@@ -180,8 +180,8 @@
     }
 }
 
-@mixin fs-headerFull($level, $lining-nums: true) {
-    @include font-size(get-font-size(headline, $level), get-line-height(headline, $level));
+@mixin fs-GuardianHeadlineFull($level, $lining-nums: true) {
+    @include font-size(get-font-size(header, $level), get-line-height(header, $level));
     @include f-headerFull;
 
     @if $lining-nums==true  {
