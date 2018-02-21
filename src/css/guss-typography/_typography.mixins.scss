@@ -197,6 +197,10 @@
 
     @if $size-only==false {
         @include f-titlepiece;
+        font-variant-numeric: lining-nums;
+      -moz-font-feature-settings: "lnum";
+      -webkit-font-feature-settings: "lnum";
+      font-feature-settings: "lnum";
     }
 }
 
