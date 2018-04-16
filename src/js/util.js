@@ -25,8 +25,8 @@ const numberWithCommas = x => {
 const wait = ms => new Promise((resolve, reject) => setTimeout(() => resolve(), ms ))
 
 const getDimensions = el => {
-	const width = svgEl.clientWidth || svgEl.getBoundingClientRect().width
-	const height = svgEl.clientHeight || svgEl.getBoundingClientRect().height
+	const width = el.clientWidth || el.getBoundingClientRect().width
+	const height = el.clientHeight || el.getBoundingClientRect().height
 	return [ width, height ]
 }
 
