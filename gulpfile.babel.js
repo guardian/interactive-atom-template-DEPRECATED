@@ -18,6 +18,7 @@ import runSequence from 'run-sequence'
 import source from 'vinyl-source-stream'
 import named from 'vinyl-named'
 import buffer from 'vinyl-buffer'
+import replace from 'gulp-replace'
 
 import webpack from 'webpack'
 import ws from 'webpack-stream'
@@ -57,11 +58,6 @@ let webpackPlugins = [
                 plugins
             }
         }
-    }),
-    new webpack.DefinePlugin({
-        'process.env': {
-            'PATH': JSON.stringify(path)
-        }
     })
 ];
 
@@ -78,8 +74,7 @@ function buildJS(filename) {
                         test: /\.css$/,
                         loader: 'style!css'
                     }, ],
-                    rules: [
-                        {
+                    rules: [{
                             test: /\.js$/,
                             exclude: /node_modules/,
                             use: 'babel-loader'
@@ -96,6 +91,7 @@ function buildJS(filename) {
             .on('error', function handleError() {
                 this.emit('end'); // Recover from errors
             })
+            .pipe(replace('<%= path %>', path))
             .pipe(gulp.dest(buildDir));
 
     }
@@ -132,9 +128,10 @@ gulp.task('build:css', () => {
             'outputStyle': isDeploy ? 'compressed' : 'expanded'
         }).on('error', sass.logError))
         .pipe(sourcemaps.write('.'))
-        .pipe(template({
-            path
-        }))
+        // .pipe(template({
+        //     path
+        // }))
+        .pipe(replace('<%= path %>', path))
         .pipe(gulp.dest(buildDir))
         .pipe(browser.stream({
             'match': '**/*.css'
@@ -153,9 +150,7 @@ gulp.task('build:html', cb => {
             file('main.html', html, {
                     'src': true
                 })
-                .pipe(template({
-                    path
-                }))
+                .pipe(replace('<%= path %>', path))
                 .pipe(gulp.dest(buildDir))
                 .on('end', cb);
         }).catch(err => {
@@ -213,6 +208,7 @@ gulp.task('local', ['build'], () => {
             'html': readOpt(`${buildDir}/main.html`),
             'js': readOpt(`${buildDir}/main.js`)
         }))
+        .pipe(replace('<%= path %>', path))
         .pipe(gulp.dest(buildDir));
 });
 
@@ -223,6 +219,7 @@ gulp.task('local:html', ['build:html'], () => {
             'html': readOpt(`${buildDir}/main.html`),
             'js': readOpt(`${buildDir}/main.js`)
         }))
+        .pipe(replace('<%= path %>', path))
         .pipe(gulp.dest(buildDir));
 });
 
