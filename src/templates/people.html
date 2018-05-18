@@ -1,0 +1,26 @@
+<div class="interactive-wrapper">
+  <div class="gren-embed">
+    <div class="gren-embed__rule"></div>
+    {{#each .}}
+    <div class="gren-embed__group gren-embed__group-{{@index}}">
+      <div class="gren-embed__column-1">
+        <div class="gren-embed__pic"><img src="{{image}}" /></div>
+      </div>
+      <div class="gren-embed__column-2">
+        <div class="gren-embed__text-wrapper">
+          <div class="gren-embed__text">
+            <div class="gren-embed__name">{{name}}</div>
+            <div class="gren-embed__quote">{{quote}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+      {{/each}}
+      <a class='gren-embed__cta' data-link-name='missing something thrasher : cta' href='https://www.theguardian.com/uk-news/ng-interactive/2018/may/14/lives-of-grenfell-tower-victims-fire'>
+          View now
+            <svg width="17" height="16" viewBox="0 0 17 16" xmlns="http://www.w3.org/2000/svg"><path d="M.686 8.446h12.868l-5.046 6.039.656.656 7.014-7.031v-.673L9.164.406l-.656.656 5.046 6.039H.686z" fill="#121212" fill-rule="evenodd"/></svg>
+        </a>
+    </div>
+  </div>
+
+</div>
