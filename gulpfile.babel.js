@@ -167,8 +167,12 @@ gulp.task('build:assets', () => {
     return gulp.src('src/assets/**/*').pipe(gulp.dest(`${buildDir}/assets`));
 });
 
+gulp.task('build:static', () => {
+    return gulp.src('src/static/**/*').pipe(gulp.dest(`${buildDir}/static`));
+});
+
 gulp.task('_build', ['clean'], cb => {
-    runSequence(['build:css', 'build:js', 'build:html', 'build:assets'], cb);
+    runSequence(['build:css', 'build:js', 'build:html', 'build:assets', 'build:static'], cb);
 });
 
 // TODO: less hacky build/_build?
@@ -190,16 +194,24 @@ gulp.task('deploy', ['build'], cb => {
     }).then(res => {
         let isLive = res.env === 'live';
         gulp.src(`${buildDir}/**/*`)
-            .pipe(s3Upload('max-age=31536000', s3VersionPath))
-            .on('end', () => {
-                gulp.src('config.json')
+        .pipe(s3Upload('max-age=31536000', s3VersionPath))
+        .on('end', () => {
+            const isLive = true;
+            gulp.src('config.json')
                     .pipe(file('preview', version))
                     .pipe(isLive ? file('live', version) : gutil.noop())
                     .pipe(s3Upload('max-age=30', s3Path))
-                    .on('end', cb);
-            });
-    });
+                    .on('end', () => {
+                        gulp.src(`${buildDir}/static/**/*`)
+                            .pipe(file('preview', version))
+                            .pipe(isLive ? file('live', version) : gutil.noop())
+                            .pipe(s3Upload('max-age=70', s3Path + "/static"))
+                            .on('end', cb);
+                    });
+        });
 });
+
+
 
 gulp.task('local', ['build'], () => {
     return gulp.src('harness/*')
@@ -261,13 +273,21 @@ gulp.task('deploylive', ['build'], cb => {
     gulp.src(`${buildDir}/**/*`)
         .pipe(s3Upload('max-age=31536000', s3VersionPath))
         .on('end', () => {
+            const isLive = true;
             gulp.src('config.json')
-                .pipe(file('preview', version))
-                .pipe(file('live', version))
-                .pipe(s3Upload('max-age=30', s3Path))
-                .on('end', cb);
+                    .pipe(file('preview', version))
+                    .pipe(isLive ? file('live', version) : gutil.noop())
+                    .pipe(s3Upload('max-age=30', s3Path))
+                    .on('end', () => {
+                        gulp.src(`${buildDir}/static/**/*`)
+                            .pipe(file('preview', version))
+                            .pipe(isLive ? file('live', version) : gutil.noop())
+                            .pipe(s3Upload('max-age=70', s3Path + "/static"))
+                            .on('end', cb);
+                    });
         });
 });
+
 
 gulp.task('deploypreview', ['build'], cb => {
     if (s3Path === "atoms/2016/05/blah") {
