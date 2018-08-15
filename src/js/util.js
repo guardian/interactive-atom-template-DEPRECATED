@@ -30,4 +30,15 @@ const getDimensions = el => {
 	return [ width, height ]
 }
 
-export { $, $$, round, numberWithCommas, wait, getDimensions }
+const hashPattern = (patternId, pathClass, rectClass) => {
+
+	return `
+		<pattern id='${patternId}' patternUnits='userSpaceOnUse' width='4' height='4'>
+			<rect width='4' height='4' class='${rectClass}'></rect>
+			<path d='M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2' class='${pathClass}'></path>
+		</pattern>
+	`
+
+}
+
+export { $, $$, round, numberWithCommas, wait, getDimensions, hashPattern }
