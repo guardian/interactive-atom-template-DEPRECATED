@@ -2,7 +2,7 @@
   "env": {
     "development": {
       "presets": [
-        "latest"
+        "env"
       ],
       "plugins": [
         "transform-import-bangtext-node",
@@ -16,7 +16,7 @@
     },
     "client": {
       "presets": [
-        ["latest", {"es2015": {"modules": false}}]
+        ["env", {"es2015": {"modules": false}}]
       ],
       "plugins": [
         "external-helpers"

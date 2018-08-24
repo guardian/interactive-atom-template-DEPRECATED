@@ -30,6 +30,7 @@ const basicCols = {
 	neutral96: '#f6f6f6',
 	neutral100: '#ffffff',
 	highlightYellow: '#ffe500',
+	highlightDark: '#ffbb50',
 	guNews: '#ff4e36',
 	guNewsKicker: '#cc0a11',
 	guNewsHeadline: '#ff1921',
@@ -53,7 +54,16 @@ const basicCols = {
 	guGrey1: '#676767',
 	guGrey2: '#929297',
 	guGrey3: '#b3b3b4',
-	guGrey4: '#f6f6f6'
+	guGrey4: '#f6f6f6',
+	greenMain: '#3db540',
+	greenDark: '#236925',
+	labsMain: '#69d1ca',
+	labsDark: '#65a897',
+	specialDark: '#3f464a',
+	navDark: '#bbcdd3',
+	navMain: '#dae4e7',
+	navFaded: '#e9eff1'
+
 }
 
 const chartCols = {
