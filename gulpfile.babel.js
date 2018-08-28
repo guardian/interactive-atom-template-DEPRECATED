@@ -69,8 +69,9 @@ function buildJS(filename) {
             .pipe(named())
             .pipe(ws({
                 watch: false,
+                // mode: 'development',
                 module: {
-                    loaders: [{
+                    rules: [{
                         test: /\.css$/,
                         loader: 'style!css'
                     }, ],
@@ -88,7 +89,8 @@ function buildJS(filename) {
                 devtool: 'source-map',
                 plugins: webpackPlugins
             }, webpack))
-            .on('error', function handleError() {
+            .on('error', function handleError(e) {
+                console.log(e)
                 this.emit('end'); // Recover from errors
             })
             .pipe(replace('<%= path %>', path))
