@@ -61,7 +61,7 @@ let webpackPlugins = [
     })
 ];
 
-if (isDeploy) webpackPlugins.push(new UglifyJSPlugin);
+if (isDeploy) webpackPlugins.push(new UglifyJSPlugin({ sourceMap : true }));
 
 function buildJS(filename) {
     return () => {
@@ -69,13 +69,14 @@ function buildJS(filename) {
             .pipe(named())
             .pipe(ws({
                 watch: false,
-                // mode: 'development',
+                mode: isDeploy ? 'production' : 'development',
                 module: {
-                    rules: [{
-                        test: /\.css$/,
-                        loader: 'style!css'
-                    }, ],
-                    rules: [{
+                    rules: [
+                        {
+                            test: /\.css$/,
+                            loader: 'style!css'
+                        },
+                        {
                             test: /\.js$/,
                             exclude: /node_modules/,
                             use: 'babel-loader'
@@ -90,7 +91,6 @@ function buildJS(filename) {
                 plugins: webpackPlugins
             }, webpack))
             .on('error', function handleError(e) {
-                console.log(e)
                 this.emit('end'); // Recover from errors
             })
             .pipe(replace('<%= path %>', path))
