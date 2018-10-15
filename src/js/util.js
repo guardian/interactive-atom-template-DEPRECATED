@@ -41,4 +41,22 @@ const hashPattern = (patternId, pathClass, rectClass) => {
 
 }
 
-export { $, $$, round, numberWithCommas, wait, getDimensions, hashPattern }
+const duplicate = ( el, className ) => {
+
+	const clone = el.cloneNode(true)
+	clone.classList.add(className)
+	el.parentNode.insertBefore(clone, el)
+
+}
+
+const pseq = (arr, lambda) => {
+
+	return arr.reduce( (agg, cur) => {
+
+		return agg.then(res => lambda(cur).then( res2 => res.concat(res2)))
+
+	}, Promise.resolve([]) )
+
+}
+
+export { $, $$, round, numberWithCommas, wait, getDimensions, hashPattern, duplicate, pseq }
