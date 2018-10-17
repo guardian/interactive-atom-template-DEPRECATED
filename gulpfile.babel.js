@@ -32,8 +32,8 @@ const cdnUrl = 'https://interactive.guim.co.uk';
 
 const isDeploy = gutil.env._.indexOf('deploy') > -1 || gutil.env._.indexOf('deploylive') > -1 || gutil.env._.indexOf('deploypreview') > -1;
 
-const version = `v/${Date.now()}`;
-const s3Path = `atoms/${config.path}`;
+const version = `html`;
+const s3Path = `embed/iframeable/${config.path}`;
 const s3VersionPath = `${s3Path}/${version}`;
 const path = isDeploy ? `${cdnUrl}/${s3VersionPath}` : '.';
 
@@ -175,11 +175,17 @@ gulp.task('_build', ['clean'], cb => {
 
 // TODO: less hacky build/_build?
 gulp.task('build', ['_build'], () => {
-    return;
+    return gulp.src('iframe/*')
+        .pipe(template({
+            'css': readOpt(`${buildDir}/main.css`),
+            'html': readOpt(`${buildDir}/main.html`),
+            'js': readOpt(`${buildDir}/main.js`)
+        }))
+        .pipe(gulp.dest(buildDir));
 });
 
 gulp.task('deploy', ['build'], cb => {
-    if (s3Path === "atoms/2016/05/blah") {
+    if (s3Path === "embed/iframeable/2018/10/iTest") {
         console.error("ERROR: You need to change the deploy path from its default value")
         return;
     }
@@ -192,7 +198,7 @@ gulp.task('deploy', ['build'], cb => {
     }).then(res => {
         let isLive = res.env === 'live';
         gulp.src(`${buildDir}/**/*`)
-            .pipe(s3Upload('max-age=31536000', s3VersionPath))
+            .pipe(s3Upload('max-age=300000', s3VersionPath))
             .on('end', () => {
                 gulp.src('config.json')
                     .pipe(file('preview', version))
@@ -255,7 +261,7 @@ gulp.task('default', ['local'], () => {
 });
 
 gulp.task('deploylive', ['build'], cb => {
-    if (s3Path === "atoms/2016/05/blah") {
+    if (s3Path === "embed/iframeable/2018/10/iTest") {
         console.error("ERROR: You need to change the deploy path from its default value")
         return;
     }
@@ -272,7 +278,7 @@ gulp.task('deploylive', ['build'], cb => {
 });
 
 gulp.task('deploypreview', ['build'], cb => {
-    if (s3Path === "atoms/2016/05/blah") {
+    if (s3Path === "embed/iframeable/2018/10/iTest") {
         console.error("ERROR: You need to change the deploy path from its default value")
         return;
     }
@@ -288,12 +294,13 @@ gulp.task('deploypreview', ['build'], cb => {
 });
 
 gulp.task('url', () => {
-    gutil.log(gutil.colors.green(`Atom URL: https://content.guardianapis.com/atom/interactive/interactives/${config.path}`));
+    let url = `${cdnUrl}/embed/iframeable/${config.path}/${version}/index.html`;
+    gutil.log(gutil.colors.green(`iframeable URL: ${url}`));
 });
 
 gulp.task('log', () => {
     function log(type) {
-        let url = `${cdnUrl}/atoms/${config.path}/${type}.log?${Date.now()}`;
+        let url = `${cdnUrl}/embed/iframeable/${config.path}/${type}.log?${Date.now()}`;
         return rp(url).then(log => {
             gutil.log(gutil.colors.green(`Got ${type} log:`));
             console.log(log);
