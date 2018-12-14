@@ -2,24 +2,32 @@
   "env": {
     "development": {
       "presets": [
-        "latest"
+        "@babel/preset-env"
       ],
       "plugins": [
         "transform-import-bangtext-node",
         [
-          "transform-runtime", {
-            "polyfill": false,
+          "@babel/plugin-transform-runtime",
+          {
             "regenerator": true
           }
-        ]
+        ], "@babel/plugin-proposal-optional-chaining"
       ]
     },
     "client": {
       "presets": [
-        ["latest", {"es2015": {"modules": false}}]
+        [
+          "@babel/preset-env",
+          {
+            "es2015": {
+              "modules": false
+            }
+          }
+        ]
       ],
       "plugins": [
-        "external-helpers"
+        "@babel/plugin-external-helpers",
+        "@babel/plugin-proposal-optional-chaining"
       ]
     }
   }
