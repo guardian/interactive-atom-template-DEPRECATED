@@ -89,3 +89,63 @@ loadJson("https://interactive.guim.co.uk/...)
 	  console.log(data);
       })
 ```
+
+### Using the ScrollyTeller module
+The ScrollyTeller module is written as a class. You can check the scrollyteller-example branch for a full example.
+
+Import it as normal into your project
+```
+import ScrollyTeller from "./scrollyteller"
+```
+
+Instantiate a new instance of it and pass in a config object
+```
+const scrolly = new ScrollyTeller({
+    parent: document.querySelector("#scrolly-1"),
+    triggerTop: 1/3, // percentage from the top of the screen that the trigger should fire
+    triggerTopMobile: 0.75,
+    transparentUntilActive: true
+});
+```
+
+Add your trigger points:
+```
+scrolly.addTrigger({num: 1, do: () => {
+    console.log("Console log 1");
+}});
+```
+
+And finally start off the scroll listener:
+
+```
+scrolly.watchScroll();
+```
+
+You'll also need to comment in the _scrolly.scss code in main.scss, as well as structuring your HTML in the following way:
+```
+<div id="scrolly-1">
+    <div class="scroll-wrapper">
+        <div class="scroll-inner">
+            <svg id="data-viz">
+            </svg>
+        </div>
+        <div class="scroll-text">
+            <div class="scroll-text__inner">
+                <div class="scroll-text__div">
+                    <p>1</p>
+                </div>
+            </div>
+            <div class="scroll-text__inner">
+                <div class="scroll-text__div"> 
+                    <p>2</p>
+                </div>
+            </div>
+            <div class="scroll-text__inner">
+                <div class="scroll-text__div">
+                    <p>3</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+```
