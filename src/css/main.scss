@@ -1,11 +1,9 @@
 @import "mq";
 @import "fonts";
 @import "palette";
-// Uncomment for embeds
-//@import "embed";
-// Uncomment for full screen (including immersive article main media)
-//@import "fullscreen";
-.element-atom,
-.interactive-atom {
-    margin: 0 !important;
+@import "scrolly";
+
+#scrolly-1 svg text {
+    @include fs-titlepiece(5);
+    fill: #c70000;
 }
