@@ -1,0 +1,161 @@
+.i-header {
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 12px;
+
+    @include mq(desktop) {
+        width: 620px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    @include mq(leftCol) {
+        margin-bottom: 0;
+        margin-left: 160px;
+    }
+
+    @include mq(wide) {
+        margin-left: 240px;
+    }
+}
+
+.i-header__headline h1 {
+    @include fs-header(5);
+    font-size: 44px;
+    line-height: 48px;  
+}
+
+.i-header__standfirst p {
+    @include fs-headline(3);
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 300;
+    color: #767676;
+    margin-top: 24px;
+    margin-bottom: 6px;
+    max-width: 540px;
+}
+
+.i-header__meta {
+    background-image: repeating-linear-gradient(to bottom, #dcdcdc, #dcdcdc 0.0625rem, transparent 0.0625rem, transparent 0.25rem);
+    background-repeat: repeat-x;
+    background-position: top;
+    background-size: 0.0625rem 0.8125rem;
+    padding-top: 14px;
+    box-sizing: border-box;
+
+    @include mq(leftCol) {
+        width: 130px;
+        position: absolute;
+        left: -140px;
+    }
+
+    @include mq(wide) {
+        width: 220px;
+        position: absolute;
+        left: -220px;
+    }
+}
+
+.i-header__meta__byline {
+    margin: 0;
+    line-height: 1.35;
+    margin-bottom: 4px;
+    a {
+        color: $news-red;
+        @include fs-header(1);
+        font-size: 17px;
+    }
+}
+
+.i-header__meta__byline-wrapper {
+    line-height: 10px;
+    span::after {
+        content: ',';
+        font-weight: normal;
+        font-style: italic;
+    }
+
+    &:nth-last-of-type(2) {
+        span::after {
+            content: ' and ';
+        }
+    }
+
+    &:last-of-type {
+        span::after {
+            content: '';
+        }
+    }
+}
+
+.i-header__meta__dateline {
+    time {
+        color: #767676;
+        @include fs-textSans(1);
+    }
+    @include fs-textSans(1);
+    margin: 0;
+    margin-bottom: 4px;
+}
+
+.i-header__meta__shares {
+    margin: 0;
+    padding-top: 6px; 
+}
+
+.i-header__top-tag {
+    a {
+        @include fs-header(4);
+        color: $news-red;
+        @include mq(leftCol) {
+            position: absolute;
+            top: 0;
+            left: -140px;
+        }
+        @include mq(wide) {
+            left: -220px;
+        }
+    }
+}
+
+//shares
+.od-share {
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+
+    display: block;
+}
+
+.od-share__button {
+    height: 30px;
+    width: 30px;
+    border-radius: 20px;
+    float: left;
+    margin-right: 4px;
+    border: 1px solid #dcdcdc; 
+
+    &:hover {
+        background-color: $news-red;
+
+        .od-share__icon {
+            fill: $neutral-100;
+        }
+    }
+}
+
+.od-share__icon {
+    fill: $news-red;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.i-header__meta__shares {
+    display: block;
+    border-top: 1px solid #dcdcdc;
+}

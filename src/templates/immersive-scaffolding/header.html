@@ -1,0 +1,45 @@
+<div class="i-header">
+    <div class="i-header__top-tag">
+        <a href="{{header.tagUrl}}">{{header.tagTitle}}</a>
+    </div>
+    <div class="i-header__headline">
+        <h1 itemprop="headline">{{header.headline}}</h1>
+    </div>
+    <div class="i-header__standfirst" data-link-name="standfirst" data-component="standfirst">
+        <meta itemprop="description" content="{{header.standfirst}}">
+        <p>{{header.standfirst}}</p>
+    </div>
+    <div class="i-header__meta">
+        <p class="i-header__meta__byline">
+            {{#header.bylines}} 
+                <span itemscope="" itemtype="http://schema.org/Person" itemprop="author" class="i-header__meta__byline-wrapper">
+                    <a rel="author" itemprop="sameAs" data-link-name="auto tag link" href="{{link}}"><span itemprop="name">{{name}}</span></a>
+                </span> 
+            {{/header.bylines}}
+        </p>
+        <p class="i-header__meta__dateline">
+            <time itemprop="datePublished" datetime="{{header.datetime}}" data-timestamp="{{header.timestamp}}">
+                {{header.datetime}}
+            </time>
+        </p> 
+        <div class="i-header__meta__shares">
+            <ul class='od-share'>
+                <li class='od-share__button od-share__button--facebook'>
+                    <a href={{facebookLink}}>
+                        <svg class='od-share__icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M32.8 15H30c-2.2 0-2.6 1.1-2.6 2.6V21h5.3l-.7 5.3h-4.6V40h-5.5V26.3h-4.6V21h4.6v-3.9c0-4.6 2.8-7 6.8-7a31.28 31.28 0 0 1 4.1.2V15z"/></svg>
+                    </a>
+                </li>
+                <li class='od-share__button od-share__button--twitter'>
+                    <a href={{twitterLink}}>
+                        <svg class='od-share__icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M36 19.3v.7c0 7.5-5.7 16.2-16.2 16.2a15.36 15.36 0 0 1-8.7-2.6 6.15 6.15 0 0 0 1.4.1 11.69 11.69 0 0 0 7.1-2.4 5.58 5.58 0 0 1-5.3-4 3.75 3.75 0 0 0 1.1.1 7.72 7.72 0 0 0 1.5-.2 5.7 5.7 0 0 1-4.6-5.6v-.1a5.59 5.59 0 0 0 2.6.7 5.73 5.73 0 0 1-2.5-4.7 6 6 0 0 1 .8-2.9 16.11 16.11 0 0 0 11.7 5.9 5.7 5.7 0 0 1-.1-1.3 5.7 5.7 0 0 1 5.7-5.7 6 6 0 0 1 4.2 1.8 11.25 11.25 0 0 0 3.6-1.4 6 6 0 0 1-2.5 3.2 9.54 9.54 0 0 0 3.3-.9 15.15 15.15 0 0 1-3.1 3.1z"/></svg>
+                    </a>
+                </li>
+                <li class='od-share__button od-share__button--email'>
+                    <a href={{emailLink}}>
+                        <svg class='od-share__icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M34.3 22.3l-.6-.6-8.5 4-8.6-4-.4.6 9 7.4c-.1 0 9.1-7.4 9.1-7.4zm1.8-7.1H13.8L11.5 19v13.9l2.4 1.8h22.4l2.2-1.8V19l-2.4-3.8zm-.8 16.2H14.6V18.5h20.7v12.9z"/></svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

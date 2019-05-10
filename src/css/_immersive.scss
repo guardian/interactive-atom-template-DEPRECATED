@@ -1,0 +1,93 @@
+@import "immersive-header";
+
+.i-wrapper {
+    width: 100%;
+    margin: auto;
+    min-height: 100vh;
+    position: relative;
+
+    &:before {
+        content: '';
+        display: none;
+        position: absolute;
+        border-left: 1px solid #dcdcdc;
+        width: 0;
+        height: 100%;
+    }
+
+    @include mq(tablet) {
+        width: 740px;
+        border-left: 1px solid #dcdcdc;
+        border-right: 1px solid #dcdcdc;
+        box-sizing: border-box;
+    }
+
+    @include mq(desktop) {
+        width: 980px;
+    }
+
+    @include mq(leftCol) {
+        width: 1140px;
+
+        &:before {
+            display: block;
+            left: 160px;
+        }
+    }
+
+    @include mq(wide) {
+        width: 1300px;
+
+        &:before {
+            left: 250px;
+        }
+    }
+}
+
+.i-main {
+    padding-left: 10px;
+    padding-right: 10px;
+    @include mq(desktop) {
+        width: 620px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    @include mq(leftCol) {
+        margin-left: 160px;
+    }
+
+    @include mq(wide) {
+        margin-left: 240px;
+    }
+}
+
+.l-footer {
+    display: block !important;
+}
+
+.weighting--showcase {
+    @include mq(desktop) {
+        width: 860px;
+    }
+    @include mq(leftCol) {
+        margin-left: -160px;
+    }
+    @include mq(wide) {
+        margin-left: -240px;
+    }
+}
+
+.weighting--immersive {
+    @include mq(desktop) {
+        width: 860px;
+    }
+    @include mq(leftCol) {
+        width: 1100px;
+        margin-left: -160px;
+    }
+    @include mq(wide) {
+        width: 1260px;
+        margin-left: -240px;
+    }
+}
