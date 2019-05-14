@@ -15,21 +15,21 @@ class ScrollyTeller {
 
         this.scrollWrapper.style.height = this.textBoxes.length * 100 + "vh";
 
-        if(this.transparentUntilActive) {
+        if (this.transparentUntilActive) {
             config.parent.classList.add("transparent-until-active");
         }
     }
 
     checkScroll() {
-        if(this.lastScroll !== window.pageYOffset) {
+        if (this.lastScroll !== window.pageYOffset) {
             const bbox = this.scrollText.getBoundingClientRect();
-    
-            if(!supportsSticky) {
-                if(bbox.top <= 0 && bbox.bottom >= window.innerHeight) {
+
+            if (!supportsSticky) {
+                if (bbox.top <= 0 && bbox.bottom >= window.innerHeight) {
                     this.scrollInner.classed("fixed-top", true);
                     this.scrollInner.classed("absolute-bottom", false);
                     this.scrollInner.classed("absolute-top", false);
-                } else if(bbox.top <= 0) {
+                } else if (bbox.top <= 0) {
                     this.scrollInner.classed("fixed-top", false);
                     this.scrollInner.classed("absolute-bottom", true);
                     this.scrollInner.classed("absolute-top", false);
@@ -39,17 +39,17 @@ class ScrollyTeller {
                     this.scrollInner.classed("absolute-top", true);
                 }
             }
-    
-            if(bbox.top < (window.innerHeight*(this.triggerTop)) && bbox.bottom > window.innerHeight/2) { 
-                const i = Math.floor(Math.abs(bbox.top - (window.innerHeight*(this.triggerTop)))/bbox.height*7);
-    
-                if(i !== this.lastI) {
-                    this.lastI = i; 
+
+            if (bbox.top < (window.innerHeight * (this.triggerTop)) && bbox.bottom > window.innerHeight / 2) {
+                const i = Math.floor(Math.abs(bbox.top - (window.innerHeight * (this.triggerTop))) / bbox.height * this.textBoxes.length);
+
+                if (i !== this.lastI) {
+                    this.lastI = i;
                     this.doScrollAction(i);
 
-                    if(this.transparentUntilActive) {
+                    if (this.transparentUntilActive) {
                         this.textBoxes.forEach((el, j) => {
-                            if(j <= i) {
+                            if (j <= i) {
                                 el.style.opacity = "1";
                             } else {
                                 el.style.opacity = "0.25";
@@ -58,16 +58,16 @@ class ScrollyTeller {
                     }
                 }
             }
-    
+
             this.lastScroll = window.pageYOffset;
         }
-    
+
         window.requestAnimationFrame(this.checkScroll.bind(this));
     }
 
     doScrollAction(i) {
-        const trigger = this.triggerPoints.find(d => d.num === i+1);
-        if(trigger) {
+        const trigger = this.triggerPoints.find(d => d.num === i + 1);
+        if (trigger) {
             trigger.do();
         }
     }
