@@ -47,6 +47,17 @@
 .i-main {
     padding-left: 10px;
     padding-right: 10px;
+
+    p:first-child:first-letter {
+      @include fs-titlepiece(3);
+      float: left;
+      color: $news-red;
+      font-size: 80px;
+      line-height: 70px;
+      padding-top: 0px;
+      padding-right: 6px;
+    }
+
     @include mq(desktop) {
         width: 620px;
         padding-left: 20px;
