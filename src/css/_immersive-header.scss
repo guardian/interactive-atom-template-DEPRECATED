@@ -21,20 +21,43 @@
 }
 
 .i-header__headline h1 {
-    @include fs-header(5);
-    font-size: 44px;
-    line-height: 48px;  
+  @include fs-headline(3);
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 1.34;
+  color: white;
+  margin-bottom: 36px;
+
+  @include mq(leftCol) {
+    font-size: 50px;
+    margin-top: -1px;
+  }
+
+  span {
+    display: inline;
+    padding-bottom: .1em;
+    background: linear-gradient($neutral-7, $neutral-7) no-repeat;
+    box-shadow: 6px 0 0 $neutral-7, -6px 0 0 $neutral-7;
+
+    @include mq(leftCol) {
+      box-shadow: 10px 0 0 $neutral-7, -10px 0 0 $neutral-7;
+    }
+  }
 }
 
 .i-header__standfirst p {
+  @include fs-headline(2);
+  font-weight: 200;
+  padding-bottom: 12px;
+  max-width: 80%;
+  font-size: 18px;
+  line-height: 22px;
+
+  @include mq(tablet) {
     @include fs-headline(3);
-    font-size: 22px;
-    line-height: 26px;
-    font-weight: 300;
-    color: #767676;
-    margin-top: 24px;
-    margin-bottom: 6px;
+    font-weight: 200;
     max-width: 540px;
+  }
 }
 
 .i-header__meta {
@@ -102,22 +125,39 @@
 
 .i-header__meta__shares {
     margin: 0;
-    padding-top: 6px; 
+    padding-top: 6px;
 }
 
 .i-header__top-tag {
-    a {
-        @include fs-header(4);
-        color: $news-red;
-        @include mq(leftCol) {
-            position: absolute;
-            top: 0;
-            left: -140px;
-        }
-        @include mq(wide) {
-            left: -220px;
-        }
+  @include fs-headline(2);
+  font-weight: bold;
+  float: none;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  @include mq(tablet) {
+    padding-top: 48px;
+  }
+
+  @include mq(leftCol) {
+    font-size: 22px;
+  }
+
+  span {
+    width: 100%;
+    background-color: $gu-news-kicker;
+    box-shadow: 6px 0 0 $gu-news-kicker, -6px 0 0 $gu-news-kicker;
+    padding-bottom: 6px;
+    line-height: 34px;
+    font-size: 20px;
+
+    @include mq(leftCol) {
+      box-shadow: 10px 0 0 $gu-news-kicker, -10px 0 0 $gu-news-kicker;
     }
+  }
 }
 
 //shares
@@ -137,7 +177,7 @@
     border-radius: 20px;
     float: left;
     margin-right: 4px;
-    border: 1px solid #dcdcdc; 
+    border: 1px solid #dcdcdc;
 
     &:hover {
         background-color: $news-red;

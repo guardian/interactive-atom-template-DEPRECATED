@@ -1,9 +1,9 @@
 <div class="i-header">
     <div class="i-header__top-tag">
-        <a href="{{header.tagUrl}}">{{header.tagTitle}}</a>
+        <span><a href="{{header.tagUrl}}">{{header.tagTitle}}</a></span>
     </div>
     <div class="i-header__headline">
-        <h1 itemprop="headline">{{header.headline}}</h1>
+        <h1 itemprop="headline"><span>{{header.headline}}</span></h1>
     </div>
     <div class="i-header__standfirst" data-link-name="standfirst" data-component="standfirst">
         <meta itemprop="description" content="{{header.standfirst}}">
@@ -11,17 +11,17 @@
     </div>
     <div class="i-header__meta">
         <p class="i-header__meta__byline">
-            {{#header.bylines}} 
+            {{#header.bylines}}
                 <span itemscope="" itemtype="http://schema.org/Person" itemprop="author" class="i-header__meta__byline-wrapper">
                     <a rel="author" itemprop="sameAs" data-link-name="auto tag link" href="{{link}}"><span itemprop="name">{{name}}</span></a>
-                </span> 
+                </span>
             {{/header.bylines}}
         </p>
         <p class="i-header__meta__dateline">
             <time itemprop="datePublished" datetime="{{header.datetime}}" data-timestamp="{{header.timestamp}}">
                 {{header.datetime}}
             </time>
-        </p> 
+        </p>
         <div class="i-header__meta__shares">
             <ul class='od-share'>
                 <li class='od-share__button od-share__button--facebook'>
