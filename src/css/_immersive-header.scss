@@ -1,7 +1,7 @@
 .i-header {
     position: relative;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     margin-bottom: 12px;
 
     @include mq(desktop) {
@@ -21,9 +21,17 @@
 }
 
 .i-header__headline h1 {
-    @include fs-header(5);
-    font-size: 44px;
-    line-height: 48px;  
+    font-size: 20px;
+    line-height: 24px;
+    font-family: "Guardian Headline","Guardian Egyptian Web","Guardian Headline Full",Georgia,serif;
+    font-weight: 900;
+    display: inline;
+    padding-bottom: .1em;
+    background: linear-gradient(#121212, #121212) no-repeat;
+    box-shadow: 10px 0 0 #121212, -10px 0 0 #121212;
+    color: #fff;
+    font-size: 50px;
+    line-height: 1.34;
 }
 
 .i-header__standfirst p {
@@ -35,6 +43,7 @@
     margin-top: 24px;
     margin-bottom: 6px;
     max-width: 540px;
+    margin-bottom: 24px;
 }
 
 .i-header__meta {
@@ -52,9 +61,9 @@
     }
 
     @include mq(wide) {
-        width: 220px;
+        width: 230px;
         position: absolute;
-        left: -220px;
+        left: -230px;
     }
 }
 
@@ -106,16 +115,21 @@
 }
 
 .i-header__top-tag {
+    height: 28px;
+    margin-top: 6px;
     a {
         @include fs-header(4);
-        color: $news-red;
+        color: #fff;
+        background-color: #c70000;
+        display: inline-block;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 2px;
+        position: absolute;
+        left: 10px;
         @include mq(leftCol) {
-            position: absolute;
-            top: 0;
-            left: -140px;
         }
         @include mq(wide) {
-            left: -220px;
         }
     }
 }

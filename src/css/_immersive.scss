@@ -17,8 +17,8 @@
 
     @include mq(tablet) {
         width: 740px;
-        border-left: 1px solid #dcdcdc;
-        border-right: 1px solid #dcdcdc;
+        // border-left: 1px solid #dcdcdc;
+        // border-right: 1px solid #dcdcdc;
         box-sizing: border-box;
     }
 
@@ -45,20 +45,23 @@
 }
 
 .i-main {
-    padding-left: 10px;
-    padding-right: 10px;
+    // padding-left: 10px;
+    // padding-right: 10px;
     @include mq(desktop) {
         width: 620px;
-        padding-left: 20px;
-        padding-right: 20px;
+        // padding-left: 20px;
+        // padding-right: 20px;
     }
 
     @include mq(leftCol) {
-        margin-left: 160px;
+        // margin-left: 160px;
     }
 
     @include mq(wide) {
-        margin-left: 240px;
+        & > p {
+            margin-left: 260px;
+            width: 620px;
+        }
     }
 }
 

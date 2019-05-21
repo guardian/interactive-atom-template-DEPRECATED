@@ -11,4 +11,157 @@
 .element-atom,
 .interactive-atom {
     margin: 0 !important;
+    h2 {
+        @include fs-header(5);
+        width: 620px;
+        position: absolute;
+        left: 10px;
+        top: 6px;
+        // margin-left: 240px;
+    }
+
+    svg {
+        overflow: visible !important;
+    }
+}
+
+.state-wrapper {
+    width: 1300px;
+    border: 1px solid #dcdcdc;
+    margin-bottom: 48px;
+    background-color: #fff;
+    position: relative;
+    z-index: 4000;
+
+    svg {
+        // margin-left: 80px;
+    }
+    // margin-left: 240px;
+
+    &:first-of-type {
+        margin-top: 48px;
+    }
+}
+
+.i-main {
+    // margin-top: 400px;
+}
+
+.content__main, .content__head {
+    position: relative;
+  
+    // &:before {
+    //   position: absolute;
+    //   top: 0;
+  
+    //   height: 100%;
+    //   min-height: 500px;
+    //   content: ' ';
+  
+  
+    //   border-left:1px solid #dfdfdf;
+  
+    //   @include mq(leftCol) {
+    //     left: calc((100% - 1140px)/2 + 170px);
+    //   }
+  
+    //   @include mq(wide) {
+    //     left: calc((100% - 1300px)/2 + 250px);
+    //   }
+    // }
+}
+
+.overlay-image {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.text-label {
+    @include fs-textSans(3);
+    stroke: white;
+    stroke-width: 3px;
+    pointer-events: none;
+    paint-order: stroke;
+    fill: #000;
+}
+
+.intro-text {
+    @include fs-bodyCopy(2);
+    max-width: 620px;
+    padding-top: 6px;
+    color: #767676;
+    margin-left: 249px;
+    border-left: 1px solid #dcdcdc;
+    padding-left: 10px;
+    margin-bottom: 0;
+}
+
+.chamber-label {
+    @include fs-header(3);
+    margin: 0;
+
+    @include mq(wide) {
+        margin-top: 24px;
+        margin-left: 260px;
+    }
+}
+
+.chamber-label-date {
+    @include fs-textSans(3);
+    margin: 0;
+
+    @include mq(wide) {
+        color: #767676;
+        margin-left: 260px;
+    }
+}
+
+.data-viz-wrapper {
+    overflow: hidden;
+    margin-left: 249px;
+    padding-top: 24px;
+    margin-bottom: 48px;
+    padding-left: 10px;
+    border-left: 1px solid #dcdcdc;
+
+    .row {
+        min-height: 24px;
+    }
+
+    .box {
+        width: 240px;
+        float: left;
+    }
+
+    .left-labels {
+        width: 180px;
+    }
+}
+
+.percent-women,.percent-bme {
+    .row--2,.row--3 {
+        font-weight: 300;
+        color: #767676;
+        .bar {
+            content: '';
+            display: block;
+            width: attr(data-width);
+            height: 10px;
+            background-color: #767676;
+            display: inline-block;
+            margin-right: 5px;
+        }
+    }
+
+    .row--2 {
+        .bar {
+            background-color: #161616;
+        }
+    }
+}
+
+.data-viz-wrapper {
+    @include fs-textSans(4);
+    font-weight: bold;
+
 }
