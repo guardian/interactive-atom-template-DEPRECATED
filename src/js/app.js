@@ -1,4 +1,13 @@
-import * as d3 from "d3"
+import * as d3Array from "d3-array"
+import * as d3Select from "d3-selection"
+import * as d3Scale from "d3-scale"
+import * as d3Transition from "d3-transition"
+import * as d3Coll from "d3-collection"
+import * as d3Force from "d3-force"
+import loadJson from "../components/load-json"
+
+const d3 = Object.assign({}, d3Force, d3Coll, d3Array, d3Select, d3Scale, d3Transition);
+
 import palette from "./palette"
 
 const width = d3.select(".i-wrapper").node().clientWidth;
@@ -7,12 +16,12 @@ console.log(width);
 
 const height = 600;
 
-d3.json("https://interactive.guim.co.uk/docsdata-test/1ptuRrQAghh7iSEuW_uVfrUJDAJAkOb8iW7rp4_uq-hc.json").then(sheets => {
+loadJson("https://interactive.guim.co.uk/docsdata-test/1ptuRrQAghh7iSEuW_uVfrUJDAJAkOb8iW7rp4_uq-hc.json").then(sheets => {
     const data = sheets.sheets.Sheet1;
 
     const nested = d3.nest().key(d => d.state).key(d => d.chamber).entries(data);
 
-    d3.json("https://interactive.guim.co.uk/docsdata-test/136QJBEnYCO_Rx_3XhMPU_JqsaQ1db8XDmOuG6KyG5Eo.json").then(doc => {
+    loadJson("https://interactive.guim.co.uk/docsdata-test/136QJBEnYCO_Rx_3XhMPU_JqsaQ1db8XDmOuG6KyG5Eo.json").then(doc => {
         const maleCount = data.filter(d => d.gender === "M").length;
         const femaleCount = data.filter(d => d.gender === "F").length;
 
