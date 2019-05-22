@@ -11,6 +11,7 @@
 .element-atom,
 .interactive-atom {
     overflow: hidden;
+    background-color: #fff;
     margin: 0 !important;
     h2 {
         @include fs-header(4);
@@ -277,8 +278,8 @@
     margin-top: 12px;
 
     @include mq(tablet) {
-        font-size: 50px;
-        line-height: 54px;
+        font-size: 36px;
+        line-height: 40px;
         margin-top: 24px;
         margin-bottom: 48px;
         margin-left: 0;

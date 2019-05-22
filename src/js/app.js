@@ -126,7 +126,7 @@ const drawState = (stateData, docData) => {
 
             nodes.forEach(n => {
                 if(n.x) {
-                    n.x = Math.min(Math.max(n.x, (-width/2) + radius*2), width/2 - radius*2);
+                    n.x = Math.min(Math.max(n.x, (-width/2) + radius), width/2 - radius*2);
                 }
                 // console.log(n)
                 return n;
