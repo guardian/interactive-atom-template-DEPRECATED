@@ -10,13 +10,28 @@
 
 .element-atom,
 .interactive-atom {
+    overflow: hidden;
     margin: 0 !important;
     h2 {
-        @include fs-header(5);
+        @include fs-header(4);
         width: 620px;
-        position: absolute;
-        left: 10px;
-        top: 6px;
+
+        @include mq($until: leftCol) {
+            padding-top: 4px;
+        }
+
+        @include mq(tablet, leftCol) {
+            padding-left: 0;
+        }
+
+        @include mq(leftCol) {
+            position: absolute;
+            left: 10px;
+            top: 6px;
+        }
+        @include mq(wide) {
+            @include fs-header(5);
+        }
         // margin-left: 240px;
     }
 
@@ -26,8 +41,24 @@
 }
 
 .state-wrapper {
-    width: 1300px;
-    border: 1px solid #dcdcdc;
+    width: 100%;
+    border-top: 1px solid #dcdcdc;
+
+    @include mq(tablet) {
+        width: 740px;
+    }
+    @include mq(desktop) {
+        width: 980px;
+    }
+    @include mq(leftCol) {
+        border: 1px solid #dcdcdc;
+        width: 1140px;
+    }
+    @include mq(wide) {
+        width: 1300px;
+    }
+
+   
     margin-bottom: 48px;
     background-color: #fff;
     position: relative;
@@ -73,7 +104,7 @@
 
 .overlay-image {
     pointer-events: none;
-    opacity: 0.5;
+    // opacity: 0.5;
 }
 
 .text-label {
@@ -90,15 +121,28 @@
     max-width: 620px;
     padding-top: 6px;
     color: #767676;
-    margin-left: 249px;
-    border-left: 1px solid #dcdcdc;
-    padding-left: 10px;
+
+    @include mq(leftCol) {
+        margin-left: 159px;
+        border-left: 1px solid #dcdcdc;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    @include mq(wide) {
+        margin-left: 249px;
+    }
+
     margin-bottom: 0;
 }
 
 .chamber-label {
     @include fs-header(3);
     margin: 0;
+
+    @include mq(leftCol) {
+        margin-left: 170px;
+    }
 
     @include mq(wide) {
         margin-top: 24px;
@@ -110,6 +154,11 @@
     @include fs-textSans(3);
     margin: 0;
 
+    @include mq(leftCol) {
+        color: #767676;
+        margin-left: 170px;
+    }
+
     @include mq(wide) {
         color: #767676;
         margin-left: 260px;
@@ -118,23 +167,40 @@
 
 .data-viz-wrapper {
     overflow: hidden;
-    margin-left: 249px;
+
     padding-top: 24px;
+
+    @include mq(leftCol) {
+        border-left: 1px solid #dcdcdc;
+        margin-left: 159px;
+        margin-left: 10px;
+        padding-left: 10px;
+    }
+    @include mq(wide) {
+        margin-left: 249px;
+    }
     margin-bottom: 48px;
-    padding-left: 10px;
-    border-left: 1px solid #dcdcdc;
 
     .row {
         min-height: 24px;
     }
 
     .box {
-        width: 240px;
-        float: left;
+        // @include mq(wi) {
+        //     width: 160px;
+        //     float: left;
+        // }
+        @include mq(tablet) {
+            width: 240px;
+            float: left;
+        }
     }
 
     .left-labels {
         width: 180px;
+        @include mq($until: tablet) {
+            display: none;
+        }
     }
 }
 
@@ -160,8 +226,87 @@
     }
 }
 
+@include mq($until: tablet) {
+    .percent-women,.percent-bme {
+        .row--2 {
+            &::before {
+                content: 'Yes voters';
+                display: block;
+                font-weight: bold;
+                width: 150px;
+                margin-right: 5px;
+            }
+        }
+
+        .row--3 {
+            &::before {
+                content: 'State population';
+                display: block;
+                font-weight: bold;
+                width: 150px;
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
 .data-viz-wrapper {
     @include fs-textSans(4);
     font-weight: bold;
 
+}
+
+.big-number {
+    @include fs-textSans(3);
+    stroke: white;
+    stroke-width: 2px;
+    paint-order: stroke;
+    text-anchor: middle;
+}
+
+.intro-numbers {
+    @include fs-GuardianHeadlineFull(5);
+
+    span {
+        color: #c70000;
+    }
+
+    font-size: 28px;
+    line-height: 32px;
+    margin-bottom: 24px;
+    margin-top: 12px;
+
+    @include mq(tablet) {
+        font-size: 50px;
+        line-height: 54px;
+        margin-top: 24px;
+        margin-bottom: 48px;
+        margin-left: 0;
+        width: 620px;
+
+    }
+
+    @include mq(leftCol) {
+        margin-left: 180px;
+    }
+
+    @include mq(wide) {
+        margin-left: 260px;
+    }
+}
+
+.embed-key {
+    &::before {
+        content: 'How to read this graphic';
+        display: block;
+        @include fs-header(2);
+        margin-bottom: 6px;
+    }
+
+    @include mq(leftCol) {
+        margin-left: 150px;
+    }
+    @include mq(wide) {
+        margin-left: 260px;
+    }
 }

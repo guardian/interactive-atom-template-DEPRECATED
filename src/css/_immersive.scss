@@ -45,8 +45,8 @@
 }
 
 .i-main {
-    // padding-left: 10px;
-    // padding-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     @include mq(desktop) {
         width: 620px;
         // padding-left: 20px;
@@ -55,14 +55,23 @@
 
     @include mq(leftCol) {
         // margin-left: 160px;
+        padding: 0;
+        & > p {
+            margin-left: 170px;
+            width: 620px;
+        }
     }
 
     @include mq(wide) {
         & > p {
             margin-left: 260px;
-            width: 620px;
         }
     }
+}
+
+.ios .i-related-content,
+.android .i-related-content {
+    display: none;
 }
 
 .l-footer {
