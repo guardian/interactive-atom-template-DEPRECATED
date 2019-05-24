@@ -29,4 +29,4 @@ export async function render() {
     const data = await clean(await rp({uri: "https://interactive.guim.co.uk/docsdata-test/136QJBEnYCO_Rx_3XhMPU_JqsaQ1db8XDmOuG6KyG5Eo.json", json: true}));
     
     return Mustache.render(immersiveHTML, data, {"header": immersiveHeaderHTML});
-}     
+}      

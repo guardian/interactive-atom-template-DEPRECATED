@@ -13,9 +13,17 @@
     overflow: hidden;
     background-color: #fff;
     margin: 0 !important;
+
+    svg {
+        overflow: visible !important;
+    }
+}
+
+.state-wrapper {
+
     h2 {
         @include fs-header(4);
-        width: 620px;
+        width: 200px;
 
         @include mq($until: leftCol) {
             padding-top: 4px;
@@ -36,12 +44,31 @@
         // margin-left: 240px;
     }
 
-    svg {
-        overflow: visible !important;
-    }
-}
+    h4 {
+        @include fs-headline(2);
+        color: #767676;
 
-.state-wrapper {
+        @include mq($until: leftCol) {
+            padding-top: 4px;
+        }
+
+        @include mq(tablet, leftCol) {
+            padding-left: 0;
+        }
+
+        @include mq(leftCol) {
+            position: absolute;
+            width: 140px;
+            left: 10px;
+            top: 36px;
+        }
+        @include mq(wide) {
+            width: 200px;
+            // @include fs-headline(2);
+        }
+        // margin-left: 240px;
+    }
+
     width: 100%;
     border-top: 1px solid #dcdcdc;
 
@@ -174,7 +201,7 @@
     @include mq(leftCol) {
         border-left: 1px solid #dcdcdc;
         margin-left: 159px;
-        margin-left: 10px;
+        // margin-left: 10px;
         padding-left: 10px;
     }
     @include mq(wide) {

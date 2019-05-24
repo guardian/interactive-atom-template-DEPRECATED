@@ -25,6 +25,8 @@ loadJson("https://interactive.guim.co.uk/docsdata-test/1ptuRrQAghh7iSEuW_uVfrUJD
         const maleCount = data.filter(d => d.gender === "M").length;
         const femaleCount = data.filter(d => d.gender === "F").length;
 
+        console.log(data.length, maleCount, femaleCount);
+
         d3.select(".intro-numbers").html(`<span>${maleCount} male</span> and <span>${femaleCount} female</span> legislators have signed near-total abortion bans`);
 
         nested.forEach(state => {
@@ -32,7 +34,7 @@ loadJson("https://interactive.guim.co.uk/docsdata-test/1ptuRrQAghh7iSEuW_uVfrUJD
 
             drawState(state, docBlock);
         });
-    });
+    }); 
 });
 
 const strokeColour = (obj) => {
@@ -65,6 +67,9 @@ const drawState = (stateData, docData) => {
     const header = wrapper.append("h2")
         .text(stateData.key);
 
+    const count = wrapper.append("h4")
+        .text(docData.sub)
+
     const intro = wrapper.append("p")
         .classed("intro-text", true)
         .text(docData.copy);
@@ -73,7 +78,6 @@ const drawState = (stateData, docData) => {
         .classed("data-viz-wrapper", true);
 
     const allStateData = flatten(stateData.values.map(d => d.values));
-
     const percentWomen = ((allStateData.filter(d => d.gender === "F").length / allStateData.length) * 100).toFixed(1);
     const percentNonWhite = ((allStateData.filter(d => d.race !== "W").length / allStateData.length) * 100).toFixed(1);
 
@@ -84,16 +88,19 @@ const drawState = (stateData, docData) => {
         `);
             
     ["s", "h"].forEach(chamber => {
+        
 
         const chamberLabel = wrapper.append("h3")
             .classed("chamber-label", true)
-            .text((chamber === "s") ? "Senate" : "House");
+            .text((chamber === "s") ? "Senate" : (chamber === "h" ? "House" : "Governor"));
 
-        const chamberLabelDate = wrapper.append("h3")
-            .classed("chamber-label-date", true)
-            .text("Passed " + (chamber === "s") ? docData.senatePassed : docData.housePassed);
+        // const chamberLabelDate = wrapper.append("h3")
+        //     .classed("chamber-label-date", true)
+        //     .text("Passed " + (chamber === "s") ? docData.senatePassed : docData.housePassed);
 
         const chamberData = stateData.values.find(d => d.key === chamber);
+
+        console.log(stateData.key, chamber, chamberData.values.filter(d => d.gender === "M").length)
 
         const svg = wrapper
             .append("svg")
@@ -117,9 +124,9 @@ const drawState = (stateData, docData) => {
 
         const yStrength = (isMobile) ? strength : strength*4;
 
-        const xForce = (!isMobile) ? d3.forceX(d => d.gender === "M" ? -100 : 100).strength(strength*2) : d3.forceX().strength(xStrength);
+        const xForce = (!isMobile && chamber !== "g") ? d3.forceX(d => d.gender === "M" ? -100 : 100).strength(strength*2) : d3.forceX().strength(xStrength);
 
-        const yForce = (!isMobile) ? d3.forceY().strength(yStrength) : d3.forceY(d => d.gender === "M" ? -100 : 100).strength(yStrength)
+        const yForce = (!isMobile || chamber === "g") ? d3.forceY().strength(yStrength) : d3.forceY(d => d.gender === "M" ? -100 : 100).strength(yStrength)
 
         const simulation = d3.forceSimulation(nodes)
             .force("x", xForce)

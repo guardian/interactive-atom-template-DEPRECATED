@@ -47,6 +47,11 @@
 .i-main {
     padding-left: 10px;
     padding-right: 10px;
+
+    & > h2 {
+        @include fs-header(5);
+    }
+
     @include mq(desktop) {
         width: 620px;
         // padding-left: 20px;
@@ -56,14 +61,16 @@
     @include mq(leftCol) {
         // margin-left: 160px;
         padding: 0;
-        & > p {
+        & > p,
+        & > h2 {
             margin-left: 170px;
             width: 620px;
         }
     }
 
     @include mq(wide) {
-        & > p {
+        & > p,
+        & > h2 {
             margin-left: 260px;
         }
     }
