@@ -105,6 +105,6 @@ const featureTest = (property, value, noPrefixes) => {
     return mStyle[property];
 }
 
-const supportsSticky = (featureTest('position', 'sticky') || featureTest('position', '-webkit-sticky'));
+const supportsSticky = () => (featureTest('position', 'sticky') || featureTest('position', '-webkit-sticky'))
 
 export { $, $$, round, numberWithCommas, wait, getDimensions, hashPattern, duplicate, pseq, sum, ordinal, featureTest, supportsSticky }
