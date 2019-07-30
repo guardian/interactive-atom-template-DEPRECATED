@@ -11,3 +11,64 @@
 .interactive-atom {
     margin: 0 !important;
 }
+
+.interactive-wrapper {
+  background-color: $neutral-7;
+}
+
+.gv-timeline {
+  padding-top: 240px;
+  &:before {
+    content: '';
+    border-left: 1px solid $neutral-60;
+    height: 100%;
+    width: 1px;
+    position: absolute;
+    left: 230px;
+    top: 0px;
+  }
+}
+
+.gv-photoblock__two {
+  display: none;
+}
+
+.gv-timeline__time {
+  @include fs-textSans(4);
+  font-weight: bold;
+  color: white;
+  height: 420px;
+  margin-left: 230px;
+  padding-left: 10px;
+  border-top: 1px solid $neutral-60;
+  width: 120px;
+}
+
+
+.gv-photoblock {
+  position: fixed;
+  display: block;
+  top: 106px;
+  left: 440px;
+
+  img {
+    max-width: 620px;
+  }
+
+  h2 {
+    @include fs-headline(3);
+    font-weight: bold;
+    color: white;
+    margin-top: 6px;
+  }
+
+  span {
+    font-weight: 200;
+  }
+
+  p {
+    @include fs-bodyCopy(3);
+    color: white;
+    max-width: 640px;
+  }
+}
