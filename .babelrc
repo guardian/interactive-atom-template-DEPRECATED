@@ -2,7 +2,8 @@
   "env": {
     "development": {
       "presets": [
-        "@babel/preset-env"
+        "@babel/preset-env",
+        "@babel/preset-react"
       ],
       "plugins": [
         "transform-import-bangtext-node",
@@ -11,7 +12,17 @@
           {
             "regenerator": true
           }
-        ], "@babel/plugin-proposal-optional-chaining"
+        ],
+        "@babel/plugin-proposal-optional-chaining",
+        [
+          "module-resolver", {
+            "root": ["."],
+            "alias": {
+              "react": "preact-compat",
+              "react-dom": "preact-compat"
+            }
+          }
+        ]
       ]
     },
     "client": {
@@ -23,11 +34,21 @@
               "modules": false
             }
           }
-        ]
+        ],
+        "@babel/preset-react"
       ],
       "plugins": [
         "@babel/plugin-external-helpers",
-        "@babel/plugin-proposal-optional-chaining"
+        "@babel/plugin-proposal-optional-chaining",
+        [
+          "module-resolver", {
+            "root": ["."],
+            "alias": {
+              "react": "preact-compat",
+              "react-dom": "preact-compat"
+            }
+          }
+        ]
       ]
     }
   }
