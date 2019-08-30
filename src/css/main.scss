@@ -11,3 +11,53 @@
 .interactive-atom {
     margin: 0 !important;
 }
+
+.wrapper {
+    // display: inline-block;
+    // margin-right: 56px;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-top: 1px solid #dcdcdc;
+    margin-top: 12px;
+    padding-top: 4px;
+    // padding-right: 10px;
+    // padding-left: 10px;
+    // text-align: center;
+    @include fs-header(4);
+    div {
+        padding-bottom: 12px;
+    }
+
+    // font-weight: bold;
+        
+    svg {
+        overflow: visible !important;
+        margin-top: 24px;
+
+        text {
+            @include fs-bodyCopy(2);
+            fill: #fff;
+            stroke: #000;
+            paint-order: stroke;
+        }
+
+        .label-grad {
+            @include fs-textSans(2);
+            font-weight: normal;
+            fill: #000;
+            stroke-width: 3px;
+            stroke: #fff !important;
+        }
+    }
+
+    &:nth-of-type(2n) {
+        margin: 0;
+    }
+
+    .year-label {
+        @include fs-header(2);
+        fill: #000;
+        text-anchor: middle;
+        stroke: none;
+    }
+}
