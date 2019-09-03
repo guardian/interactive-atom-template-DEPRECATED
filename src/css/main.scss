@@ -3,7 +3,7 @@
 @import "palette";
 
 // Uncomment for embeds
-//@import "embed";
+@import "embed";
 // Uncomment for full screen (including immersive article main media)
 //@import "fullscreen";
 
@@ -12,52 +12,99 @@
     margin: 0 !important;
 }
 
+.interactive-wrapper {
+    margin: 0 !important;
+    border-top: 1px solid #dcdcdc;
+    border-bottom: 1px solid #dcdcdc;
+
+    select {
+        @include fs-headline(3);
+        border: 0;
+        background: #f6f6f6;
+        // padding: 20px;
+        // border-bottom: 1px solid #000;
+        border-radius: 0 !important;
+        //  -webkit-appearance: none;
+        -moz-appearance: none;
+        
+    }
+
+   .selector-label {
+            // content: 'Select a police force:';
+        @include fs-textSans(2);
+        font-weight: bold;
+        display: block;
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+}
+
+h2 {
+    @include fs-header(5);
+    margin-top: 4px;
+    margin-bottom: 12px;
+}
+
 .wrapper {
     // display: inline-block;
     // margin-right: 56px;
     box-sizing: border-box;
-    overflow: hidden;
-    border-top: 1px solid #dcdcdc;
+    // overflow: hidden;
+    // border-top: 1px solid #dcdcdc;
     margin-top: 12px;
     padding-top: 4px;
+    position: relative;
     // padding-right: 10px;
     // padding-left: 10px;
     // text-align: center;
     @include fs-header(4);
-    div {
-        padding-bottom: 12px;
-    }
 
     // font-weight: bold;
         
     svg {
-        overflow: visible !important;
-        margin-top: 24px;
+        overflow: hidden !important;
+        // margin-top: 24px;
 
         text {
-            @include fs-bodyCopy(2);
-            fill: #fff;
-            stroke: #000;
+            @include fs-GuardianHeadlineFull(2);
+            fill: #000;
+            stroke: #fff;
             paint-order: stroke;
         }
 
-        .label-grad {
+        .header-label {
+            text-anchor: middle;
             @include fs-textSans(2);
+            font-weight: bold;
+        }
+
+        .header-number {
+            text-anchor: middle;
+            @include fs-titlepiece(1);
+            font-size: 24px;
+        }
+
+        .header-change {
+            text-anchor: middle;
+            @include fs-textSans(1);
+            // font-size: 24px;
             font-weight: normal;
-            fill: #000;
-            stroke-width: 3px;
-            stroke: #fff !important;
         }
     }
+}
 
-    &:nth-of-type(2n) {
-        margin: 0;
-    }
+.label-tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    // background-color: #000;
+    color: #000;
+    @include fs-header(4);
+    margin: 0;
+    padding: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 4px;
+    padding-top: 2px;
 
-    .year-label {
-        @include fs-header(2);
-        fill: #000;
-        text-anchor: middle;
-        stroke: none;
-    }
 }

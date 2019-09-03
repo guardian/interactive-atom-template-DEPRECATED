@@ -1,11 +1,22 @@
 import * as d3 from "d3"
 import lj from "../components/load-json"
 import * as utils from "./util"
+import { deflateRaw } from "zlib";
 
 const el = d3.select(".interactive-wrapper");
 
-const height = 400;
-const width = 620;
+const height = 620; 
+const width = el.node().clientWidth;
+
+const colours = ['#c70000', '#de6900', '#f1a800', '#ffe500'];
+
+const addPlus = (t) => {
+    if(t != "0" && t.slice(0, 1) !== "-") {
+        return "+" + t
+    } else {
+        return t;
+    }
+}
 
 lj("https://interactive.guim.co.uk/docsdata-test/1-i6Ee0DoFa0NFlXHpNZhR3-0kg6pGR0HKZkAMCU9SzI.json").then(sheet => {
     const data = sheet.sheets.Sheet1
@@ -13,117 +24,125 @@ lj("https://interactive.guim.co.uk/docsdata-test/1-i6Ee0DoFa0NFlXHpNZhR3-0kg6pGR
     const nested = d3.nest()
         .key(d => d["Police Force"])
         .entries(data);
+    
+    el.append("div")
+        .text("Select a police force")
+        .classed("selector-label", true)
 
+    const dropdown = el.append("select");
+
+    dropdown.selectAll("option")
+        .data(nested.map(k => k.key).slice(1))
+        .enter()
+        .append("option")
+            .attr("value", d => d)
+            .text(d => d);
+
+    dropdown.on("change", () => {
+        const newForce = dropdown.node().value;
+
+        draw(nested.find(v => v.key === newForce));
+    });
+
+    const wrapper = el.append("div").classed("wrapper", true)
     // const widthScale = d3.scaleLinear().domain([0, d3.max(data, d => Number(d["2018"]))]).range([0, width])
+    
+    const draw = (pf) => {
+        // if(j == 0) {
+        //     return;
+        // }
 
-    nested.forEach(pf => {
-        const wrapper = el.append("div").classed("wrapper", true)
+        wrapper.html("");
 
-        const widthScale = d3.scaleLinear().domain([0, d3.max(pf.values, d => Number(d["2018"]))]).range([0, width])
-
-        wrapper.append("div")
-            .text(pf.key)
-
-        const years = ["2014","2018"];
-        
-        years.forEach(y => {
-            console.log(y)
-            const svg = wrapper
+        const svg = wrapper
             .append("svg")
             .attr("width", width)
-            .attr("height", height);
+            .attr("height", height)
+
+        const radius = (width < 375) ? 0.7: 1.15;
+        const padding = (width < 375) ? 0.15 : 0.25;
+        const labels = ["Recorded", "Referred", "Charged", "Convicted"];
+
+        let minY = 0;
+        let currentMinY = 0;
+        const recordedCount = Number(pf.values[0]["2018"]);
+
+        pf.values.forEach((p, i) => {
+            const n = Number(p[(2018).toString()]);
+            const circles = d3.packSiblings(d3.range(n).map(() => ({r: radius + padding + Math.random()})));
+   
+            if(i == 0) {
+                minY = d3.min(circles, d => d.y)
+
+                svg.attr("height", (Math.abs(minY*2) + 24) + 324)
+            }
+
+            let xOffset;
+            let yOffset;
+
+            if(recordedCount > 2000) {
+                xOffset = ((i < 1) ? (i * (width/3)) + width/4 : ((i - 2) * (width/3)) + width/4) + width/4;
             
-
-            svg.html(`<defs> <pattern id="lightstripe" patternUnits="userSpaceOnUse" width="5" height="5"> <image xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc1JyBoZWlnaHQ9JzUnPgogIDxyZWN0IHdpZHRoPSc1JyBoZWlnaHQ9JzUnIGZpbGw9J25vbmUnLz4KICA8cGF0aCBkPSdNMCA1TDUgMFpNNiA0TDQgNlpNLTEgMUwxIC0xWicgc3Ryb2tlPScjMDAwJyBzdHJva2Utd2lkdGg9JzEnLz4KPC9zdmc+" x="0" y="0" width="5" height="5"> </image> </pattern> </defs>`);
+                yOffset = (i < 1) ? Math.abs(minY*1) + 84 + 24 : (Math.abs(minY)*2 + 240 + 24)
+            } else {
+                xOffset = (i < 2) ? (i * (width/2)) + width/4 : ((i - 2) * (width/2)) + width/4;
             
-            svg.append("text")
-                .attr("x", width/2)
-                .attr("y", -12)
-                .text(y)
-                .classed("year-label", true);
+                yOffset = (i < 2) ? Math.abs(minY*1) + 84 + 24 : (Math.abs(minY)*2 + 240 + 24)
+            }
 
-            const colours = ['#c70000', '#de6900', '#f1a800', '#ffe500'];
+            if((i < 2 && recordedCount <= 2000) || (i === 1 && recordedCount > 2000)) {
+                currentMinY = Math.abs(d3.min(circles, d => d.y));
+            }
 
-            pf.values.forEach((b,i) => {
-                if(i > 0) {
-                    var gradient = svg.append("defs")
-                    .append("linearGradient")
-                        .attr("id", "gradient" + i)
-                        .attr("x1", "0%")
-                        .attr("y1", "0%")
-                        .attr("x2", "0%")
-                        .attr("y2", "100%")
-                        .attr("spreadMethod", "pad");
-        
-                    gradient.append("stop")
-                        .attr("offset", "0%")
-                        .attr("stop-color", colours[i - 1])
-                        .attr("stop-opacity", 1);
-        
-                    gradient.append("stop")
-                        .attr("offset", "100%")
-                        .attr("stop-color", colours[i])
-                        .attr("stop-opacity", 1);
-
-                    svg.append("path")
-                        .attr("d", `M ${(width/2) - widthScale(pf.values[i-1][y])/2} ${((i - 1) * 96) + 48} 
-                        L ${(width/2) - widthScale(pf.values[i][y])/2} ${(((i - 1) * 96) + 48) + 48}
-                        L ${(width/2) + widthScale(pf.values[i][y])/2} ${(((i - 1) * 96) + 48) + 48}
-                        L ${(width/2) + widthScale(pf.values[i - 1][y])/2} ${((i - 1) * 96) + 48} `)
-                        // .style("fill", "#880105")
-                        .style("fill", `url(#gradient${i})`)
-                        .style("fill-opacity", 0.3)
-                        // .style("fill-opacity", "0.25")
-
-                }
-                
-                svg.append("rect")
-                    .attr("x", (width/2) - widthScale(b[y])/2)
-                    .attr("y", i * 96)
-                    .attr("height", 48)
-                    .attr("width", widthScale(b[y]))
+            svg.append("g")
+                .selectAll("circle")
+                .data(circles)
+                .enter()
+                .append("circle")
+                    .attr("cx", d => d.x + xOffset)
+                    .attr("cy", d => d.y + yOffset)
+                    .attr("r", 0)
                     .style("fill", colours[i])
-                    // .style("transf);
+                    // .transition()
+                    // .ease(d3.easeSin)
+                    // .delay((d, l) => l*(3000/circles.length))
+                    .attr("r", radius)
 
-                svg.append("text")
-                    .text(utils.numberWithCommas(pf.values[i][y]))
-                    .attr("x", (width/2))
-                    .attr("y", (i * 96) + 30)
-                    .style("text-anchor", "middle")
-                    .style("stroke", colours[i]);
 
-                if(i > 0) {
-                    const labels = ["of reports were referred", "of reports led to a charge", "of reports led to a conviction"]
+            svg.append("text")
+                .text(labels[i])
+                .style("fill", colours[i])
+                .attr("x", xOffset)
+                .attr("y", ((i < 2 && recordedCount <= 2000) || (i < 1 && recordedCount > 2000)) ? 24 + 24 : yOffset + 24 + 24 - currentMinY - 112)
+                .classed("header-label", true)
 
-                    svg.append("text")
-                        .text(utils.numberWithCommas(pf.values[i][y + " %"]) + " " + labels[i-1])
-                        .attr("x", (width/2))
-                        .attr("y", (i * 96) + 30 - 48)
-                        .style("text-anchor", "middle")
-                        .style("stroke", colours[i])
-                        .classed("label-grad", true);
-                }
+            svg.append("text")
+                .text(utils.numberWithCommas(Number(p[(2018).toString()])))
+                .style("fill", "#000")
+                .attr("x", xOffset)
+                .attr("y", ((i < 2 && recordedCount <= 2000) || (i < 1 && recordedCount > 2000))? 24 + 48 : yOffset + 24 + 48 - currentMinY - 112)
+                .classed("header-number", true)
 
-                // svg.append("line")
-                //     .attr("x1", width/2)
-                //     .attr("x2", width/2)
-                //     .attr("y1", 0)
-                //     .attr("y2", height)
-                //     .style("stroke", "#000") 
-            });
+            svg.append("text")
+                .text(`${addPlus(p["% change 14 to 18"])}${i === 0 ? ' since 2014' : ''}`)
+                .style("fill", "#000")
+                .attr("x", xOffset)
+                .attr("y", ((i < 2 && recordedCount <= 2000) || (i < 1 && recordedCount > 2000)) ? 24 + 64 : yOffset + 24 + 64 - currentMinY - 112)
+                .classed("header-change", true)
         });
 
-        // pf.values.forEach((b,i) => {
-        //     svg.append("rect")
-        //         .attr("x", (width/2) - widthScale(b["2014"])/2)
-        //         .attr("y", i * 96)
-        //         .attr("height", 48)
-        //         .attr("width", widthScale(b["2014"]))
-        //         .style("fill", "url(#lightstripe)")
-        //         .style("stroke", "#000")
-        //         .style("stroke-width", "2")
-        //         // .style("transf);
-        // });
-        
-    });
+        try {
+            window.resize()
+        } catch(err) {
+            console.log(err);
+        }
+
+        // wrapper.append("div")
+        //     .classed("label-tag", true)
+        //     .text(pf.key)
+
+            // window.resize();
+    }
+
+    draw(nested[2]);
 });
