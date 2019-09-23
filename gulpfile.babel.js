@@ -84,6 +84,10 @@ function buildJS(filename) {
                         {
                             test: /\.html$/,
                             use: 'raw-loader'
+                        },
+                        {
+                            test: /\.mjs$/,
+                            type: "javascript/auto",
                         }
                     ]
                 },
