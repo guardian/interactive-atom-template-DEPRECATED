@@ -51,7 +51,6 @@
   },
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
-    "babel-plugin-module-resolver": "^3.2.0",
     "core-js": "^2.6.2",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.6.1",

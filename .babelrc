@@ -13,16 +13,7 @@
             "regenerator": true
           }
         ],
-        "@babel/plugin-proposal-optional-chaining",
-        [
-          "module-resolver", {
-            "root": ["."],
-            "alias": {
-              "react": "preact-compat",
-              "react-dom": "preact-compat"
-            }
-          }
-        ]
+        "@babel/plugin-proposal-optional-chaining"
       ]
     },
     "client": {
@@ -39,16 +30,7 @@
       ],
       "plugins": [
         "@babel/plugin-external-helpers",
-        "@babel/plugin-proposal-optional-chaining",
-        [
-          "module-resolver", {
-            "root": ["."],
-            "alias": {
-              "react": "preact-compat",
-              "react-dom": "preact-compat"
-            }
-          }
-        ]
+        "@babel/plugin-proposal-optional-chaining"
       ]
     }
   }
