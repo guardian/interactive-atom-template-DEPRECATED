@@ -11,3 +11,242 @@
 .interactive-atom {
     margin: 0 !important;
 }
+
+.new-header {
+  background-color: #c70000;
+  border-bottom: 1px solid rgba(218, 218, 218, 0.6);
+
+  .pillar-link:before {
+    border-left: 1px solid rgba(218, 218, 218, 0.6);
+  }
+}
+
+.inline-the-guardian-roundel {
+  svg {
+    path:nth-child(2) {
+      fill: #c70000 !important;
+    }
+  }
+}
+
+.l-side-margins {
+  &:before {
+    border-right: 1px solid rgba(218, 218, 218, 0.6);
+  }
+  &:after {
+    border-left: 1px solid rgba(218, 218, 218, 0.6);
+  }
+}
+
+.content__head--interactive {
+  background-color: #c70000;
+}
+
+.label__link-wrapper {
+  color: #fff;
+}
+
+.content__headline {
+  color: #fff;
+  font-size: 38px;
+  line-height: 37px;
+  margin-bottom: 20px;
+
+  @include mq($from: desktop) {
+    font-size: 64px;
+    line-height: 64px;
+    margin-bottom: 40px;
+  }
+
+  .kicker {
+    font-family: "Guardian Headline Full";
+    font-weight: 300;
+    display: block;
+  }
+
+  .headline {
+    font-family: "Guardian Titlepiece";
+    display: block;
+  }
+}
+
+.content__standfirst {
+  color: #fff;
+}
+
+//This styles the copy on composer
+.element-atom + p {
+  padding: 0 10px;
+  max-width: 600px;
+
+  @include mq($from: desktop) {
+    margin-left: 9.375rem;
+  }
+
+  @include mq($from: wide) {
+    margin-left: 14.375rem;
+  }
+
+  &:first-of-type:first-letter {
+    font-size: 114px;
+    font-family: "Guardian Titlepiece";
+    line-height: 0.8;
+    margin-right: 12px;
+    margin-top: 0;
+    float: left;
+    }
+}
+
+.content__main-column--interactive p {
+  padding: 0 10px;
+  max-width: 600px;
+
+  @include mq($from: desktop) {
+    margin-left: 9.375rem;
+  }
+
+  @include mq($from: wide) {
+    margin-left: 14.375rem;
+  }
+}
+
+.content__main-column--interactive h2 {
+  padding: 0 10px;
+  max-width: 600px;
+  border-top: 1px solid rgba(218, 218, 218, 0.6);
+
+  @include mq($from: desktop) {
+    margin-left: 9.375rem;
+  }
+
+  @include mq($from: wide) {
+    margin-left: 14.375rem;
+  }
+}
+
+.element-image {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  transition: all 0.5s ease-in-out;
+  will-change: transform;
+
+  @include mq($from: desktop) {
+    margin-left: 9.375rem;
+    flex-direction: row-reverse;
+    margin-bottom: 50px;
+  }
+
+  @include mq($from: wide) {
+    margin-left: 14.375rem;
+  }
+
+  img {
+    height: auto;
+    object-fit: cover;
+
+    @include mq($from: desktop) {
+      width: 79.2%;
+    }
+  }
+
+  &.element--thumbnail {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-height: 500px;
+    margin-top: 50px !important;
+    margin-bottom: 10px!important;
+
+    @include mq($from: desktop) {
+      margin-bottom: 50px!important;
+      margin-left: 7% !important;
+      margin-right: 50px !important;
+      flex-direction: row;
+      width: 690px !important;
+    }
+
+    img {
+      height: auto;
+      object-fit: cover;
+      width: 100%;
+
+      @include mq($from: desktop) {
+        width: 65%;
+      }
+    }
+
+    figcaption {
+      margin-left: 0 !important;
+      padding-left: 10px !important;
+      width: 96% !important;
+
+      @include mq($from: desktop) {
+        margin-left: 10px !important;
+        width: 33% !important;
+      }
+    }
+
+    & + .element--thumbnail {
+      @include mq($from: desktop) {
+        margin-left: 320px !important;
+      }
+
+      @include mq($from: wide) {
+        margin-left: 420px !important;
+      }
+    }
+  }
+
+  &.element--supporting {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-height: 500px;
+    margin-top: 50px !important;
+    margin-bottom: 10px!important;
+    margin-right: 50px !important;
+
+    @include mq($from: desktop) {
+      margin-left: 7% !important;
+      width: 300px !important;
+      flex-direction: row;
+      width: 690px !important;
+      margin-bottom: 50px!important;
+    }
+
+    img {
+      height: auto;
+      object-fit: cover;
+      width: 100%;
+
+      @include mq($from: desktop) {
+        width: 65%;
+      }
+    }
+
+    figcaption {
+      margin-left: 0 !important;
+      padding-left: 10px !important;
+      width: 96% !important;
+
+      @include mq($from: desktop) {
+        margin-left: 10px !important;
+        width: 33% !important;
+      }
+    }
+  }
+  figcaption {
+    height: fit-content;
+    border-left: 1px solid #ececec;
+    border-top: 1px solid #ececec;
+    padding-left: 10px;
+    font-family: $f-sans-serif-text;
+    font-size: 14px;
+    line-height: 16px;
+
+    @include mq($from: desktop) {
+      width: 18%;
+      margin-right: 10px;
+    }
+  }
+}
