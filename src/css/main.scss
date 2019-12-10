@@ -7,13 +7,15 @@
 // Uncomment for full screen (including immersive article main media)
 //@import "fullscreen";
 
+$red: #c70000;
+
 .element-atom,
 .interactive-atom {
     margin: 0 !important;
 }
 
 .new-header {
-  background-color: #c70000;
+  background-color: $red;
   border-bottom: 1px solid rgba(218, 218, 218, 0.6);
 
   .pillar-link:before {
@@ -24,7 +26,7 @@
 .inline-the-guardian-roundel {
   svg {
     path:nth-child(2) {
-      fill: #c70000 !important;
+      fill: $red !important;
     }
   }
 }
@@ -39,7 +41,7 @@
 }
 
 .content__head--interactive {
-  background-color: #c70000;
+  background-color: $red;
 }
 
 .label__link-wrapper {
@@ -76,8 +78,12 @@
 
 //This styles the copy on composer
 .element-atom + p {
-  padding: 0 10px;
+  padding: 0 0;
   max-width: 600px;
+
+  @include mq($from: tablet) {
+    padding: 0 10px;
+  }
 
   @include mq($from: desktop) {
     margin-left: 9.375rem;
@@ -94,12 +100,17 @@
     margin-right: 12px;
     margin-top: 0;
     float: left;
+    color: $red;
     }
 }
 
 .content__main-column--interactive p {
-  padding: 0 10px;
+  padding: 0 0;
   max-width: 600px;
+
+  @include mq($from: tablet) {
+    padding: 0 10px;
+  }
 
   @include mq($from: desktop) {
     margin-left: 9.375rem;
@@ -114,6 +125,9 @@
   padding: 0 10px;
   max-width: 600px;
   border-top: 1px solid rgba(218, 218, 218, 0.6);
+  border-left: 1px solid rgba(218, 218, 218, 0.6);
+  margin-top: 20px;
+  font-family: "Guardian Titlepiece";
 
   @include mq($from: desktop) {
     margin-left: 9.375rem;
