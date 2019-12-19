@@ -4,10 +4,865 @@
 
 // Uncomment for embeds
 //@import "embed";
+
 // Uncomment for full screen (including immersive article main media)
 //@import "fullscreen";
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.is-immersive-interactive .l-footer {
+  display: block !important;
+}
+
+.ds-ankle {
+  width: 100%;
+  background: white;
+}
+
+.ds-ankle-inner {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #ececec;
+  padding-right: 20px;
+
+  @include mq($from:desktop) {
+    flex-direction: row;
+    margin-left: 9.375rem;
+  }
+
+  @include mq($from: wide) {
+    margin-left: 14.375rem;
+  }
+
+
+  .ds-onward-one, .ds-onward-two, .ds-onward-three {
+    flex-basis: 33%;
+    padding-top: 6px;
+    border-left: 1px solid #ececec;
+    padding-left: 6px;
+    padding-right: 20px;
+    min-height: 400px;
+    position: relative;
+
+    a{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: 10;
+    }
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  h1 {
+    font-size: 26px;
+    line-height: 26px;
+    margin-bottom: 12px;
+    font-family: "Guardian Headline Full";
+    font-weight: 200;
+  }
+
+  h3 {
+    font-size: 16px;
+    line-height: 18px;
+    font-family: "Guardian Headline Full";
+    font-weight: 600;
+  }
+}
 
 .element-atom,
 .interactive-atom {
     margin: 0 !important;
+}
+
+.new-header--slim, .new-header {
+  display: none !important;
+}
+
+//This styles the copy on composer
+.element-atom + script + p {
+  padding: 0 10px;
+  max-width: 600px;
+
+  @include mq($from: desktop) {
+    margin-left: 9.375rem;
+  }
+
+  @include mq($from: wide) {
+    margin-left: 14.375rem;
+  }
+}
+
+.element-atom + script + p + figure + p{
+  padding: 0 10px;
+  max-width: 600px;
+
+  @include mq($from: desktop) {
+    margin-left: 9.375rem;
+  }
+
+  @include mq($from: wide) {
+    margin-left: 14.375rem;
+  }
+}
+
+p {
+  padding: 0 10px;
+  max-width: 600px;
+
+  @include mq($from: desktop) {
+    margin-left: 9.375rem;
+  }
+
+  @include mq($from: wide) {
+    margin-left: 14.375rem;
+  }
+
+  &:first-of-type:first-letter {
+    font-size: 112px;
+    font-weight: 200;
+    font-family: "Guardian Titlepiece";
+    line-height: 80px;
+    margin-right: -8px;
+    float: left;
+    line-height: 80px;
+    margin-right: 5px;
+    margin-top: 6px;
+    float: left;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid #dcdcdc;
+
+    &:hover {
+      border-bottom: none;
+      text-decoration: none;
+      background-color: #eacca0;
+    }
+  }
+}
+
+blockquote {
+  border-top: 1px solid #ececec;
+  border-left: 1px solid #ececec;
+  font-size: 22px;
+  line-height: 24px;
+  padding-left: 6px;
+  padding-top: 6px;
+  max-width: 300px;
+
+  @include mq($from: desktop) {
+    margin-left: 200px;
+  }
+
+  p {
+    &:first-of-type:first-letter {
+      font-size: inherit;
+      font-weight: 200;
+      font-family: "Guardian Headline Full";
+      line-height: inherit;
+      margin-right: 0;
+      float: left;
+      margin-right: 0;
+      margin-top: 0;
+      float: none;
+    }
+  }
+}
+
+.ds-header {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid #ececec;
+
+  @include mq($from: desktop) {
+    flex-direction: row;
+    height: 100vh;
+  }
+
+  .ds-shape-1, .ds-shape-2, .ds-shape-3 {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    background-color: blue;
+    z-index: 2;
+    opacity: 0;
+    display: none;
+
+    @include mq($from: desktop) {
+      display: none;
+    }
+  }
+
+  .ds-shape-1 {
+    left: -5vw;
+    top: 41vh;
+    height: 100px;
+    width: 100px;
+    transform: rotate(17deg);
+    background-color: #FC9837;
+    animation-name: fade-in;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-delay: 1.75s;
+
+    @include mq($from: tablet) {
+      display: none;
+      transform: rotate(-200deg) translateX(-66px) translateY(-123px);
+    }
+
+    @include mq($from: desktop) {
+      left: 26vw;
+      top: 2vh;
+      height: 230px;
+      width: 230px;
+      display: none;
+    }
+
+    @include mq($from:leftCol) {
+      display: block;
+    }
+
+    @include mq($from: wide) {
+      left: 32vw;
+    }
+
+  }
+
+  .ds-shape-2 {
+    top: 68vh;
+    left: 10vw;
+    width: 150px;
+    height: 150px;
+    transform: rotate(-27deg);
+    background-color: #F0EAD1;
+    animation-name: fade-in;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-delay: 2s;
+    display: none;
+
+    @include mq($from: desktop) {
+      display: block;
+    }
+  }
+
+  .ds-shape-3 {
+    transform: rotate(-117deg);
+    width: 270px;
+    animation-name: fade-in;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-delay: 2.5s;
+    background-color: #545F8A;
+
+    @include mq($until:desktop) {
+      top: -110px;
+      left: 28px;
+    }
+  }
+}
+
+@mixin position {
+  width: 96%;
+  margin-left: 2%;
+}
+
+.ds-headline {
+  font-family: "Guardian Titlepiece";
+  position: absolute;
+  top: 70px;
+
+  @include mq($from: tablet) {
+    top: 70px;
+  }
+
+  @include mq($from: desktop) {
+    left: 180px;
+    font-size: 68px;
+    line-height: 68px;
+    top: 80px;
+  }
+
+  @include mq($from: wide) {
+    left: 64px;
+  }
+}
+
+
+/*
+  mobilemedium is 375px
+  mobilelandscape is 480px
+  phablet is 740px
+  tablet is 740px
+  desktop is 980px
+  leftcol is 1140px
+  wide is 1300px
+*/
+
+
+
+
+
+/* This is the old headline
+  .es, .devlin, .subhead{
+    display: block;
+    text-transform: uppercase;
+  }
+
+  .es, .devlin {
+    color: #000000;
+    font-size: 80px;
+    line-height: 66px;
+    margin-left: 1vw;
+
+    @include mq($from: tablet) {
+      font-size: 140px;
+      line-height: 120px;
+    }
+
+    @include mq($from: desktop) {
+      font-size: 100px;
+      line-height: 80px;
+    }
+    @include mq($from: leftCol) {
+      font-size: 120px;
+      line-height: 100px;
+    }
+  }
+
+  .devlin {
+      padding-bottom: 10px,;
+    }
+
+  .subhead {
+    color: #c2d5dd;
+    margin-left: 146px;
+    width: 60%;
+    font-size: 32px;
+    line-height: 28px;
+    animation-name: fade-in;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-delay: 1.75s;
+
+    @include mq($from: tablet) {
+      font-size: 42px;
+      line-height: 38px;
+    }
+
+    @include mq($from: desktop) {
+      font-size: 34px;
+      line-height: 34px;
+      margin-left: 90px;
+    }
+
+    @include mq($from: wide) {
+      margin-left: 172px;
+    }
+
+
+  }
+}
+*/
+
+
+.ds-headline-svg {
+  width: 100%;
+  top: 10px;
+  position: absolute;
+
+  /*
+    mobilemedium is 375px
+    mobilelandscape is 480px
+    phablet is 740px
+    tablet is 740px
+    desktop is 980px
+    leftcol is 1140px
+    wide is 1300px
+  */
+
+  @include mq($from: desktop) {
+    width: 80%;
+  }
+
+  @include mq($from: wide) {
+    width: 109%;
+  }
+
+  svg:not(.page-turn) {
+    @include position;
+    height: auto;
+    position: absolute;
+    bottom: 110px;
+    z-index: 1;
+    max-width: 500px;
+
+
+    @include mq($from: desktop) {
+      top: 60vh;
+      bottom: auto;
+      left: 254px;
+      max-width: 900px;
+    }
+
+    @include mq($from: wide) {
+      left: 235px;
+    }
+
+    &.mobile {
+      display: block;
+
+      @include mq($from: desktop) {
+        display: none;
+      }
+    }
+
+    &.desktop {
+      display: none;
+
+      @include mq($from: desktop) {
+        display: block;
+      }
+    }
+  }
+}
+
+.ds-headline-svg svg:not(.page-turn) {
+  width: 90%;
+  top: 70px;
+  position: absolute;
+
+  @include mq($from: desktop) {
+    width: 45%;
+    left: 65px;
+    top: 270px;
+  }
+  @include mq($from: wide) {
+    width: 35%;
+  }
+
+
+
+}
+
+.ds-web-headline {
+  font-size: 16px;
+  line-height: 20px;
+  font-family: "Guardian Headline Full";
+  font-weight: 200;
+  position: absolute;
+  bottom: -400px;
+  width: 52%;
+  margin-left: 146px;
+  z-index: 1;
+  color: #121212;
+
+  .bold {
+    font-weight: 700;
+  }
+
+  @include mq($from: desktop) {
+    top: 80vh;
+    width: 290px;
+    margin-left: 160px;
+    font-size: 21px;
+    line-height: 24px;
+    bottom: auto;
+  }
+
+  @include mq($from:wide) {
+    font-size: 21px;
+    line-height: 24px;
+    width: 294px;
+    margin-left: 242px;
+  }
+
+  svg.page-turn {
+    display: inline-block;
+    width: 9px;
+    height: 15px;
+    position: relative;
+    bottom: auto;
+  }
+}
+
+
+
+.ds-header-left {
+  height: 60vh;
+  width: 100%;
+
+  @include mq($from: desktop) {
+    height: 100vh;
+  }
+}
+
+.ds-header-right {
+  width: 100%;
+  height: 50vh;
+  background-color: #f6f6f6;
+
+  @include mq($from: desktop) {
+    height: 100vh;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    opacity: 0;
+    will-change: opacity;
+
+    animation-name: fade-in;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-delay: 1s;
+  }
+}
+
+.ds-navigation-display {
+  visibility: none;
+  opacity: 0;
+  transition: opacity 0.75s ease-in-out;
+  transition-delay: 4s;
+  padding-left: 82px;
+  margin-top: 90px;
+  padding-right: 30px;
+  width: 40vw;
+  transition: opacity 0.75s ease-in-out;
+
+  &.mouseover {
+    visibility: block;
+    opacity: 1;
+  }
+
+  h3 {
+    font-size: 20px;
+    line-height: 24px;
+    padding-top: 0px;
+
+    span {
+      display: block;
+      font-family: "Guardian Headline Full";
+      font-weight: 700;
+    }
+  }
+
+  ul {
+    list-style: none;
+    margin-left: 0;
+    margin-bottom: 80px;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        border-bottom: none;
+        text-decoration: none;
+      }
+    }
+
+    li {
+      font-family: "Guardian Headline Full";
+      font-size: 20px;
+      line-height: 24px;
+      border-top: 1px solid #333333;
+      margin-bottom: 24px;
+      margin-left: 0;
+      padding-left: 0;
+
+      .kicker {
+        font-weight: 900;
+        margin-right: 6px;
+        color: #465E8C;
+      }
+    }
+  }
+}
+
+.ds-logo {
+  position: fixed;
+  z-index: 20;
+  top: 10px;
+  left: 10px;
+
+  @include mq($from: desktop) {
+    position: absolute;
+    left: 80px;
+  }
+
+  svg {
+    height: 40px;
+    width: auto;
+
+    @include mq($from: desktop) {
+      height: 53px;
+    }
+  }
+}
+
+.ds-navigation {
+  position: fixed;
+  background-color: #D9EEF1;
+  height: 60px;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  transition: width 0.5s ease-in-out;
+  cursor: pointer;
+  overflow: hidden;
+
+  @include mq($from: desktop) {
+    height: 100vh;
+    width: 60px;
+    top: 0;
+    z-index: 30;
+  }
+
+  &.mouseover {
+    @include mq($from: desktop) {
+      width: 50vw;
+      overflow: auto;
+      overflow-x: hidden;
+    }
+  }
+
+  .ds-article-label {
+    display: none;
+
+    @include mq($from: desktop) {
+      transform: rotate(-90deg) translateX(-190px) translateY(-118px);
+      width: 297px;
+      font-family: $f-sans-serif-text;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      display: block;
+    }
+  }
+}
+
+.element-image {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+  transform: translateY(-30px);
+  will-change: transform;
+
+  &.inView {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @include mq($from: desktop) {
+    margin-left: 9.375rem;
+    flex-direction: row-reverse;
+    margin-bottom: 50px;
+  }
+
+  @include mq($from: wide) {
+    margin-left: 14.375rem;
+  }
+
+  img {
+    height: auto;
+    object-fit: cover;
+
+    @include mq($from: desktop) {
+      width: 79.2%;
+    }
+  }
+
+  &.element--thumbnail {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-height: 500px;
+    margin-top: 50px !important;
+    margin-bottom: 10px!important;
+
+    @include mq($from: desktop) {
+      margin-bottom: 50px!important;
+      margin-left: 7% !important;
+      margin-right: 50px !important;
+      flex-direction: row;
+      width: 690px !important;
+    }
+
+    img {
+      height: auto;
+      object-fit: cover;
+      width: 100%;
+
+      @include mq($from: desktop) {
+        width: 65%;
+      }
+    }
+
+    figcaption {
+      margin-left: 0 !important;
+      padding-left: 10px !important;
+      width: 96% !important;
+
+      @include mq($from: desktop) {
+        margin-left: 10px !important;
+        width: 33% !important;
+      }
+    }
+
+    & + .element--thumbnail {
+      @include mq($from: desktop) {
+        margin-left: 320px !important;
+      }
+
+      @include mq($from: wide) {
+        margin-left: 420px !important;
+      }
+    }
+  }
+
+  &.element--supporting {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-height: 500px;
+    margin-top: 50px !important;
+    margin-bottom: 10px!important;
+    margin-right: 50px !important;
+
+    @include mq($from: desktop) {
+      margin-left: 7% !important;
+      width: 300px !important;
+      flex-direction: row;
+      width: 690px !important;
+      margin-bottom: 50px!important;
+    }
+
+    img {
+      height: auto;
+      object-fit: cover;
+      width: 100%;
+
+      @include mq($from: desktop) {
+        width: 65%;
+      }
+    }
+
+    figcaption {
+      margin-left: 0 !important;
+      padding-left: 10px !important;
+      width: 96% !important;
+
+      @include mq($from: desktop) {
+        margin-left: 10px !important;
+        width: 33% !important;
+      }
+    }
+  }
+
+  figcaption {
+    height: fit-content;
+    border-left: 1px solid #ececec;
+    border-top: 1px solid #ececec;
+    padding-left: 10px;
+    font-family: $f-sans-serif-text;
+    font-size: 14px;
+    line-height: 16px;
+
+    @include mq($from: desktop) {
+      width: 18%;
+      margin-right: 10px;
+    }
+  }
+}
+
+.ds-header-header {
+  height: 70px;
+  padding-top: 10px;
+  width: 100%;
+  position: absolute;
+  z-index: 20;
+
+
+  .ds-gu-logo {
+    margin-left: auto;
+    margin-right: 10px;
+    width: 86px;
+
+    @include mq($from: desktop) {
+      width: 162px;
+      margin-left: auto;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.ds-meta-dateline {
+  .content__dateline {
+    min-height: 1rem;
+    padding-top: 0.125rem;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-top: none;
+    border-left: 1px solid #ececec;
+  }
+}
+
+.ds-meta {
+  margin-bottom: 24px;
+}
+
+.ds-meta-byline {
+  p {
+    font-family: "Guardian Headline Full";
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 600;
+    border-left: 1px solid #ececec;
+
+    span {
+      font-style: normal;
+      font-weight: 400;
+    }
+  }
+  p:first-of-type:first-letter {
+      font-size: inherit;
+      font-weight: inherit;
+      font-family: inherit;
+      margin-right: 0;
+      line-height: 0;
+      margin-right: 0;
+      margin-top: 0;
+      float: none;
+  }
 }
