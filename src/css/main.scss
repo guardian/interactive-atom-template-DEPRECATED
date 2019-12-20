@@ -450,36 +450,48 @@ blockquote {
 
 .ds-headline-svg svg:not(.page-turn) {
   width: 90%;
-  top: 70px;
+  top: 60px;
   position: absolute;
+  left: 10px;
+
+  @include mq($from: 350px) {
+    top: 90px;
+  }
+
+  @include mq($from: tablet) {
+    left: 100px;
+  }
 
   @include mq($from: desktop) {
     width: 45%;
-    left: 65px;
-    top: 270px;
+    left: 9%;
+    top: 160px;
   }
   @include mq($from: wide) {
     width: 35%;
   }
-
-
-
 }
 
 .ds-web-headline {
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 13px;
+  line-height: 15px;
   font-family: "Guardian Headline Full";
   font-weight: 200;
   position: absolute;
-  bottom: -400px;
-  width: 52%;
-  margin-left: 146px;
+  width: 40%;
+  margin-left: 20px;
   z-index: 1;
   color: #121212;
+  top: 160px;
 
   .bold {
     font-weight: 700;
+  }
+
+  @include mq($from: 350px){
+    top: 32vh;
+    font-size: 16px;
+    line-height: 18px;
   }
 
   @include mq($from: desktop) {
@@ -501,9 +513,13 @@ blockquote {
   svg.page-turn {
     display: inline-block;
     width: 9px;
-    height: 15px;
+    height: 10px;
     position: relative;
     bottom: auto;
+
+    @include mq($from: desktop) {
+      height: 16px;
+    }
   }
 }
 
@@ -627,7 +643,7 @@ blockquote {
 
 .ds-navigation {
   position: fixed;
-  background-color: #D9EEF1;
+  background-color: #dcdcdc;
   height: 60px;
   width: 100%;
   left: 0;
@@ -823,6 +839,11 @@ blockquote {
     svg {
       width: 100%;
       height: auto;
+      @include mq($from: desktop) {
+        path {
+          fill: #fff;
+        }
+      }
     }
   }
 }
