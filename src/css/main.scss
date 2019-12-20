@@ -10,9 +10,16 @@
 @keyframes fade-in {
   0% {
     opacity: 0;
+    filter: blur(10px);
+    transform: scale(0.99);
+  }
+  70% {
+    filter: blur(10px);
   }
   100% {
     opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
   }
 }
 
@@ -192,7 +199,6 @@ blockquote {
   border-bottom: 1px solid #ececec;
 
   @include mq($from: desktop) {
-    flex-direction: row;
     height: 100vh;
   }
 
@@ -507,7 +513,307 @@ blockquote {
   }
 }
 
+.ds-header-full {
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
 
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    opacity: 0;
+    will-change: opacity;
+
+    animation-name: fade-in;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-delay: 1s;
+  }
+}
+
+.ds-container {
+  @include mq($from:desktop) {
+    margin-left: 9.375rem;
+  }
+
+  @include mq($from: wide) {
+    margin-left: 14.375rem;
+  }
+}
+
+.rollover-image {
+  width: 100%;
+  max-width: 1300px;
+  display: flex;
+  margin-bottom: 16px;
+
+  .one-image {
+    width: 100%;
+    position: relative;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .two-images {
+    width: 49.5%;
+    margin-right: 1%;
+    position: relative;
+
+    &:nth-child(2) {
+      margin-right: 0;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.full-width-headline {
+  width: 69%;
+  padding: 8px;
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
+
+  @include mq($from:desktop) {
+    margin-left: 9.375rem;
+  }
+
+  @include mq($from: wide) {
+    margin-left: 14.375rem;
+  }
+
+  h1 {
+    font-size: 20px;
+    line-height: 23px;
+    margin-bottom: 12px;
+    font-family: "Guardian Headline Full";
+    font-weight: 900;
+    margin-bottom: 40px;
+
+    @include mq($from: leftCol) {
+      width: 360px;
+
+    }
+
+    @include mq($from: wide) {
+      margin-left: 130px;
+      width: 360px;
+
+    }
+  }
+}
+
+
+.captions {
+  ul {
+    list-style: none;
+    margin: 0;
+    margin-top: 10px;
+
+    @include mq($from: desktop) {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+
+    &:hover {
+      li:before {
+        transform: scale(1.3);
+        background-color: #fff;
+        overflow: visible;
+      }
+    }
+
+    li {
+      border-left: 1px solid #121212;
+      border-top: 1px solid #121212;
+      margin-bottom: 10px;
+      padding-left: 6px;
+      font-size: 13px;
+      line-height: 13px;
+      font-family: $f-sans-serif-text;
+
+      span {
+        margin-top: 6px;
+        display: block;
+      }
+
+      @include mq($from: desktop) {
+        width: 20px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        border: none;
+        position: absolute;
+        border-radius: 30px;
+        height: 20px;
+
+        &:hover {
+          overflow: visible;
+          white-space: normal;
+          width: 120px;
+
+          span {
+            background-color: #fff;
+            margin-top: 10px;
+            display: block;
+            padding: 3px;
+            border-radius: 3px;
+          }
+
+          &:before {
+            transform: scale(1.5);
+          }
+        }
+      }
+
+      &:before {
+        content: '';
+        display: block;
+        height: 15px;
+        width: 15px;
+        margin-top: 2px;
+        margin-bottom: -2px;
+        margin-right: 10px;
+        border-radius: 50%;
+        border: 1px solid #fff;
+        box-sizing: border-box;
+        transition: transform 0.5s ease-in-out;
+        cursor: pointer;
+      }
+
+      //positioning style for desktop
+
+      @include mq($from: desktop) {
+        &.picture-one-table {
+          top: 64%;
+          left: 20%;
+        }
+
+        &.picture-one-rug{
+          top: 87%;
+          left: 20%;
+        }
+
+        &.picture-one-outfit {
+          top: 43%;
+          left: 55%;
+        }
+        &.picture-one-cushion {
+          top: 43%;
+          left: 78%;
+        }
+        &.picture-one-lamp {
+          top: 43%;
+          left: 20%;
+        }
+        &.picture-two-rug {
+          top: 85%;
+          left: 50%;
+        }
+        &.picture-two-table {
+          top: 63%;
+          left: 58%;
+        }
+        &.picture-two-outfit {
+          top: 59%;
+          left: 20%;
+        }
+        &.picture-three-bag {
+          top: 50%;
+          left: 56%;
+        }
+        &.picture-three-gloves {
+          top: 84%;
+          left: 42%;
+        }
+        &.picture-three-earring {
+          top: 57%;
+          left: 47%;
+        }
+        &.picture-three-glasses {
+          top: 66%;
+          left: 65%;
+        }
+        &.picture-three-necklace {
+          top: 65%;
+          left: 72%;
+        }
+        &.picture-four-table {
+          top: 60%;
+          left: 40%;
+        }
+        &.picture-four-chairs {
+          top: 65%;
+          left: 65%;
+        }
+        &.picture-four-flowers {
+          top: 47%;
+          left: 33%;
+        }
+        &.picture-four-outfit {
+          top: 47%;
+          left: 78%;
+        }
+        &.picture-five-outfit {
+          top: 65%;
+          left: 65%;
+        }
+        &.picture-five-chair {
+          top: 60%;
+          left: 30%;
+        }
+        &.picture-six-table {
+          top: 89%;
+          left: 30%;
+        }
+        &.picture-six-dress {
+          top: 50%;
+          left: 73%;
+        }
+        &.picture-six-bag {
+          top: 33%;
+          left: 73%;
+        }
+        &.picture-six-shoes {
+          top: 91%;
+          left: 50%;
+        }
+        &.picture-six-earings {
+          top: 80%;
+          left: 37%;
+        }
+        &.picture-six-glasses {
+          top: 79%;
+          left: 29%;
+        }
+        &.picture-seven-table {
+          top: 73%;
+          left: 29%;
+        }
+        &.picture-seven-flowers {
+          top: 26%;
+          left: 13%;
+        }
+        &.picture-seven-outfit {
+          top: 49%;
+          left: 64%;
+        }
+      }
+    }
+  }
+}
 
 .ds-header-left {
   height: 60vh;
