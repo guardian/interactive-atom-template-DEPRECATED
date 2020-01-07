@@ -389,8 +389,7 @@ blockquote {
 
 .ds-headline-svg {
   width: 100%;
-  top: 10px;
-  position: absolute;
+  // position: absolute;
 
   /*
     mobilemedium is 375px
@@ -449,23 +448,33 @@ blockquote {
 }
 
 .ds-headline-svg svg:not(.page-turn) {
-  width: 90%;
-  top: 60px;
-  position: absolute;
-  left: 10px;
+  // width: 90%;
+  // top: 60px;
+  // position: absolute;
+  // left: 10px;
 
-  @include mq($from: 350px) {
-    top: 90px;
-  }
+  /* modified settings, for mobile by default */
+  width: 65%;
+  top: 100px;
+  transform: rotate(270deg);
+  left: 125px;
+
+  // @include mq($from: 350px) {
+  //   top: 90px;
+  // }
 
   @include mq($from: tablet) {
-    left: 100px;
+    width: 62%;
+    left: 10px;
+    transform: rotate(0deg);
+    top: 56px;
   }
 
   @include mq($from: desktop) {
-    width: 45%;
-    left: 9%;
+    width: 40%;
+    left: 5%;
     top: 160px;
+    transform: rotate(0deg);
   }
   @include mq($from: wide) {
     width: 35%;
@@ -482,7 +491,7 @@ blockquote {
   margin-left: 20px;
   z-index: 1;
   color: #121212;
-  top: 160px;
+  top: 170px;
 
   .bold {
     font-weight: 700;
@@ -492,6 +501,10 @@ blockquote {
     top: 32vh;
     font-size: 16px;
     line-height: 18px;
+  }
+
+  @include mq($from: tablet) {
+    top: 48vh
   }
 
   @include mq($from: desktop) {
