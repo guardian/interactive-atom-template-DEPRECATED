@@ -548,6 +548,7 @@ blockquote {
   width: 100%;
   max-width: 1300px;
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 16px;
 
   .one-image {
@@ -559,9 +560,10 @@ blockquote {
     }
   }
 
-  .two-images {
+.two-images {
     width: 49.5%;
     margin-right: 1%;
+    width: 100%;
     position: relative;
 
     &:nth-child(2) {
@@ -570,6 +572,12 @@ blockquote {
 
     img {
       width: 100%;
+    }
+
+    @include mq($from:desktop) {
+      width: 49.5%;
+      margin-right: 1%;
+      position: relative;
     }
   }
 }
@@ -636,15 +644,47 @@ blockquote {
     }
 
     li {
-      border-left: 1px solid #121212;
-      border-top: 1px solid #121212;
-      margin-bottom: 10px;
-      padding-left: 6px;
+
+      //Ben's original settings for mobile
+      // border-left: 1px solid #121212;
+      // border-top: 1px solid #121212;
+      // margin-bottom: 10px;
+      // padding-left: 6px;
       font-size: 13px;
       line-height: 13px;
       font-family: $f-sans-serif-text;
 
+      //desktop settings for mobile test
+      width: 20px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      border: none;
+      position: absolute;
+      border-radius: 30px;
+      height: 20px;
+      //
+      &:hover {
+        overflow: visible;
+        white-space: normal;
+        width: 120px;
+      }
+        //
+        // span {
+        //   background-color: #fff;
+        //   margin-top: 10px;
+        //   display: block;
+        //   padding: 3px;
+        //   border-radius: 3px;
+        // }
+
       span {
+          background-color: #fff;
+          margin-top: 10px;
+          display: block;
+          padding: 3px;
+          border-radius: 3px;
+        //   from desktop
         margin-top: 6px;
         display: block;
       }
@@ -693,6 +733,122 @@ blockquote {
         cursor: pointer;
       }
 
+      //positioning style for mobile
+      &.picture-one-table {
+        top: 64%;
+        left: 20%;
+      }
+
+      &.picture-one-rug{
+        top: 87%;
+        left: 20%;
+      }
+
+      &.picture-one-outfit {
+        top: 43%;
+        left: 55%;
+      }
+      &.picture-one-cushion {
+        top: 40%;
+        left: 70%;
+      }
+      &.picture-one-lamp {
+        top: 43%;
+        left: 20%;
+      }
+      &.picture-two-rug {
+        top: 80%;
+        left: 50%;
+      }
+      &.picture-two-table {
+        top: 63%;
+        left: 58%;
+      }
+      &.picture-two-outfit {
+        top: 59%;
+        left: 20%;
+      }
+      &.picture-three-bag {
+        top: 50%;
+        left: 56%;
+      }
+      &.picture-three-gloves {
+        top: 84%;
+        left: 42%;
+      }
+      &.picture-three-earring {
+        top: 57%;
+        left: 47%;
+      }
+      &.picture-three-glasses {
+        top: 66%;
+        left: 65%;
+      }
+      &.picture-three-necklace {
+        top: 60%;
+        left: 70%;
+      }
+      &.picture-four-table {
+        top: 60%;
+        left: 40%;
+      }
+      &.picture-four-chairs {
+        top: 65%;
+        left: 65%;
+      }
+      &.picture-four-flowers {
+        top: 47%;
+        left: 33%;
+      }
+      &.picture-four-outfit {
+        top: 54%;
+        left: 70%;
+      }
+      &.picture-five-outfit {
+        top: 65%;
+        left: 65%;
+      }
+      &.picture-five-chair {
+        top: 60%;
+        left: 30%;
+      }
+      &.picture-six-table {
+        top: 86%;
+        left: 30%;
+      }
+      &.picture-six-dress {
+        top: 50%;
+        left: 73%;
+      }
+      &.picture-six-bag {
+        top: 33%;
+        left: 73%;
+      }
+      &.picture-six-shoes {
+        top: 88%;
+        left: 50%;
+      }
+      &.picture-six-earings {
+        top: 80%;
+        left: 37%;
+      }
+      &.picture-six-glasses {
+        top: 79%;
+        left: 29%;
+      }
+      &.picture-seven-table {
+        top: 73%;
+        left: 29%;
+      }
+      &.picture-seven-flowers {
+        top: 26%;
+        left: 13%;
+      }
+      &.picture-seven-outfit {
+        top: 49%;
+        left: 64%;
+      }
+
       //positioning style for desktop
 
       @include mq($from: desktop) {
@@ -712,7 +868,7 @@ blockquote {
         }
         &.picture-one-cushion {
           top: 43%;
-          left: 78%;
+          left: 76%;
         }
         &.picture-one-lamp {
           top: 43%;
@@ -764,7 +920,7 @@ blockquote {
         }
         &.picture-four-outfit {
           top: 47%;
-          left: 78%;
+          left: 76%;
         }
         &.picture-five-outfit {
           top: 65%;
