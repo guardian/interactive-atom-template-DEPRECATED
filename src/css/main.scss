@@ -1317,14 +1317,14 @@ blockquote {
       font-weight: 400;
     }
   }
-  p:first-of-type:first-letter {
-      font-size: inherit;
-      font-weight: inherit;
-      font-family: inherit;
-      margin-right: 0;
-      line-height: 0;
-      margin-right: 0;
-      margin-top: 0;
-      float: none;
-  }
+  // p:first-of-type:first-letter {
+  //     font-size: inherit;
+  //     font-weight: inherit;
+  //     font-family: inherit;
+  //     margin-right: 0;
+  //     line-height: 0;
+  //     margin-right: 0;
+  //     margin-top: 0;
+  //     float: none;
+  // }
 }
