@@ -57,6 +57,10 @@
     min-height: 330px;
     position: relative;
 
+    @include mq($from:desktop) {
+      min-height: 400px;
+    }
+
     a{
       position: absolute;
       top: 0;
@@ -549,7 +553,11 @@ blockquote {
   max-width: 1300px;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 16px;
+  padding-bottom: 0px;
+
+  @include mq($from:desktop) {
+    padding-bottom: 16px;
+  }
 
   .one-image {
     width: 100%;
