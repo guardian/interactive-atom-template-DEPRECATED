@@ -523,7 +523,7 @@ blockquote {
   overflow: hidden;
 
   img {
-    width: 100%;
+    min-width: 100%;
     height: 100%;
     object-fit: cover;
     position: relative;
@@ -535,6 +535,7 @@ blockquote {
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
     animation-delay: 1s;
+    background-position: 20% 30%;
   }
 }
 
@@ -672,11 +673,12 @@ blockquote {
       border-radius: 30px;
       height: 20px;
       //
-      &:hover {
+      &:hover, &:active {
         overflow: visible;
         white-space: normal;
         width: 120px;
       }
+
         //
         // span {
         //   background-color: #fff;
@@ -692,6 +694,7 @@ blockquote {
           display: block;
           padding: 3px;
           border-radius: 3px;
+          overflow-y: visible;
         //   from desktop
         margin-top: 6px;
         display: block;
