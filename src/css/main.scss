@@ -472,6 +472,18 @@ body {
   }
 }
 
+.goodbye {
+  top: 45%;
+  transform: translateY(-50%);
+  position: absolute;
+
+  h1 {
+    font-family: "Guardian Titlepiece";
+    color: #2F358F;
+    font-size: 12vw;
+  }
+}
+
 .bj_content_paragragh {
   width: 300px;
   position: absolute;
@@ -499,7 +511,9 @@ body {
     line-height: 20px;
     @include mq($from: desktop) {
       transform: translateY(-20px);
-      font-size: 44px;
+      font-size: 60px;
+      line-height: 34px;
+      color: #2F358F;
     }
   }
 
