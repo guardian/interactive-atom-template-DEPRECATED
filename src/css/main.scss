@@ -52,7 +52,7 @@ body {
   z-index: 0;
 
   @include mq($from: desktop) {
-    top: 90px;
+    top: 140px;
   }
   @include mq($from: 1441px) {
     top: 138px;
@@ -194,7 +194,8 @@ body {
 }
 
 .bj_wrapper {
-  height: calc(84.7vh);
+  // height: calc(84.7vh);
+  height: 100vh;
   width: max-content;
 
   @include mq($from: desktop) {
@@ -254,45 +255,62 @@ body {
   }
 
   svg {
-    width: 50%;
-    height: auto;
     position: absolute;
     z-index: 1000;
 
-    @media only screen
-    and (min-device-height: 737px)
-    and (-webkit-min-device-pixel-ratio: 3) {
-    width: 80%;
-    }
+    // @media only screen
+    // and (min-device-height: 737px)
+    // and (-webkit-min-device-pixel-ratio: 3) {
+    // width: 80%;
+    // }
 
-    @media only screen
-    and (min-device-width: 513px)
-    and (-webkit-min-device-pixel-ratio: 3) {
-    width: 60%;
-    }
+    // @media only screen
+    // and (min-device-width: 513px)
+    // and (-webkit-min-device-pixel-ratio: 3) {
+    // width: 60%;
+    // }
 
-    @media only screen
-    and (min-device-width: 375px)
-    and (max-device-height: 667px)
-    and (-webkit-min-device-pixel-ratio: 3) {
-    width: 70%;
-    }
+    // @media only screen
+    // and (min-device-width: 375px)
+    // and (max-device-height: 667px)
+    // and (-webkit-min-device-pixel-ratio: 3) {
+    // width: 70%;
+    // }
 
 
-    @include mq($from: desktop) {
-      width: 45%;
-    }
-    @include mq($from: 1441px) {
-      width: 80%;
-    }
+    
 
     &.numbers {
+      margin-top: 0;
+      width: 78%;
+      height: auto;
       animation-name: rotate;
       animation-duration: 12s;
       animation-iteration-count: infinite;
       animation-fill-mode: forwards;
       animation-timing-function: linear;
-      margin-top: 50px;
+      @include mq(mobileMedium){
+        margin-top: 50px;
+      }
+      @include mq(mobileLandscape){
+        margin-top: 0;
+      }
+      @include mq(phablet){
+        width: 58%;
+        margin-top:0;
+      }
+      @include mq(tablet){
+        width: 80%;
+      }
+      @include mq(desktop){
+        margin-top:95px;
+        margin-left:134px;
+        width: 50%;
+      }
+      @include mq(leftCol) {
+        width: 50%;
+      }
+      
     }
   }
 }
@@ -311,8 +329,9 @@ body {
 }
 
 .bj_content_wrapper {
-  width: 300px;
-  height: 84.7vh;
+  width: calc(100vw - 20px);
+  // height: 84.7vh;
+  height: 100vh;
   margin-left: 20px;
   position: relative;
 
@@ -328,7 +347,10 @@ body {
   }
 
   &:nth-child(2) {
-    margin-left: 60px;
+    margin-left: 22px;
+    @include mq(desktop){
+      margin-left: 60px;
+    }
   }
 
   @include mq($from: desktop) {
@@ -360,17 +382,29 @@ body {
   line-height: 20px;
   position: absolute;
   left: 45%;
-  top: 80%;
+  top: 57%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   color: #041f4a;
+  @include mq(mobileMedium){
+    left: 40%;
+  }
+  @include mq(tablet){
+    left: 33%;
+  }
+  @include mq(desktop){
+    top:75%;
+  }
 
   h1 {
     font-family: "Guardian Titlepiece";
     font-size: 44px;
-    line-height: 24px;
-    margin-bottom: 20px;
+    line-height: 105%;
+    margin-bottom: 6px;
     color: #2F358F;
+    @include mq(desktop){
+      margin-bottom: 20px;
+    }
   }
 
   @include mq($from: desktop) {
@@ -382,6 +416,12 @@ body {
     width: 490px;
     font-size: 22px;
     line-height: 26px;
+  }
+
+  
+
+  p {
+    width:100%;
   }
 }
 
@@ -398,6 +438,9 @@ body {
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+
+
+  
 
   @include mq($from: 326px) {
     top: 21px;
@@ -450,20 +493,19 @@ body {
 
 .bj_content_arrow {
   position: absolute;
-  bottom: 0;
-  right: 0px;
+  bottom: 12px;
+  right: 8px;
   width: 100px;
   cursor: pointer;
+
+  @include mq(desktop){
+    bottom: 0;
+    right: 0px;
+  }
 
   svg {
     width: 100%;
     height: auto;
-  }
-
-  @include mq($from: 326px) {
-    bottom: 0;
-    right: 0px;
-    width: 100px;
   }
 
   @include mq($from: desktop) {
@@ -485,7 +527,9 @@ body {
 }
 
 .bj_content_paragragh {
-  width: 300px;
+  width: calc(100vw - 40px);
+
+  
   position: absolute;
   top: 40%;
   transform: translateY(-50%);
@@ -497,6 +541,7 @@ body {
   }
 
   @include mq($from: desktop) {
+    top:43%;
     width: 390px;
   }
 
@@ -504,11 +549,19 @@ body {
     width: 420px;
   }
 
+  p {
+    width: 100%;
+  }
+
 
   h1 {
     font-family: "Guardian Titlepiece";
     font-size: 16px;
     line-height: 20px;
+    @include mq(mobileMedium){
+      font-size: 50px;
+      line-height: 135%;
+    }
     @include mq($from: desktop) {
       transform: translateY(-20px);
       font-size: 60px;
@@ -574,10 +627,22 @@ body {
     transform: rotate(4deg);
   }
 
+  @include mq(desktop){
+    height: 284px;
+    width:50%;
+    margin-bottom: 0;
+  }
+  @include mq(wide){
+    height: 384px;
+    width: 80%;
+  }
+
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    position: relative;
+    bottom: 0;
   }
 }
 
@@ -589,9 +654,9 @@ body {
     height: auto;
 
     img {
-      width: 80%;
-    }
+      width: 80%;   
   }
+}
 }
 
 
@@ -825,7 +890,12 @@ body {
   }
 
   .bj_content_datline {
+    margin-top:-6px;
     display: none;
+  }
+
+  .content__dateline {
+    margin-bottom: -1px;
   }
 
   .bj_wrapper {
