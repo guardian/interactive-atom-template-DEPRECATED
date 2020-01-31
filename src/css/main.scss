@@ -66,6 +66,10 @@ body {
   background-position: top;
   background-repeat: repeat;
   background-size: cover;
+  margin-top:36px;
+  @include mq(desktop){
+    margin-top:0;
+  }
 }
 
 @keyframes swing {
@@ -126,7 +130,7 @@ body {
 
 .bj_progress_boris {
   position: absolute;
-  top: -31px;
+  top: -27px;
   width: 110px;
   opacity: 0;
   transform-origin: top center;
@@ -195,7 +199,7 @@ body {
 
 .bj_wrapper {
   // height: calc(84.7vh);
-  height: 100vh;
+  height: 85.2173vh;
   width: max-content;
 
   @include mq($from: desktop) {
@@ -282,7 +286,7 @@ body {
 
     &.numbers {
       margin-top: 0;
-      width: 78%;
+      width: 32vh;
       height: auto;
       animation-name: rotate;
       animation-duration: 12s;
@@ -290,7 +294,7 @@ body {
       animation-fill-mode: forwards;
       animation-timing-function: linear;
       @include mq(mobileMedium){
-        margin-top: 50px;
+        margin-top: 0;
       }
       @include mq(mobileLandscape){
         margin-top: 0;
@@ -390,7 +394,7 @@ body {
   line-height: 20px;
   position: absolute;
   left: 45%;
-  top: 57%;
+  top: 46%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   color: #041f4a;
@@ -501,7 +505,7 @@ body {
 
 .bj_content_arrow {
   position: absolute;
-  bottom: 12px;
+  bottom: 142px;
   right: 8px;
   width: 100px;
   cursor: pointer;
@@ -621,7 +625,7 @@ body {
 .image_wrapper_time {
   position: absolute;
   bottom: 0;
-  height: 35vh;
+  height: 43vh;
   widows: 52vh;
 
   &.wobble1 {
