@@ -296,19 +296,27 @@ body {
         margin-top: 0;
       }
       @include mq(phablet){
-        width: 58%;
+        width:50vh;
+        margin-left:60px;
         margin-top:0;
       }
       @include mq(tablet){
-        width: 80%;
+        width:70vh;
       }
       @include mq(desktop){
-        margin-top:95px;
-        margin-left:134px;
-        width: 50%;
+        width:70vh;
+        margin-top:55px;
+        margin-left: 34px;
       }
       @include mq(leftCol) {
-        width: 50%;
+        width:70vh;
+        margin-top:75px;
+        margin-left: 24px;
+      }
+      @include mq(wide){
+        width:70vh;
+        margin-top:35px;
+        margin-left: 24px;
       }
       
     }
@@ -613,8 +621,8 @@ body {
 .image_wrapper_time {
   position: absolute;
   bottom: 0;
-  width: 80%;
-  height: 380px;
+  height: 35vh;
+  widows: 52vh;
 
   &.wobble1 {
     transform: rotate(-2deg);
@@ -628,13 +636,13 @@ body {
   }
 
   @include mq(desktop){
-    height: 284px;
-    width:50%;
+    height: 42vh;
+    width:70vh;
     margin-bottom: 0;
   }
   @include mq(wide){
-    height: 384px;
-    width: 80%;
+    height: 42vh;
+    width: 80vh;
   }
 
   img {
