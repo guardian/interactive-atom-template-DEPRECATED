@@ -15,7 +15,7 @@
           </div>
           <div class="bj_content_standfirst">
             <h1>47 years in 47 moments</h1>
-            <p> After 47 years inside the EU family the UK is setting out alone. Here's a look at 46 years in 46 moments of EU-UK relations.
+            <p> After nearly half a century inside the EU family, the UK is setting out alone. Here’s a look back at some of the highs and lows of Britain’s relationship with the rest of Europe.
             <span class="byline">By the Guardian</span> </p>
             <div class="bj_content_datline">
               <p class="content__dateline" aria-hidden="true">
@@ -63,18 +63,18 @@
       {{#Sheet1}}
       <div id="content-start" class="bj_content_wrapper">
         <div class="bj_content_paragragh">
-          <h1>{{Year}}</h1>
-          <p>{{Entry}}</p>
+          <h1 class="{{Wobble}}">{{Year}}</h1>
+          <p class="{{Wobble}}">{{Entry}}</p>
         </div>
         {{#Image}}
-        <div class="image_wrapper_time">
+        <div class="image_wrapper_time {{Wobble}}">
           <img src="{{Image}}">
         </div>
         {{/Image}}
-        <div class="bj_content_image"></div>
+        <div class="bj_content_image {{IlloClass}}"><img src="{{Illo}}"></div>
       </div>
       {{/Sheet1}}
-      <div id="content-start" class="bj_content_wrapper">
+      <div id="content-start" class="bj_content_wrapper last">
         <div class="goodbye">
           <h1>Goodbye</h1>
         </div>
