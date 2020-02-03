@@ -195,96 +195,36 @@ blockquote {
     flex-direction: row;
     height: 100vh;
   }
-
-  .ds-shape-1, .ds-shape-2, .ds-shape-3 {
-    position: absolute;
-    height: 100px;
-    width: 100px;
-    background-color: blue;
-    z-index: 2;
-    opacity: 0;
-    display: none;
-
-    @include mq($from: desktop) {
-      display: none;
-    }
-  }
-
-  .ds-shape-1 {
-    left: -5vw;
-    top: 41vh;
-    height: 100px;
-    width: 100px;
-    transform: rotate(17deg);
-    background-color: #FC9837;
-    animation-name: fade-in;
-    animation-duration: 1.5s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-    animation-delay: 1.75s;
-
-    @include mq($from: tablet) {
-      display: none;
-      transform: rotate(-200deg) translateX(-66px) translateY(-123px);
-    }
-
-    @include mq($from: desktop) {
-      left: 26vw;
-      top: 2vh;
-      height: 230px;
-      width: 230px;
-      display: none;
-    }
-
-    @include mq($from:leftCol) {
-      display: block;
-    }
-
-    @include mq($from: wide) {
-      left: 32vw;
-    }
-
-  }
-
-  .ds-shape-2 {
-    top: 68vh;
-    left: 10vw;
-    width: 150px;
-    height: 150px;
-    transform: rotate(-27deg);
-    background-color: #F0EAD1;
-    animation-name: fade-in;
-    animation-duration: 1.5s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-    animation-delay: 2s;
-    display: none;
-
-    @include mq($from: desktop) {
-      display: block;
-    }
-  }
-
-  .ds-shape-3 {
-    transform: rotate(-117deg);
-    width: 270px;
-    animation-name: fade-in;
-    animation-duration: 1.5s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-    animation-delay: 2.5s;
-    background-color: #545F8A;
-
-    @include mq($until:desktop) {
-      top: -110px;
-      left: 28px;
-    }
-  }
 }
 
 @mixin position {
   width: 96%;
   margin-left: 2%;
+}
+
+.HED{
+  width: 100%;
+  top: 10px;
+  position: absolute;
+  z-index: 1;
+
+  @include mq($from: desktop) {
+    width: 100%;
+    top: 490px;
+    margin-left: -102px;
+  }
+
+  @include mq($from: leftCol) {
+    width: 120%;
+    top: 550px;
+    margin-left: -298px;
+  }
+
+  @include mq($from: wide) {
+    width: 120%;
+    top: 618px;
+    margin-left: -312px;
+  }
 }
 
 .ds-headline {
@@ -309,84 +249,6 @@ blockquote {
 }
 
 
-/*
-  mobilemedium is 375px
-  mobilelandscape is 480px
-  phablet is 740px
-  tablet is 740px
-  desktop is 980px
-  leftcol is 1140px
-  wide is 1300px
-*/
-
-
-
-
-
-/* This is the old headline
-  .es, .devlin, .subhead{
-    display: block;
-    text-transform: uppercase;
-  }
-
-  .es, .devlin {
-    color: #000000;
-    font-size: 80px;
-    line-height: 66px;
-    margin-left: 1vw;
-
-    @include mq($from: tablet) {
-      font-size: 140px;
-      line-height: 120px;
-    }
-
-    @include mq($from: desktop) {
-      font-size: 100px;
-      line-height: 80px;
-    }
-    @include mq($from: leftCol) {
-      font-size: 120px;
-      line-height: 100px;
-    }
-  }
-
-  .devlin {
-      padding-bottom: 10px,;
-    }
-
-  .subhead {
-    color: #c2d5dd;
-    margin-left: 146px;
-    width: 60%;
-    font-size: 32px;
-    line-height: 28px;
-    animation-name: fade-in;
-    animation-duration: 1.5s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-    animation-delay: 1.75s;
-
-    @include mq($from: tablet) {
-      font-size: 42px;
-      line-height: 38px;
-    }
-
-    @include mq($from: desktop) {
-      font-size: 34px;
-      line-height: 34px;
-      margin-left: 90px;
-    }
-
-    @include mq($from: wide) {
-      margin-left: 172px;
-    }
-
-
-  }
-}
-*/
-
-
 .ds-headline-svg {
   width: 100%;
   top: 10px;
@@ -402,13 +264,22 @@ blockquote {
     wide is 1300px
   */
 
-  @include mq($from: desktop) {
-    width: 80%;
-  }
-
-  @include mq($from: wide) {
-    width: 109%;
-  }
+  // @include mq($from: desktop) {
+  //   width: 100%;
+  //   top: 320px;
+  //   margin-left: 54px;
+  // }
+  //
+  // @include mq($from: leftCol) {
+  //   top: 350px;
+  //   margin-left: 37px;
+  // }
+  //
+  // @include mq($from: wide) {
+  //   width: 120%;
+  //   top: 420px;
+  //   margin-left: 68px;
+  // }
 
   svg:not(.page-turn) {
     @include position;
@@ -495,15 +366,21 @@ blockquote {
   }
 
   @include mq($from: desktop) {
-    top: 80vh;
+    top: 596px;
     width: 290px;
-    margin-left: 160px;
-    font-size: 21px;
-    line-height: 24px;
+    margin-left: 161px;
+    font-size: 18px;
+    line-height: 115%;
     bottom: auto;
   }
 
+  @include mq($from: leftCol) {
+    top: 660px;
+    margin-left: 160px;
+  }
+
   @include mq($from:wide) {
+    top: 740px;
     font-size: 21px;
     line-height: 24px;
     width: 294px;
@@ -524,20 +401,10 @@ blockquote {
 }
 
 
-
 .ds-header-left {
   height: 60vh;
   width: 100%;
-
-  @include mq($from: desktop) {
-    height: 100vh;
-  }
-}
-
-.ds-header-right {
-  width: 100%;
-  height: 50vh;
-  background-color: #f6f6f6;
+  background-color: #CEB24C;
 
   @include mq($from: desktop) {
     height: 100vh;
@@ -556,7 +423,44 @@ blockquote {
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
     animation-delay: 1s;
+
+    @include mq($from: desktop) {
+      width: 50%;
+      height: 50%;
+      padding-top: 25%;
+      padding-bottom:20%;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
+}
+
+.ds-header-right {
+  width: 100%;
+  height: 50vh;
+
+  @include mq($from: desktop) {
+    height: 100vh;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    will-change: opacity;
+
+    animation-name: fade-in;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-delay: 1s;
+  }
+
+
 }
 
 .ds-navigation-display {
@@ -614,10 +518,14 @@ blockquote {
       .kicker {
         font-weight: 900;
         margin-right: 6px;
-        color: #465E8C;
+        color: #CEB24C;
       }
     }
   }
+}
+
+.index-thumbnail{
+  max-width: 200px;
 }
 
 .ds-logo {
@@ -643,7 +551,7 @@ blockquote {
 
 .ds-navigation {
   position: fixed;
-  background-color: #dcdcdc;
+  background-color: #333333;
   height: 60px;
   width: 100%;
   left: 0;
@@ -678,6 +586,7 @@ blockquote {
       font-size: 12px;
       font-weight: 900;
       letter-spacing: 2px;
+      color: white;
       display: block;
     }
   }
