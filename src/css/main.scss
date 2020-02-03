@@ -210,20 +210,19 @@ blockquote {
 
   @include mq($from: desktop) {
     width: 100%;
-    top: 490px;
+    top: 70vh;
     margin-left: -102px;
   }
 
   @include mq($from: leftCol) {
     width: 120%;
-    top: 550px;
     margin-left: -298px;
   }
 
   @include mq($from: wide) {
     width: 120%;
-    top: 618px;
     margin-left: -312px;
+    top: 71vh;
   }
 }
 
@@ -366,7 +365,7 @@ blockquote {
   }
 
   @include mq($from: desktop) {
-    top: 596px;
+    top: 82vh;
     width: 290px;
     margin-left: 161px;
     font-size: 18px;
@@ -375,12 +374,10 @@ blockquote {
   }
 
   @include mq($from: leftCol) {
-    top: 660px;
     margin-left: 160px;
   }
 
   @include mq($from:wide) {
-    top: 740px;
     font-size: 21px;
     line-height: 24px;
     width: 294px;
