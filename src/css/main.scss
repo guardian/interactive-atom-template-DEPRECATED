@@ -229,22 +229,13 @@ blockquote {
 .ds-headline {
   font-family: "Guardian Titlepiece";
   position: absolute;
-  top: 70px;
+  text-transform: uppercase;
+  font-size: 54px;
+  top: 8vh;
+}
 
-  @include mq($from: tablet) {
-    top: 70px;
-  }
-
-  @include mq($from: desktop) {
-    left: 180px;
-    font-size: 68px;
-    line-height: 68px;
-    top: 80px;
-  }
-
-  @include mq($from: wide) {
-    left: 64px;
-  }
+.ds-headline .walk {
+  color: #333333;
 }
 
 
@@ -359,7 +350,7 @@ blockquote {
   }
 
   @include mq($from: 350px){
-    top: 32vh;
+    top: 38vh;
     font-size: 16px;
     line-height: 18px;
   }
@@ -401,7 +392,7 @@ blockquote {
 .ds-header-left {
   height: 60vh;
   width: 100%;
-  background-color: #CEB24C;
+  background-color: #ffffff;
 
   @include mq($from: desktop) {
     height: 100vh;
