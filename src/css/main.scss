@@ -203,10 +203,17 @@ blockquote {
 }
 
 .HED{
-  width: 100%;
-  top: 10px;
-  position: absolute;
-  z-index: 1;
+  width: 85%;
+   left: 20px;
+   top: 70px;
+   position: absolute;
+   z-index: 1;
+
+   @include mq($from: tablet) {
+     width: 100%;
+     top: 100px;
+     left: 131px;
+   }
 
   @include mq($from: desktop) {
     width: 100%;
@@ -359,9 +366,14 @@ blockquote {
   }
 
   @include mq($from: 350px){
-    top: 32vh;
+    top: 36vh;
     font-size: 16px;
     line-height: 18px;
+  }
+  @include mq($from: tablet) {
+    top: 45vh;
+    font-size: 21px;
+    line-height: 24px;
   }
 
   @include mq($from: desktop) {
@@ -408,20 +420,22 @@ blockquote {
   }
 
   img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: relative;
     opacity: 0;
-    will-change: opacity;
-
-    animation-name: fade-in;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-    animation-delay: 1s;
+    // width: 100%;
+    // height: 100%;
+    // object-fit: cover;
+    // position: relative;
+    // opacity: 0;
+    // will-change: opacity;
+    //
+    // animation-name: fade-in;
+    // animation-duration: 1s;
+    // animation-fill-mode: forwards;
+    // animation-iteration-count: 1;
+    // animation-delay: 1s;
 
     @include mq($from: desktop) {
+      opacity: 1;
       width: 50%;
       height: 50%;
       padding-top: 25%;
@@ -548,7 +562,7 @@ blockquote {
 
 .ds-navigation {
   position: fixed;
-  background-color: #333333;
+  background-color: #EDEDED;
   height: 60px;
   width: 100%;
   left: 0;
@@ -559,6 +573,7 @@ blockquote {
   overflow: hidden;
 
   @include mq($from: desktop) {
+    background-color: #333333;
     height: 100vh;
     width: 60px;
     top: 0;
