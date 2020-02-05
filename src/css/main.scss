@@ -387,8 +387,6 @@ blockquote {
     width: 35%;
   }
 
-
-
 }
 
 .ds-web-headline {
@@ -396,31 +394,42 @@ blockquote {
   line-height: 20px;
   font-family: "Guardian Headline Full";
   font-weight: 200;
-  position: absolute;
   bottom: -400px;
-  width: 52%;
-  margin-left: 146px;
+  width: 90%;
+  margin-left: 96px;
   z-index: 1;
   color: #121212;
 
   .bold {
     font-weight: 700;
   }
+  @include mq($from: tablet) {
+    font-size: 20px;
+    line-height: 115%;
+    width: 400px;
+    margin-left: 250px;
+  }
 
   @include mq($from: desktop) {
-    top: 80vh;
-    width: 290px;
-    margin-left: 160px;
-    font-size: 21px;
-    line-height: 24px;
+    position: absolute;
+    top: 81vh;
+    width: 350px;
+    margin-left: 455px;
+    font-size: 17px;
+    line-height: 115%;
     bottom: auto;
+  }
+  @include mq($from: leftCol) {
+    top: 82vh;
+    margin-left: 550px;
   }
 
   @include mq($from:wide) {
-    font-size: 21px;
-    line-height: 24px;
-    width: 294px;
-    margin-left: 242px;
+    // font-size: 20px;
+    // line-height: 115%;
+    top: 81vh;
+    width: 300px;
+    margin-left: 600px;
   }
 
   svg.page-turn {
@@ -511,7 +520,7 @@ blockquote {
   padding: 8px;
 
   svg {
-    width: 100%;
+    width: 138%;
     height: auto;
   }
 
@@ -524,25 +533,25 @@ blockquote {
     margin-left: 14.375rem;
   }
 
-  h1 {
-    font-size: 20px;
-    line-height: 23px;
-    margin-bottom: 12px;
-    font-family: "Guardian Headline Full";
-    font-weight: 900;
-    margin-bottom: 40px;
-
-    @include mq($from: leftCol) {
-      width: 360px;
-
-    }
-
-    @include mq($from: wide) {
-      margin-left: 130px;
-      width: 360px;
-
-    }
-  }
+  // h1 {
+  //   font-size: 20px;
+  //   line-height: 23px;
+  //   margin-bottom: 12px;
+  //   font-family: "Guardian Headline Full";
+  //   font-weight: 900;
+  //   margin-bottom: 40px;
+  //
+  //   @include mq($from: leftCol) {
+  //     width: 360px;
+  //
+  //   }
+  //
+  //   @include mq($from: wide) {
+  //     margin-left: 130px;
+  //     width: 360px;
+  //
+  //   }
+  // }
 }
 
 
