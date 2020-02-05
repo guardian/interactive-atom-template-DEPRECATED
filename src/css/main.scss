@@ -203,25 +203,25 @@ blockquote {
 }
 
 .HED{
-  max-width: 70%;
-  top: 10px;
-  position: absolute;
+  max-width: 98%;
+  position: relative;
+  left: 3%;
+  bottom: 26%;
   z-index: 1;
 
+  @include mq($from: tablet) {
+    max-width: 75%;
+    bottom: 4%;
+  }
+
   @include mq($from: desktop) {
-    max-width: 460px;
-    top: 10px;
-    margin-left: 88px;
+    max-width: 85%;
+    bottom: 10%;
+    left: 15%;
   }
 
   @include mq($from: leftCol) {
-    max-width: 524px;
-    // margin-left: 88px;
-    // margin-left: -298px;
-  }
-
-  @include mq($from: wide) {
-    max-width: 610px;
+    bottom: 3%;
   }
 }
 
@@ -527,12 +527,12 @@ blockquote {
   }
 
   svg {
-    height: 40px;
+    height: 30px;
     width: auto;
 
-    @include mq($from: desktop) {
-      height: 53px;
-    }
+    // @include mq($from: desktop) {
+    //   width: 160px;
+    // }
   }
 }
 
@@ -557,7 +557,7 @@ blockquote {
 
   &.mouseover {
     @include mq($from: desktop) {
-      width: 50vw;
+      width: 30vw;
       overflow: auto;
       overflow-x: hidden;
     }
@@ -772,7 +772,7 @@ blockquote {
       font-weight: 400;
     }
   }
-  p:first-of-type:first-letter:not(app__copy) {
+  p:first-of-type:first-letter {
       font-size: inherit;
       font-weight: inherit;
       font-family: inherit;
@@ -783,3 +783,6 @@ blockquote {
       float: none;
   }
 }
+
+// p.content__article-body.from-content-api.js-article__body:first-of-type:first-letter {
+// }
