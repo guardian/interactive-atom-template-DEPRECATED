@@ -427,9 +427,9 @@ blockquote {
   @include mq($from:wide) {
     // font-size: 20px;
     // line-height: 115%;
-    top: 81vh;
-    width: 300px;
-    margin-left: 600px;
+    top: 82vh;
+    width: 240px;
+    margin-left: 940px;
   }
 
   svg.page-turn {
@@ -461,6 +461,11 @@ blockquote {
     animation-delay: 1s;
     background-position: 20% 30%;
   }
+}
+
+@mixin position {
+  width: 96%;
+  margin-left: 2%;
 }
 
 .ds-container {
