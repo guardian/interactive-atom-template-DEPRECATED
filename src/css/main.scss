@@ -218,7 +218,8 @@ blockquote {
   }
 
   @include mq($from: wide) {
-    opacity: 1;
+    opacity: 0;
+    top: 12%;
   }
 }
 
@@ -429,7 +430,7 @@ h1.there, h1.out {
   left: 25%;
 
   @include mq($from: wide) {
-    opacity: 0;
+    opacity: 1;
   }
 }
 
