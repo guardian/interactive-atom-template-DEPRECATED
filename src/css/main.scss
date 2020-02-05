@@ -202,16 +202,20 @@ blockquote {
   margin-left: 2%;
 }
 
-.HED{
+.HED {
   max-width: 98%;
   position: relative;
   left: 3%;
-  bottom: 26%;
+  bottom: 35%;
   z-index: 1;
+
+  @include mq($from: 350px) {
+    bottom: 26%;
+  }
 
   @include mq($from: tablet) {
     max-width: 75%;
-    bottom: 4%;
+    bottom: 2%;
   }
 
   @include mq($from: desktop) {
@@ -342,7 +346,8 @@ blockquote {
   margin-left: 20px;
   z-index: 1;
   color: #121212;
-  top: 160px;
+  // top: 160px;
+  top: 220px;
 
   .bold {
     font-weight: 700;
@@ -352,6 +357,11 @@ blockquote {
     top: 38vh;
     font-size: 16px;
     line-height: 18px;
+  }
+
+  @include mq($from: tablet) {
+    top: 48vh;
+    width: 290px;
   }
 
   @include mq($from: desktop) {
@@ -515,7 +525,7 @@ blockquote {
   max-width: 200px;
 }
 
-.ds-logo {
+.ds-logo{
   position: fixed;
   z-index: 20;
   top: 10px;
@@ -523,22 +533,23 @@ blockquote {
 
   @include mq($from: desktop) {
     position: absolute;
-    left: 80px;
+    left: 50px;
   }
 
   svg {
-    height: 30px;
+    height: 18px;
     width: auto;
 
-    // @include mq($from: desktop) {
-    //   width: 160px;
-    // }
+    @include mq($from: desktop) {
+      height: 30px;
+    }
   }
 }
 
+
 .ds-navigation {
   position: fixed;
-  background-color: #333333;
+  background-color: #ececec;
   height: 60px;
   width: 100%;
   left: 0;
@@ -553,6 +564,7 @@ blockquote {
     width: 60px;
     top: 0;
     z-index: 30;
+    background-color: #333333;
   }
 
   &.mouseover {
