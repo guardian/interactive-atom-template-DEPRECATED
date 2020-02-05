@@ -205,91 +205,6 @@ blockquote {
   @include mq($from: desktop) {
     height: 100vh;
   }
-
-  .ds-shape-1, .ds-shape-2, .ds-shape-3 {
-    position: absolute;
-    height: 100px;
-    width: 100px;
-    background-color: blue;
-    z-index: 2;
-    opacity: 0;
-    display: none;
-
-    @include mq($from: desktop) {
-      display: none;
-    }
-  }
-
-  .ds-shape-1 {
-    left: -5vw;
-    top: 41vh;
-    height: 100px;
-    width: 100px;
-    transform: rotate(17deg);
-    background-color: #FC9837;
-    animation-name: fade-in;
-    animation-duration: 1.5s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-    animation-delay: 1.75s;
-
-    @include mq($from: tablet) {
-      display: none;
-      transform: rotate(-200deg) translateX(-66px) translateY(-123px);
-    }
-
-    @include mq($from: desktop) {
-      left: 26vw;
-      top: 2vh;
-      height: 230px;
-      width: 230px;
-      display: none;
-    }
-
-    @include mq($from:leftCol) {
-      display: block;
-    }
-
-    @include mq($from: wide) {
-      left: 32vw;
-    }
-
-  }
-
-  .ds-shape-2 {
-    top: 68vh;
-    left: 10vw;
-    width: 150px;
-    height: 150px;
-    transform: rotate(-27deg);
-    background-color: #F0EAD1;
-    animation-name: fade-in;
-    animation-duration: 1.5s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-    animation-delay: 2s;
-    display: none;
-
-    @include mq($from: desktop) {
-      display: block;
-    }
-  }
-
-  .ds-shape-3 {
-    transform: rotate(-117deg);
-    width: 270px;
-    animation-name: fade-in;
-    animation-duration: 1.5s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-    animation-delay: 2.5s;
-    background-color: #545F8A;
-
-    @include mq($until:desktop) {
-      top: -110px;
-      left: 28px;
-    }
-  }
 }
 
 @mixin position {
@@ -602,6 +517,7 @@ blockquote {
 
   @include mq($from:desktop) {
     margin-left: 9.375rem;
+    width: 45%;
   }
 
   @include mq($from: wide) {
@@ -1101,18 +1017,18 @@ blockquote {
   }
 
   svg {
-    height: 40px;
+    height: 18px;
     width: auto;
 
     @include mq($from: desktop) {
-      height: 53px;
+      height: 30px;
     }
   }
 }
 
 .ds-navigation {
   position: fixed;
-  background-color: #dcdcdc;
+  background-color: #ececec;
   height: 60px;
   width: 100%;
   left: 0;
@@ -1127,6 +1043,7 @@ blockquote {
     width: 60px;
     top: 0;
     z-index: 30;
+    background-color: #333333;
   }
 
   &.mouseover {
