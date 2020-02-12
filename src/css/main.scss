@@ -1041,24 +1041,24 @@ blockquote {
 }
 
 .ds-navigation {
-  position: fixed;
-  background-color: #ececec;
-  height: 60px;
-  width: 100%;
-  left: 0;
-  top: 0;
-  z-index: 10;
-  transition: width 0.5s ease-in-out;
-  cursor: pointer;
-  overflow: hidden;
-
-  @include mq($from: desktop) {
-    height: 100vh;
-    width: 60px;
+    position: fixed;
+    background-color: #ececec;
+    height: 60px;
+    width: 100%;
+    left: 0;
     top: 0;
-    z-index: 30;
-    background-color: #333333;
-  }
+    z-index: 10;
+    transition: width 0.5s ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+
+    @include mq($from: desktop) {
+      height: 100vh;
+      width: 60px;
+      top: 0;
+      z-index: 30;
+      background-color: #333333;
+    }
 
   &.mouseover {
     @include mq($from: desktop) {
