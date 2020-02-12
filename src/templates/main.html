@@ -1,1 +1,28 @@
-<div class="interactive-wrapper"></div>
+<div class="interactive-wrapper">
+  {{#fields}}
+    <div class="live-header">
+      {{{main}}}
+  </div>
+<div class="live-container">
+  <div class="gs-container">
+    <div class="content__main-column">
+      <div class="headline-wrapper">
+          <h1>{{headline}}</h1>
+          <h2>{{{standfirst}}}</h2>
+          <div class="live-ticker">
+            <h3>Live</h3>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="live-content">
+  <div class="gs-container">
+    <div class="content__main-column">
+      <div class="blocks-inner">
+        {{{body}}}
+      </div>
+    </div>
+    </div>
+</div>
+{{/fields}}

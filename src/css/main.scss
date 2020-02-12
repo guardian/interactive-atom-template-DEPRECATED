@@ -11,3 +11,161 @@
 .interactive-atom {
     margin: 0 !important;
 }
+
+.live-header {
+  height: 80vh;
+  background-color: #121212;
+
+  .element-image {
+    height: 100%;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  figcaption {
+    display: none;
+  }
+
+  iframe {
+    width: 1117px;
+height: calc(80vh - 85px);
+margin-left: 414px;
+  }
+}
+
+.live-container {
+  width: 100%;
+  bottom: 0;
+  margin-top: -85px;
+  position: relative;
+  z-index: 10;
+
+  &:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 60%;
+    content: '';
+    background-color: #fff;
+    border-bottom: 1px solid #121212;
+  }
+
+  .headline-wrapper {
+    background-color: #fff;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-left: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+
+
+    h1 {
+      font-family: "Guardian Headline Full";
+      font-size: 38px;
+      line-height: 42px;
+    }
+
+    h2 {
+      font-family: "Guardian Headline Full";
+      font-weight: 200;
+      font-size: 22px;
+      line-height: 26px;
+      max-width: 400px;
+      margin-top: 24px;
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border-top: 1px solid #121212;
+        padding-top: 6px;
+
+        li {
+          margin-bottom: 6px;
+          a {
+            color: #c70000;
+          }
+
+          &:before {
+            display: inline-block;
+            content: '';
+            width: 18px;
+            height: 18px;
+            margin-right: 6px;
+            background-color: #c70000;
+            border-radius: 50%;
+
+          }
+        }
+      }
+    }
+  }
+}
+
+.block {
+  border: 1px solid #121212;
+  margin-top: 10px;
+  padding-left: 10px;
+
+  .block-time {
+    position: relative;
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  .block-time {
+    right: 0;
+  }
+
+  img {
+    height: auto;
+  }
+}
+
+.live-ticker {
+  position: absolute;
+  color: red;
+  top: -40px;
+
+  h3 {
+    font-family: "Guardian Titlepiece";
+    font-size: 40px;
+
+    &:before {
+      width: 28px;
+      height: 28px;
+      margin-right: 6px;
+      content: '';
+      background-color: red;
+      border-radius: 50%;
+      display: inline-block;
+      animation-name: tick;
+      animation-iteration-count: infinite;
+      animation-fill-mode: forwards;
+      opacity: 0;
+      animation-duration: 2s;
+    }
+  }
+}
+
+.live-content {
+  .gs-container {
+    .blocks-inner {
+    }
+  }
+}
+
+@keyframes tick {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
