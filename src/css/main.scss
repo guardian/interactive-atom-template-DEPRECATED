@@ -206,6 +206,7 @@ blockquote {
   opacity: 1;
   max-width: 90%;
   margin-left: 5%;
+  margin-top: 10%;
 
   @include mq($from: tablet) {
   margin-top: 10%;
@@ -621,7 +622,7 @@ blockquote {
 
 .ds-navigation {
   position: fixed;
-  background-color: #EDEDED;
+  background-color: #ececec;
   height: 60px;
   width: 100%;
   left: 0;
