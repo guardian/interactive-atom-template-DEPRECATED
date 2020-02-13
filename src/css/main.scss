@@ -527,6 +527,8 @@ h1.there {
   padding-right: 30px;
   width: 40vw;
   transition: opacity 0.75s ease-in-out;
+  // display: flex;
+  // flex-direction: row;
 
   &.mouseover {
     visibility: block;
@@ -569,6 +571,7 @@ h1.there {
       margin-left: 0;
       padding-left: 0;
 
+
       .kicker {
         font-weight: 900;
         margin-right: 6px;
@@ -579,7 +582,7 @@ h1.there {
 }
 
 .index-thumbnail{
-  max-width: 200px;
+  max-width: 150px;
 }
 
 .ds-logo {
@@ -625,7 +628,7 @@ h1.there {
 
   &.mouseover {
     @include mq($from: desktop) {
-      width: 50vw;
+      width: 30vw;
       overflow: auto;
       overflow-x: hidden;
     }
