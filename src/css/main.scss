@@ -203,14 +203,21 @@ blockquote {
 }
 
 .HED{
-  opacity: 0;
+  opacity: 1;
+  max-width: 90%;
+  margin-left: 5%;
+
+  @include mq($from: tablet) {
+  margin-top: 10%;
+  }
 
   @include mq($from: desktop) {
-    opacity: 0;
-    position: relative;
-    width: 56%;
-    top: -1%;
-    left: 22%;
+    // opacity: 0;
+    position: absolute;
+    width: 90%;
+    margin-left: 161px;
+    margin-top: 370px;
+    z-index: 1;
   }
 
   @include mq($from: leftCol) {
@@ -218,7 +225,7 @@ blockquote {
   }
 
   @include mq($from: wide) {
-    opacity: 0;
+    // opacity: 0;
     top: 12%;
   }
 }
@@ -347,7 +354,7 @@ blockquote {
   }
 
   @include mq($from: 350px){
-    top: 36vh;
+    top: 39vh;
     font-size: 16px;
     line-height: 18px;
     width: 55%;
@@ -360,7 +367,7 @@ blockquote {
   }
 
   @include mq($from: desktop) {
-    top: 82vh;
+    top: 81vh;
     width: 290px;
     margin-left: 161px;
     font-size: 18px;
@@ -397,7 +404,7 @@ blockquote {
 .ds-header-left {
   height: 60vh;
   width: 100%;
-  background-color: #CEB24C;
+  background-color: #f6f6f6;
   position: relative;
 
   @include mq($from: desktop) {
@@ -421,78 +428,79 @@ blockquote {
   }
 }
 
-h1.there, h1.out {
-  position: absolute;
-  font-size: 90px;
-  z-index: 2;
-  font-family: "Guardian Titlepiece";
-  transform: translate(-50%, -50%);
-  left: 25%;
+// h1.there, h1.out {
+//   position: absolute;
+//   font-size: 90px;
+//   z-index: 2;
+//   font-family: "Guardian Titlepiece";
+//   transform: translate(-50%, -50%);
+//   left: 25%;
+//
+//   @include mq($from: wide) {
+//     opacity: 1;
+//   }
+// }
 
-  @include mq($from: wide) {
-    opacity: 1;
-  }
-}
+// h1.out {
+//   top: 29%;
+//   left: 29%;
+//
+//   @include mq($from: 350px) {
+//   top: 27%;
+//   }
+//
+//   @include mq($from: tablet) {
+//     font-size: 180px;
+//     left: 30%;
+//     top: 20%;
+//   }
+//
+//   @include mq($from: desktop) {
+//     font-size: 110px;
+//     left: 40%;
+//     top: 20%;
+//   }
+//
+//   @include mq($from: leftCol) {
+//     top: 22%;
+//   }
+//   @include mq($from: wide) {
+//     top: 19%;
+//     left: 34%;
+//   }
+// }
 
-h1.out {
-  top: 29%;
-  left: 29%;
-
-  @include mq($from: 350px) {
-  top: 27%;
-  }
-
-  @include mq($from: tablet) {
-    font-size: 180px;
-    left: 30%;
-    top: 20%;
-  }
-
-  @include mq($from: desktop) {
-    font-size: 110px;
-    left: 40%;
-    top: 20%;
-  }
-
-  @include mq($from: leftCol) {
-    top: 22%;
-  }
-  @include mq($from: wide) {
-    top: 19%;
-    left: 34%;
-  }
-}
-
-h1.there {
-  top: 51%;
-  left: 61%;
-
-  @include mq($from: 350px) {
-  top: 45%;
-  left: 53%;
-}
-
-  @include mq($from: tablet) {
-    font-size: 180px;
-    left: 58%;
-    top: 43%;
-  }
-
-  @include mq($from: desktop) {
-    font-size: 110px;
-    left: 58%;
-    top: 43%;
-    transform: rotate(-90deg);
-  }
-  @include mq($from: wide) {
-    top: 52%;
-    left: 65%;
-  }
-}
+// h1.there {
+//   top: 51%;
+//   left: 61%;
+//
+//   @include mq($from: 350px) {
+//   top: 45%;
+//   left: 53%;
+// }
+//
+//   @include mq($from: tablet) {
+//     font-size: 180px;
+//     left: 58%;
+//     top: 43%;
+//   }
+//
+//   @include mq($from: desktop) {
+//     font-size: 110px;
+//     left: 58%;
+//     top: 43%;
+//     transform: rotate(-90deg);
+//   }
+//   @include mq($from: wide) {
+//     top: 52%;
+//     left: 65%;
+//   }
+// }
 
 .ds-header-right {
   width: 100%;
   height: 50vh;
+  background-color: #F6F6F6;
 
   @include mq($from: desktop) {
     height: 100vh;
@@ -502,17 +510,22 @@ h1.there {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    position: relative;
+    position: absolute;
     margin-left: auto;
     margin-right: auto;
     opacity: 0;
     will-change: opacity;
+
 
     animation-name: fade-in;
     animation-duration: 1s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
     animation-delay: 1s;
+
+    @include mq($from: desktop) {
+      position: relative;
+    }
   }
 }
 
