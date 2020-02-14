@@ -206,11 +206,11 @@ blockquote {
   max-width: 98%;
   position: relative;
   left: 3%;
-  bottom: 35%;
+  bottom: 16%;
   z-index: 1;
 
   @include mq($from: 350px) {
-    bottom: 26%;
+    bottom: 14%;
   }
 
   @include mq($from: tablet) {
@@ -342,21 +342,22 @@ blockquote {
   font-family: "Guardian Headline Full";
   font-weight: 200;
   position: absolute;
-  width: 40%;
+  max-width: 65%;
   margin-left: 20px;
   z-index: 1;
   color: #121212;
   // top: 160px;
-  top: 220px;
+  top: 400px;
 
   .bold {
     font-weight: 700;
   }
 
   @include mq($from: 350px){
-    top: 38vh;
+    top: 42vh;
     font-size: 16px;
     line-height: 18px;
+    max-width: 49%;
   }
 
   @include mq($from: tablet) {
