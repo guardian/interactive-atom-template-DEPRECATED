@@ -210,7 +210,7 @@ blockquote {
   z-index: 1;
 
   @include mq($from: 350px) {
-    bottom: 14%;
+    bottom: 17%;
   }
 
   @include mq($from: tablet) {
@@ -354,10 +354,10 @@ blockquote {
   }
 
   @include mq($from: 350px){
-    top: 42vh;
+    top: 30vh;
     font-size: 16px;
     line-height: 18px;
-    max-width: 49%;
+    max-width: 65%;
   }
 
   @include mq($from: tablet) {
