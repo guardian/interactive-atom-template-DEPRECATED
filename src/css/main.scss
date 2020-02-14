@@ -353,14 +353,14 @@ blockquote {
     width: 55%;
   }
   @include mq($from: tablet) {
-    top: 42vh;
+    top: 40vh;
     font-size: 21px;
     line-height: 24px;
     width: 40%;
   }
 
   @include mq($from: desktop) {
-    top: 82vh;
+    top: 80vh;
     width: 290px;
     margin-left: 161px;
     font-size: 18px;
@@ -377,7 +377,7 @@ blockquote {
     line-height: 24px;
     width: 294px;
     margin-left: 242px;
-    top: 80vh;
+    top: 78vh;
   }
 
   svg.page-turn {
