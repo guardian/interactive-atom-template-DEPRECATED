@@ -347,9 +347,9 @@ blockquote {
   }
 
   @include mq($from: 350px){
-    top: 36vh;
-    font-size: 16px;
-    line-height: 18px;
+    top: 38vh;
+    font-size: 15px;
+    line-height: 115%;
     width: 55%;
   }
   @include mq($from: tablet) {
@@ -423,7 +423,7 @@ blockquote {
 
 h1.there, h1.out {
   position: absolute;
-  font-size: 90px;
+  font-size: 88px;
   z-index: 2;
   font-family: "Guardian Titlepiece";
   transform: translate(-50%, -50%);
@@ -468,7 +468,7 @@ h1.there {
   left: 61%;
 
   @include mq($from: 350px) {
-  top: 45%;
+  top: 46%;
   left: 53%;
 }
 
