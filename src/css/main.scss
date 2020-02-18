@@ -227,7 +227,7 @@ blockquote {
 
   @include mq($from: wide) {
     // opacity: 0;
-    top: 5%;
+    margin-top: 220px;
   }
 }
 
@@ -385,7 +385,7 @@ blockquote {
     line-height: 24px;
     width: 294px;
     margin-left: 242px;
-    top: 78vh;
+    top: 72vh;
   }
 
   svg.page-turn {
