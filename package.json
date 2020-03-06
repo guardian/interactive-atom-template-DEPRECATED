@@ -9,7 +9,8 @@
     "log": "gulp log",
     "url": "gulp url",
     "deploylive": "gulp deploylive",
-    "deploypreview": "gulp deploypreview"
+    "deploypreview": "gulp deploypreview",
+    "embeds": "gulp embeds"
   },
   "author": "",
   "license": "ISC",

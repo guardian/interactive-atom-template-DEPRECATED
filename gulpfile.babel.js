@@ -308,3 +308,17 @@ gulp.task('log', () => {
 
     return Promise.all([log('live'), log('preview')]);
 });
+
+
+gulp.task('embeds', ['local'], () => {
+    gulp.watch(['src/**/*'], ['local']).on('change', evt => {
+        gutil.log(gutil.colors.yellow(`${evt.path} was ${evt.type}`));
+    });
+
+    browser.init({
+        'server': {
+            'baseDir': buildDir
+        },
+        'port': 8000
+    });
+});
