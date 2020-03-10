@@ -9,5 +9,420 @@
 
 .element-atom,
 .interactive-atom {
-    margin: 0 !important;
+  margin: 0 !important;
+}
+
+$mq-breakpoints: (mobile: 320px,
+  mobileMedium: 355px,
+  mobileLandscape: 480px,
+  phablet: 660px,
+  tablet: 740px,
+  desktop: 980px,
+  leftCol: 1140px,
+  wide: 1300px,
+  support-desktop: 300px,
+  support-wide: 380px,
+  tweakSize: 410px,
+  inline-mobileLandscape: 440px,
+  inline-desktop: 620px);
+
+// var
+$containerName: us-election-timeline;
+$backgroundColor: #f6f6f6;
+$primaryColor: #c70000;
+$secondaryColor: #ffbac8;
+$textColor: #121212;
+$subtextColor: #999999;
+$subsubtextColor: #ededed;
+
+body {
+  padding: 0px;
+  margin: 0;
+}
+
+#gd-timeline {
+  min-height: 80px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+section##{$containerName} {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 0 !important;
+  // overflow: hidden;
+
+  .fc-container__inner,
+  .fc-slice,
+  .facia-snap {
+    overflow: hidden;
+  }
+
+  .facia-snap {
+    padding: 0;
+  }
+}
+
+.scroll-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.#{$containerName} {
+  margin: 0;
+  padding: 0;
+
+  // width: 1300%;
+  width: 1242%;
+  height: 425px;
+  background-color: $backgroundColor;
+  padding-top: 4px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+
+  @include mq(mobileMedium) {
+    width: 1090%;
+  }
+
+  @include mq(tweakSize) {
+    width: 980%;
+  }
+
+  @media screen and (min-width:400px) {
+    width: 980%;
+  }
+
+  @include mq(inline-mobileLandscape) {
+    width: 890%;
+  }
+
+
+  @include mq(inline-desktop) {
+    height: 415px;
+    width: 642%;
+    // display: none;
+  }
+
+  &__header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0 10px;
+    width: 100%;
+    height: 60px;
+    border-top: 2px solid $primaryColor;
+
+    z-index: 10;
+  }
+
+  &__headline {
+    font-family: "Guardian Headline Full", "Guardian Egyptian Web", Georgia,
+      serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 115%;
+    margin-top: 4px;
+    color: $textColor;
+    margin-left: 1px;
+    width: 95%;
+
+    span {
+      color: $primaryColor;
+    }
+
+    @include mq(mobileMedium) {
+      font-size: 28px;
+    }
+
+    @include mq(inline-mobileLandscape) {
+      width: 90%;
+    }
+
+    @include mq(inline-desktop) {
+      font-size: 28px;
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: row;
+    margin-top: 55px;
+    border-top: 2px solid $textColor;
+    z-index: 5;
+    margin-left: 10px;
+
+    @include mq(mobileMedium) {
+      margin-top: 60px;
+    }
+
+    @include mq(inline-desktop) {
+      margin-top: 50px;
+    }
+
+    &:nth-last-child(1) {
+      &__item {
+        &__date::after {
+          content: "";
+          width: 0;
+          height: 0;
+          background-color: $textColor;
+          margin-bottom: 8px;
+          position: absolute;
+          margin-top: -19px;
+          margin-left: -82px;
+        }
+      }
+    }
+  }
+
+  &__item {
+    flex: none;
+    width: 230px;
+    height: 100%;
+    margin-top: -43px;
+    padding-left: 10px;
+    padding-top: 18px;
+    overflow: hidden;
+
+    &:nth-child(1) {
+      padding-left: 0;
+    }
+
+    &__date {
+      color: $textColor;
+      font-family: "Guardian Headline Full", "Guardian Egyptian Web", Georgia,
+        serif;
+      font-variant-numeric: lining-nums;
+      font-weight: 200;
+      font-size: 22px;
+      line-height: 115%;
+      margin-bottom: -4px;
+      margin-top: 14px;
+
+      &::before {
+        content: "";
+        width: 18px;
+        height: 18px;
+        display: block;
+        background-color: $textColor;
+        border-radius: 50%;
+        margin-bottom: 4px;
+      }
+    }
+
+    &__headline {
+      font-family: "Guardian Headline Full", "Guardian Egyptian Web", Georgia,
+        serif;
+      font-size: 24px;
+      line-height: 115%;
+      font-weight: 700;
+      margin: 4px 0 2px 0;
+      color: #2a4b9b;
+      width: 95%;
+    }
+
+    &__para {
+      //   font-family: "Guardian Text Egyptian Web", Georgia, serif;
+      font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial,
+        "Lucida Grande", sans-serif;
+      font-size: 15px;
+      line-height: 115%;
+      color: $textColor;
+      width: 95%;
+      margin: 4px 0 18px 0;
+    }
+
+    &__img {
+      width: auto;
+      height: 70px;
+      margin-left: 140px;
+      margin-bottom: -4px;
+      margin-top: -30px;
+
+      &.ios {
+        margin-bottom: -5px;
+      }
+
+      @include mq(inline-desktop) {
+        margin-top: -26px;
+      }
+    }
+
+    .image-tweak-one {
+      margin-left: 113px;
+      filter: contrast(170%);
+      margin-top: 0;
+    }
+
+    .image-tweak-two {
+      margin-left: 131px;
+      filter: contrast(150%);
+      margin-top: 0;
+    }
+
+    .image-tweak-three {
+      margin-top: 0;
+      margin-left: 138px;
+    }
+
+    &__link {
+      width: calc(100% - 10px);
+      border-top: 1px solid $textColor;
+      margin-bottom: 30px;
+      box-sizing: border-box;
+      padding: 2px 10px 24px 0px;
+
+      a {
+        font-family: "Guardian Headline Full", "Guardian Egyptian Web", Georgia,
+          serif;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 115%;
+        color: $textColor;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+
+        svg {
+          width: 34px;
+          height: 34px;
+          margin-top: 4px;
+        }
+      }
+
+      &:hover {
+        outline: none;
+
+        a {
+          svg {
+            fill: $secondaryColor;
+          }
+        }
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  &__footer {
+    width: 100%;
+    height: 70px;
+
+    .atom--snippet__feedback {
+      display: flex;
+      align-items: center;
+      bottom: 28px;
+      right: 10px;
+      margin-left: auto;
+      margin-top: 24px;
+      position: fixed;
+      bottom: 12px;
+      z-index: 30;
+
+      &:hover {
+        cursor: default;
+      }
+
+      @include mq(inline-desktop) {
+        bottom: 12px;
+      }
+
+      &__text {
+        font-size: 15px;
+        line-height: 115%;
+        font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica,
+          Arial, "Lucida Grande", sans-serif;
+        font-weight: 200;
+        margin-right: 4px;
+        color: #2a4b9b;
+      }
+
+      button {
+        margin-left: 4px;
+        background-color: #121212;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        border: none;
+
+        svg {
+          width: 20px;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+
+      &__dislike {
+        transform: scale(-1);
+      }
+    }
+  }
+
+  // &.ios,
+  // &.android {
+  //   margin: 0;
+  //   padding: 0;
+  // }
+
+  // &.android {
+  //   display: none;
+  // }
+}
+
+.event-historial {
+  .#{$containerName} {
+    &__item {
+      &__headline {
+        color: $textColor;
+      }
+
+      &__date {
+        &::before {
+          border: 2px solid $textColor;
+        }
+      }
+    }
+  }
+}
+
+.event-future {
+  .#{$containerName} {
+    &__item {
+      &__date {
+        &::before {
+          background-color: $backgroundColor;
+          border: 2px solid $textColor;
+        }
+      }
+    }
+  }
+}
+
+.nice-message {
+  display: none;
+  font-size: 15px;
+  line-height: 115%;
+  font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial,
+    "Lucida Grande", sans-serif;
+  font-weight: 200;
+  margin-right: 4px;
+  margin-bottom: 12px;
+  color: #2a4b9b;
+}
+
+.submitted {
+  .hide-message {
+    display: none;
+  }
+
+  .nice-message {
+    display: block;
+  }
 }
