@@ -149,3 +149,6 @@ You'll also need to comment in the _scrolly.scss code in main.scss, as well as s
     </div>
 </div>
 ```
+
+## Need support?
+Support information can be found in [SUPPORT.md]('./SUPPORT.md').

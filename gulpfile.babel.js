@@ -25,6 +25,9 @@ import ws from 'webpack-stream'
 const debug = require('gulp-debug');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
+import marked from 'marked'
+import TerminalRenderer from 'marked-terminal'
+
 const browser = browserSync.create();
 
 const buildDir = '.build';
@@ -125,6 +128,11 @@ function readOpt(fn) {
     }
 }
 
+gulp.task('support', () => {
+    const message = fs.readFileSync('SUPPORT.md', 'utf8');
+    console.log(marked(message, { renderer: new TerminalRenderer() }));
+})
+
 gulp.task('clean', () => del(buildDir));
 
 gulp.task('build:css', () => {
@@ -178,7 +186,7 @@ gulp.task('_build', ['clean'], cb => {
 });
 
 // TODO: less hacky build/_build?
-gulp.task('build', ['_build'], () => {
+gulp.task('build', ['support', '_build'], () => {
     return;
 });
 
@@ -229,7 +237,7 @@ gulp.task('local:html', ['build:html'], () => {
         .pipe(gulp.dest(buildDir));
 });
 
-gulp.task('default', ['local'], () => {
+gulp.task('default', ['support', 'local'], () => {
     gulp.watch(['src/**/*', '!src/css/*', '!src/js/app.js', '!src/render.js', '!src/assets/*'], ['local']).on('change', evt => {
         gutil.log(gutil.colors.yellow(`${evt.path} was ${evt.type}`));
     });
