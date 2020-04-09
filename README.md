@@ -1,3 +1,7 @@
+# Please use the new interactive atom template for all future interactives: https://github.com/guardian/interactive-atom-template-2019
+
+
+
 # Interactive atom template
 
 ```
