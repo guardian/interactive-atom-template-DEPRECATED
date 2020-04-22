@@ -7,7 +7,250 @@
 // Uncomment for full screen (including immersive article main media)
 //@import "fullscreen";
 
+
+// var
+$textColor:#121212;
+
+
 .element-atom,
 .interactive-atom {
     margin: 0 !important;
+    overflow: hidden;
+}
+
+
+
+
+.content-wrapper {
+    padding-left: 10px;
+
+    @include mq(desktop) {
+        padding-left: 20px;
+    }
+
+    @include mq(leftCol) {
+        border-left: 1px solid $textColor;
+    }
+}
+
+.border-right {
+    @include mq(desktop) {
+        border-right: 1px solid $textColor;
+    }
+}
+
+.healthworker-header {
+    min-height: 70vh;
+
+    &__headline {
+        color: $textColor;
+        font-family: "Guardian Titlepiece", "Guardian Headline Full";
+        font-size: 50px;
+
+        line-height: 105%;
+
+        @include mq(desktop) {
+            font-size: 70px;
+            width: 800px;
+        }
+    }
+
+    &__standfirst {
+        color: $textColor;
+        font-family: "Guardian Headline Full";
+        font-size: 20px;
+    }
+
+    &__image {
+        height: auto;
+        margin-left: -270px;
+        width: 220vw;
+        margin-top: 90px;
+        margin-bottom: 40px;
+
+        @include mq(mobileMedium) {
+            margin-left: -410px;
+        }
+
+        @include mq(phablet) {
+            width: 170vw;
+
+        }
+
+        @include mq(tablet) {
+            margin-left: -390px;
+        }
+
+        @include mq(desktop) {
+            margin-left: -50px;
+            width: 120vw;
+            margin-top: -60px;
+        }
+
+        @include mq(leftCol) {
+            margin-left: -45px;
+            width: 100vw;
+        }
+
+        @include mq(wide) {
+            margin-left: -160px;
+        }
+
+    }
+}
+
+.content-block {
+    margin-bottom: 50px;
+
+    @include mq(desktop) {
+        display: flex;
+    }
+
+    &__name {
+        font-family: "Guardian Headline Full";
+        font-size: 28px;
+        line-height: 115%;
+        font-weight: 600;
+        width: calc(100% - 10px);
+
+        @include mq(mobileMedium) {
+            font-size: 32px;
+        }
+    }
+
+    &__job {
+        font-family: "Guardian Headline Full";
+        font-size: 28px;
+        line-height: 115%;
+        font-weight: 300;
+        margin-bottom: 12px;
+        width: calc(100% - 10px);
+
+        @include mq(mobileMedium) {
+            font-size: 32px;
+        }
+    }
+
+    &__text {
+        width: calc(100% - 20px);
+
+        @include mq(desktop) {
+            width: 460px;
+        }
+
+        p {
+            font-family: "Guardian Text Egyptian Web",
+                Georgia,
+                serif;
+            font-size: 17px;
+            line-height: 135%;
+        }
+
+    }
+
+    &__image {
+        float: left;
+        margin-right: 10px;
+        width: 100%;
+        height: 220px;
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        @include mq(mobileMedium) {
+            height: 215px;
+        }
+
+        @include mq(mobileLandscape) {
+            height: 290px;
+        }
+
+        @include mq(phablet) {
+            width: calc(50vw - 20px);
+        }
+
+
+        @include mq(desktop) {
+            float: none;
+            margin-right: 0;
+            width: 300px;
+            height: 300px;
+            margin-left: 0px;
+
+        }
+
+        @include mq(leftCol) {
+            width: 380px;
+            height: 380px;
+            margin-left: -140px;
+        }
+
+        @include mq(wide) {
+            width: 380px;
+            height: 380px;
+            margin-left: -140px;
+        }
+    }
+
+
+    .left-content {
+        border-top: 4px solid $textColor;
+        padding-top: 8px;
+        margin-right: 10px;
+
+        @include mq(phablet) {
+            width: calc(50vw - 20px);
+        }
+
+        @include mq(desktop) {
+            margin-right: 20px;
+        }
+
+    }
+
+    .right-content {
+        margin-top: -5px;
+
+        @include mq(desktop) {
+            margin-top: 11px;
+        }
+
+    }
+
+
+    .number-3__image {
+        background-position: top;
+        height: 170px;
+
+        @include mq(mobileMedium) {
+            height: 200px;
+        }
+
+        @include mq(mobileLandscape) {
+            height: 260px;
+        }
+
+        @include mq(phablet) {
+            height: 180px;
+        }
+
+        @include mq(tablet) {
+            height: 200px;
+        }
+
+        @include mq(desktop) {
+            height: 220px;
+        }
+    }
+
+    .show-germ {
+        &::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            // background-image: ;
+
+        }
+    }
 }
