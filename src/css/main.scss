@@ -159,7 +159,7 @@ $textColor:#121212;
         background-repeat: no-repeat;
 
         @include mq(mobileMedium) {
-            height: 215px;
+            height: 280px;
         }
 
         @include mq(mobileLandscape) {
