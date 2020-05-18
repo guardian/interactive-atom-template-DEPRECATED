@@ -64,6 +64,7 @@
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
     "require-uncached": "^1.0.3",
+    "swiper": "^5.4.0",
     "unfetch": "^3.0.0"
   }
 }
