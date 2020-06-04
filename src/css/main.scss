@@ -7,250 +7,347 @@
 // Uncomment for full screen (including immersive article main media)
 //@import "fullscreen";
 
-
 // var
-$textColor:#121212;
-
+$textColor: #121212;
 
 .element-atom,
 .interactive-atom {
-    margin: 0 !important;
-    overflow: hidden;
+  margin: 0 !important;
+  overflow: hidden;
 }
 
-
-
-
 .content-wrapper {
-    padding-left: 10px;
+  padding-left: 10px;
 
-    @include mq(desktop) {
-        padding-left: 20px;
-    }
+  @include mq(desktop) {
+    padding-left: 20px;
+  }
 
-    @include mq(leftCol) {
-        border-left: 1px solid $textColor;
-    }
+  @include mq(desktop) {
+    border-left: 1px solid $textColor;
+  }
 }
 
 .border-right {
-    @include mq(desktop) {
-        border-right: 1px solid $textColor;
-    }
+  @include mq(desktop) {
+    border-right: 1px solid $textColor;
+  }
+}
+
+.background {
+  height: 100vh;
+  width: 100vw;
+}
+
+.healthworkers-wrapper {
+  background-color: #f6f6f6;
 }
 
 .healthworker-header {
-    min-height: 70vh;
+  min-height: 70vh;
 
-    &__headline {
-        color: $textColor;
-        font-family: "Guardian Titlepiece", "Guardian Headline Full";
-        font-size: 50px;
+  &__headline {
+    color: $textColor;
+    font-family: "Guardian Titlepiece", "Guardian Headline Full";
+    font-size: 40px;
+    line-height: 105%;
 
-        line-height: 105%;
+    @include mq(desktop) {
+      font-size: 60px;
+      width: 800px;
+    }
+  }
 
-        @include mq(desktop) {
-            font-size: 70px;
-            width: 800px;
-        }
+  &__standfirst {
+    color: $textColor;
+    font-family: "Guardian Headline Full";
+    font-size: 20px;
+  }
+
+  &__float-image {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    background-size: cover;
+    border-radius: 50%;
+    background-position: center;
+
+    @include mq(desktop) {
+      width: 240px;
+      height: 240px;
     }
 
-    &__standfirst {
-        color: $textColor;
-        font-family: "Guardian Headline Full";
-        font-size: 20px;
+    @include mq(leftCol) {
+      width: 300px;
+      height: 300px;
     }
 
-    &__image {
-        height: auto;
-        margin-left: -270px;
-        width: 220vw;
-        margin-top: 90px;
-        margin-bottom: 40px;
+    &__number-1 {
+      margin-left: 150px;
+      margin-top: 140px;
+      @include mq(desktop) {
+        margin-left: -40px;
+        margin-top: 150px;
+      }
 
-        @include mq(mobileMedium) {
-            margin-left: -410px;
-        }
-
-        @include mq(phablet) {
-            width: 170vw;
-
-        }
-
-        @include mq(tablet) {
-            margin-left: -390px;
-        }
-
-        @include mq(desktop) {
-            margin-left: -50px;
-            width: 120vw;
-            margin-top: -60px;
-        }
-
-        @include mq(leftCol) {
-            margin-left: -45px;
-            width: 100vw;
-        }
-
-        @include mq(wide) {
-            margin-left: -160px;
-        }
-
+      @include mq(wide) {
+        margin-left: -130px;
+        margin-top: 180px;
+      }
     }
+
+    &__number-6 {
+      margin-top: 290px;
+      margin-left: -40px;
+      @include mq(desktop) {
+        margin-left: 670px;
+        margin-top: 10px;
+      }
+      @include mq(leftCol) {
+        margin-left: 730px;
+        margin-top: 240px;
+      }
+    }
+
+    &__number-9 {
+      margin-top: 100px;
+      margin-left: 300px;
+    }
+  }
+
+  &__image {
+    height: auto;
+    margin-left: -270px;
+    width: 220vw;
+    margin-top: 90px;
+    margin-bottom: 40px;
+
+    @include mq(mobileMedium) {
+      margin-left: -410px;
+    }
+
+    @include mq(phablet) {
+      width: 170vw;
+    }
+
+    @include mq(tablet) {
+      margin-left: -390px;
+    }
+
+    @include mq(desktop) {
+      margin-left: -50px;
+      width: 120vw;
+      margin-top: -130px;
+    }
+
+    @include mq(leftCol) {
+      margin-left: -45px;
+      margin-left: -145px;
+      width: 100vw;
+      margin-top: -60px;
+    }
+
+    @include mq(wide) {
+      width: 1500px;
+      margin-left: -350px;
+      margin-top: -200px;
+    }
+  }
 }
 
 .content-block {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
+
+  @include mq(desktop) {
+    display: flex;
+  }
+
+  &__name {
+    font-family: "Guardian Headline Full";
+    font-size: 28px;
+    line-height: 115%;
+    font-weight: 600;
+    width: calc(100% - 10px);
+
+    @include mq(mobileMedium) {
+      font-size: 32px;
+    }
+  }
+
+  &__job {
+    font-family: "Guardian Headline Full";
+    font-size: 28px;
+    line-height: 115%;
+    font-weight: 300;
+    margin-bottom: 12px;
+    width: calc(100% - 10px);
+
+    @include mq(mobileMedium) {
+      font-size: 32px;
+    }
+  }
+
+  &__text {
+    width: calc(100% - 20px);
 
     @include mq(desktop) {
-        display: flex;
+      width: 460px;
     }
 
-    &__name {
-        font-family: "Guardian Headline Full";
-        font-size: 28px;
-        line-height: 115%;
-        font-weight: 600;
-        width: calc(100% - 10px);
+    p {
+      font-family: "Guardian Text Egyptian Web", Georgia, serif;
+      font-size: 17px;
+      line-height: 135%;
+    }
+  }
 
-        @include mq(mobileMedium) {
-            font-size: 32px;
-        }
+  &__image {
+    float: left;
+    margin-right: 10px;
+    width: 100%;
+    height: 220px;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    @include mq(mobileMedium) {
+      height: 280px;
     }
 
-    &__job {
-        font-family: "Guardian Headline Full";
-        font-size: 28px;
-        line-height: 115%;
-        font-weight: 300;
-        margin-bottom: 12px;
-        width: calc(100% - 10px);
-
-        @include mq(mobileMedium) {
-            font-size: 32px;
-        }
+    @include mq(mobileLandscape) {
+      height: 290px;
     }
 
-    &__text {
-        width: calc(100% - 20px);
-
-        @include mq(desktop) {
-            width: 460px;
-        }
-
-        p {
-            font-family: "Guardian Text Egyptian Web",
-                Georgia,
-                serif;
-            font-size: 17px;
-            line-height: 135%;
-        }
-
+    @include mq(phablet) {
+      width: calc(50vw - 20px);
     }
 
-    &__image {
-        float: left;
-        margin-right: 10px;
-        width: 100%;
-        height: 220px;
-
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-
-        @include mq(mobileMedium) {
-            height: 280px;
-        }
-
-        @include mq(mobileLandscape) {
-            height: 290px;
-        }
-
-        @include mq(phablet) {
-            width: calc(50vw - 20px);
-        }
-
-
-        @include mq(desktop) {
-            float: none;
-            margin-right: 0;
-            width: 300px;
-            height: 300px;
-            margin-left: 0px;
-
-        }
-
-        @include mq(leftCol) {
-            width: 380px;
-            height: 380px;
-            margin-left: -140px;
-        }
-
-        @include mq(wide) {
-            width: 380px;
-            height: 380px;
-            margin-left: -140px;
-        }
+    @include mq(desktop) {
+      float: none;
+      margin-right: 0;
+      width: 400px;
+      height: 300px;
     }
 
-
-    .left-content {
-        border-top: 4px solid $textColor;
-        padding-top: 8px;
-        margin-right: 10px;
-
-        @include mq(phablet) {
-            width: calc(50vw - 20px);
-        }
-
-        @include mq(desktop) {
-            margin-right: 20px;
-        }
-
+    @include mq(leftCol) {
+      width: 380px;
+      height: 380px;
     }
 
-    .right-content {
-        margin-top: -5px;
+    @include mq(wide) {
+      width: 380px;
+      height: 380px;
+    }
+  }
 
-        @include mq(desktop) {
-            margin-top: 11px;
-        }
+  &__caption {
+    font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial,
+      "Lucida Grande", sans-serif;
+    font-size: 15px;
+    line-height: 115%;
+    font-weight: 400;
+    color: #767676;
+    margin: 0;
+    margin-top: 4px;
 
+    // &__arrow-up {
+    //   width: 0px;
+    //   height: 0px;
+    //   border-left: 7px solid transparent;
+    //   border-right: 7px solid transparent;
+    //   border-bottom: 12px solid #2f2f2f;
+
+    //   display: inline-block;
+    //   margin-top: 15px;
+    // }
+  }
+
+  .left-content {
+    // border-top: 4px solid $textColor;
+    padding-top: 8px;
+    margin-right: 10px;
+
+    @include mq(phablet) {
+      width: calc(50vw - 20px);
     }
 
-
-    .number-3__image {
-        background-position: top;
-        height: 170px;
-
-        @include mq(mobileMedium) {
-            height: 200px;
-        }
-
-        @include mq(mobileLandscape) {
-            height: 260px;
-        }
-
-        @include mq(phablet) {
-            height: 180px;
-        }
-
-        @include mq(tablet) {
-            height: 200px;
-        }
-
-        @include mq(desktop) {
-            height: 220px;
-        }
+    @include mq(desktop) {
+      margin-right: 20px;
     }
 
     .show-germ {
-        &::before {
-            content: '';
-            width: 20px;
-            height: 20px;
-            // background-image: ;
-
-        }
+      margin-top: -203px;
+      margin-left: -210px;
+      position: absolute;
     }
+
+    .hide-germ {
+      display: none;
+    }
+  }
+
+  .right-content {
+    margin-top: -5px;
+
+    @include mq(desktop) {
+      margin-top: 1px;
+    }
+  }
+}
+.number-1 {
+  padding-top: 80px;
+  @include mq(desktop) {
+    padding-top: 100px;
+  }
+}
+
+.number-2 {
+  &__image {
+    margin-left: 0;
+    width: 100%;
+    @include mq(desktop) {
+      width: 400px;
+    }
+    @include mq(leftCol) {
+      margin-left: -170px;
+      width: 550px;
+    }
+  }
+}
+
+.number-4 {
+  &__image {
+    height: 280px;
+  }
+}
+
+.number-5 {
+  .left-content {
+    .show-germ {
+      margin-left: 950px;
+    }
+  }
+}
+.number-6 {
+  &__image {
+    @include mq(leftCol) {
+      margin-left: -170px;
+      width: 550px;
+    }
+  }
+}
+
+.content__meta-container {
+  position: relative;
+  top: 0;
+  margin-left: 0;
+  margin-bottom: -80px;
+  margin-top: 30px;
+  width: calc(100vw - 20px);
+  @include mq(phablet) {
+    width: 100%;
+  }
+  .social__item {
+  }
 }
