@@ -1,1 +1,180 @@
-<div class="interactive-wrapper"></div>
+<div class="content-top">
+  <div class="all-reviews gs-container">
+    <div class="all-reviews__wrapper">
+      <div class="all-reviews__header">
+        {{#header}}
+        <div class="all-reviews__header__tag">{{{tag}}}</div>
+        <div class="all-reviews__header__main content__main-column">
+          <h1 class="all-reviews__header__main__headline">{{{headline}}}</h1>
+          <p class="all-reviews__header__main__standfirst">{{{standfirst}}}</p>
+        </div>
+        {{/header}}
+      </div>
+      <!-- <div class="meta">
+        <div class="content__meta-container js-content-meta u-cf
+    ">
+          <div class="meta__contact-wrap">
+            <p class="byline" data-link-name="byline" data-component="meta-byline"></p>
+            <p class="content__dateline" aria-hidden="true">
+              <time itemprop="datePublished" datetime="2020-06-16T15:55:14+0100" data-timestamp="1592319314000"
+                class="content__dateline-wpd js-wpd">
+                Tue 16 Jun 2020 <span class="content__dateline-time">15.55&nbsp;BST</span>
+              </time>
+            </p>
+            <meta itemprop="dateModified" content="2020-06-16T15:55:14+0100">
+          </div>
+          <div class="meta__extras">
+            <div class="meta__social" data-component="share">
+              <ul class="social social--top js-social--top u-unstyled u-cf" data-component="social">
+                <li class="social__item social__item--facebook " data-link-name="facebook">
+                  <a class="social__action js-social__action--top social-icon-wrapper" data-link-name="social top"
+                    href="https://www.facebook.com/dialog/share?app_id=180444840287&amp;href=https%3A%2F%2Fwww.theguardian.com%2Fglobal%2Fng-interactive%2F2020%2Fjun%2F15%2Falbum-review-wip%3FCMP%3Dshare_btn_fb"
+                    target="_blank" title="Facebook">
+                    <span class="inline-icon__fallback button">Share on Facebook</span>
+                    <span
+                      class="inline-share-facebook inline-icon rounded-icon centered-icon social-icon social-icon--facebook">
+                      <svg width="32" height="32" viewBox="-2 -2 32 32"
+                        class="rounded-icon__svg centered-icon__svg social-icon__svg social-icon--facebook__svg inline-share-facebook__svg inline-icon__svg">
+                        <path
+                          d="M17.9 14h-3v8H12v-8h-2v-2.9h2V8.7C12 6.8 13.1 5 16 5c1.2 0 2 .1 2 .1v3h-1.8c-1 0-1.2.5-1.2 1.3v1.8h3l-.1 2.8z">
+                        </path>
+                      </svg>
+                    </span>
+                  </a>
+                </li>
+                <li class="social__item social__item--twitter " data-link-name="twitter">
+                  <a class="social__action js-social__action--top social-icon-wrapper" data-link-name="social top"
+                    href="https://twitter.com/intent/tweet?text=Album%20review%20WIP&amp;url=https%3A%2F%2Fwww.theguardian.com%2Fglobal%2Fng-interactive%2F2020%2Fjun%2F15%2Falbum-review-wip%3FCMP%3Dshare_btn_tw"
+                    target="_blank" title="Twitter">
+                    <span class="inline-icon__fallback button">Share on Twitter</span>
+                    <span
+                      class="inline-share-twitter inline-icon rounded-icon centered-icon social-icon social-icon--twitter">
+                      <svg width="32" height="32" viewBox="-2 -2 32 32"
+                        class="rounded-icon__svg centered-icon__svg social-icon__svg social-icon--twitter__svg inline-share-twitter__svg inline-icon__svg">
+                        <path
+                          d="M21.3 10.5v.5c0 4.7-3.5 10.1-9.9 10.1-2 0-3.8-.6-5.3-1.6.3 0 .6.1.8.1 1.6 0 3.1-.6 4.3-1.5-1.5 0-2.8-1-3.3-2.4.2 0 .4.1.7.1l.9-.1c-1.6-.3-2.8-1.8-2.8-3.5.5.3 1 .4 1.6.4-.9-.6-1.6-1.7-1.6-2.9 0-.6.2-1.3.5-1.8 1.7 2.1 4.3 3.6 7.2 3.7-.1-.3-.1-.5-.1-.8 0-2 1.6-3.5 3.5-3.5 1 0 1.9.4 2.5 1.1.8-.1 1.5-.4 2.2-.8-.3.8-.8 1.5-1.5 1.9.7-.1 1.4-.3 2-.5-.4.4-1 1-1.7 1.5z">
+                        </path>
+                      </svg>
+                    </span>
+                  </a>
+                </li>
+                <li class="social__item social__item--email " data-link-name="email">
+                  <a class="social__action js-social__action--top social-icon-wrapper" data-link-name="social top"
+                    href="mailto:?subject=Album%20review%20WIP&amp;body=https%3A%2F%2Fwww.theguardian.com%2Fglobal%2Fng-interactive%2F2020%2Fjun%2F15%2Falbum-review-wip%3FCMP%3Dshare_btn_link"
+                    target="_blank" title="Email">
+                    <span class="inline-icon__fallback button">Share via Email</span>
+                    <span
+                      class="inline-share-email inline-icon rounded-icon centered-icon social-icon social-icon--email">
+                      <svg width="32" height="32" viewBox="0 0 32 32"
+                        class="rounded-icon__svg centered-icon__svg social-icon__svg social-icon--email__svg inline-share-email__svg inline-icon__svg">
+                        <path
+                          d="M23.363 20.875H8.637v-8.938l6.545 5.687h1.637l6.544-5.687v8.938zm-1.635-9.75L16 16l-5.728-4.875h11.456zM23.363 9.5H8.637L7 11.125v9.75L8.637 22.5h14.727L25 20.875v-9.75L23.363 9.5z">
+                        </path>
+                      </svg>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="meta__numbers">
+              <div class="u-h meta__number js-sharecount">
+              </div>
+              <div class="u-h meta__number" data-discussion-id="/p/e39yc" data-commentcount-format="content"
+                data-discussion-closed="true">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- review content blocks -->
+      {{#content}}
+      <div class="all-reviews__sections content__main-column">
+        <div class="all-reviews__sections__{{classnumber}}">
+          <div class="all-reviews__sections__{{classnumber}}-content panel-{{classnumber}}"
+            id="content-{{classnumber}}">
+            <div class="all-reviews__sections__top">
+              <div class="all-reviews__sections__image" style="background-image:url('{{imageurl}}')"></div>
+              <h2 class="all-reviews__sections__headline">
+                {{sectionheadline}}
+              </h2>
+              <div class="all-reviews__sections__top__meta">
+                <span class="all-reviews__sections__stars all-reviews__sections__stars__{{stars}}">
+                  <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M10.3679 13.6666L9.94087 13.3698L9.51317 13.6657L4.69037 17.0027L6.55072 11.5353L6.73303 10.9995L6.26783 10.6772L1.59776 7.4416H7.39465H7.9378L8.10723 6.92555L9.9288 1.37733L11.7734 6.92812L11.9441 7.4416H12.4852H18.266L13.6361 10.6791L13.1761 11.0008L13.355 11.5328L15.2031 17.0271L10.3679 13.6666Z"
+                      stroke="black" stroke-width="1.5" />
+                  </svg>
+                  <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M10.3679 13.6666L9.94087 13.3698L9.51317 13.6657L4.69037 17.0027L6.55072 11.5353L6.73303 10.9995L6.26783 10.6772L1.59776 7.4416H7.39465H7.9378L8.10723 6.92555L9.9288 1.37733L11.7734 6.92812L11.9441 7.4416H12.4852H18.266L13.6361 10.6791L13.1761 11.0008L13.355 11.5328L15.2031 17.0271L10.3679 13.6666Z"
+                      stroke="black" stroke-width="1.5" />
+                  </svg>
+                  <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M10.3679 13.6666L9.94087 13.3698L9.51317 13.6657L4.69037 17.0027L6.55072 11.5353L6.73303 10.9995L6.26783 10.6772L1.59776 7.4416H7.39465H7.9378L8.10723 6.92555L9.9288 1.37733L11.7734 6.92812L11.9441 7.4416H12.4852H18.266L13.6361 10.6791L13.1761 11.0008L13.355 11.5328L15.2031 17.0271L10.3679 13.6666Z"
+                      stroke="black" stroke-width="1.5" />
+                  </svg>
+                  <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M10.3679 13.6666L9.94087 13.3698L9.51317 13.6657L4.69037 17.0027L6.55072 11.5353L6.73303 10.9995L6.26783 10.6772L1.59776 7.4416H7.39465H7.9378L8.10723 6.92555L9.9288 1.37733L11.7734 6.92812L11.9441 7.4416H12.4852H18.266L13.6361 10.6791L13.1761 11.0008L13.355 11.5328L15.2031 17.0271L10.3679 13.6666Z"
+                      stroke="black" stroke-width="1.5" />
+                  </svg>
+                  <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M10.3679 13.6666L9.94087 13.3698L9.51317 13.6657L4.69037 17.0027L6.55072 11.5353L6.73303 10.9995L6.26783 10.6772L1.59776 7.4416H7.39465H7.9378L8.10723 6.92555L9.9288 1.37733L11.7734 6.92812L11.9441 7.4416H12.4852H18.266L13.6361 10.6791L13.1761 11.0008L13.355 11.5328L15.2031 17.0271L10.3679 13.6666Z"
+                      stroke="black" stroke-width="1.5" />
+                  </svg>
+                </span>
+                <p class="all-reviews__sections__artistname">
+                  {{artistname}}
+                </p>
+                <p class="all-reviews__sections__albumname">{{albumname}}</p>
+              </div>
+            </div>
+            <div class="all-reviews__sections__song">{{{spotifylink}}}</div>
+            <p class="all-reviews__sections__paragraph">{{{paragraph}}}</p>
+          </div>
+          <div class="all-reviews__sections__{{classnumber}}-button open-button accordion-{{classnumber}}"
+            id="button-{{classnumber}}" data-link-name="all album reviews : review one">
+            <svg width="34" height="18" viewBox="0 0 34 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0.0771484 1.7592L16.2271 17.9092H17.7726L33.9226 1.7592L32.4158 0.291016L16.9999 13.2728L1.58397 0.291016L0.0771484 1.7592Z"
+                fill="#ffffff" />
+            </svg>
+            Read more
+          </div>
+        </div>
+      </div>
+      {{/content}}
+    </div>
+    <!-- end of content blocks -->
+  </div>
+</div>
+</div>
+
+<!-- 
+<div class="atom--snippet__feedback">
+  <div class="atom--snippet__feedback__text hide-message">
+    Was this helpful?
+  </div>
+  <div class="atom--snippet__ack nice-message" hidden="" aria-role="alert" aria-live="polite">
+    Thank you for your feedback
+  </div>
+  <button class="atom__button js-thumbs-up atom__button--round hide-message"
+    data-link-name="corona info page : thumbs up" id="feedback-button" value="like" aria-label="Yes">
+    <svg class="icon icon--thumb" width="100%" height="100%" viewBox="0 0 40 40">
+      <path fill="#FFF"
+        d="M33.78 22.437l-4.228 13.98L27.93 37.5 5.062 34.14V15.503l7.8-1.517L24.354 2.5h1.624L28.9 5.426l-4.548 8.67h.107l10.477 1.31">
+      </path>
+    </svg>
+  </button>
+  <button class="atom__button js-thumbs-down atom__button--round atom--snippet__feedback__dislike hide-message"
+    id="feedback-button" data-link-name="corona info page : thumbs down" value="dislike" aria-label="No">
+    <svg class="icon icon--thumb" width="100%" height="100%" viewBox="0 0 40 40">
+      <path fill="#FFF"
+        d="M33.78 22.437l-4.228 13.98L27.93 37.5 5.062 34.14V15.503l7.8-1.517L24.354 2.5h1.624L28.9 5.426l-4.548 8.67h.107l10.477 1.31">
+      </path>
+    </svg>
+  </button>
+</div> -->

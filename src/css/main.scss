@@ -9,5 +9,642 @@
 
 .element-atom,
 .interactive-atom {
-    margin: 0 !important;
+  margin: 0 !important;
 }
+
+$mq-breakpoints: (mobile: 320px,
+  mobileMedium: 355px,
+  mobileLandscape: 480px,
+  phablet: 660px,
+  tablet: 740px,
+  desktop: 980px,
+  leftCol: 1140px,
+  wide: 1300px,
+);
+
+// var
+$containerName: all-reviews;
+$primaryColor: #c70000;
+$secondaryColor: #767676;
+$thirdColor: #dcdcdc;
+$textColor: #121212;
+
+.all-reviews {
+  &::before {
+    width: 1px;
+    position: absolute;
+    margin-left: -10px;
+    background-color: $thirdColor;
+    top: 0;
+    bottom: 0;
+  }
+}
+
+.#{$containerName} {
+  // padding: 0 12px;
+
+  &__wrapper {
+    padding: 0 12px;
+
+    @include mq(tablet) {
+      padding: 0 10px;
+    }
+
+    @include mq(desktop) {
+      padding: 0 20px;
+    }
+
+  }
+
+  @include mq(desktop) {
+    border-left: 1px solid $thirdColor;
+    border-right: 1px solid $thirdColor;
+  }
+
+  &__header {
+    &__tag a {
+      font-size: 1.0625rem;
+      line-height: 1.25rem;
+      font-family: "Guardian Egyptian Web",
+        Georgia,
+        serif;
+      font-weight: 900;
+      color: #a1845c !important;
+
+      @include mq(phablet) {
+        margin-left: 10px;
+      }
+
+      @include mq(desktop) {
+        margin-left: 0;
+      }
+
+      @include mq(leftCol) {
+        position: absolute;
+        top: 4px;
+        // margin-left: 8px;
+      }
+    }
+
+    &__main {
+      @include mq(leftCol) {
+        padding-left: 17px;
+
+        &:before {
+          content: '';
+          width: 1px;
+          height: 200%;
+          background-color: $thirdColor;
+          position: absolute;
+          top: 0;
+          margin-left: -10px;
+        }
+      }
+
+      &__headline {
+        font-family: "Guardian Headline Full", "Guardian Egyptian Web", Georgia,
+          serif;
+        font-size: 40px;
+        line-height: 105%;
+        margin-bottom: 10px;
+      }
+
+      &__standfirst {
+        font-family: "Guardian Headline Full", "Guardian Egyptian Web", Georgia,
+          serif;
+        font-size: 20px;
+        line-height: 115%;
+        font-weight: 500;
+        margin-bottom: 50px;
+      }
+
+      &__intro-para {
+        border-top: 1px solid $thirdColor;
+        margin-top: 140px;
+
+        margin-bottom: -150px;
+
+        @include mq(mobileMedium) {
+          margin-top: 135px;
+        }
+
+        @include mq(leftCol) {
+          margin-top: 52px;
+          margin-bottom: 0;
+        }
+
+        p {
+          font-family: "Guardian Text Egyptian Web", Georgia, serif;
+          font-size: 17px;
+          line-height: 135%;
+
+          @include mq(desktop) {
+            width: 90%;
+          }
+        }
+      }
+    }
+
+    &__meta {
+      margin: 8px 0 0 0;
+
+      @include mq(leftCol) {
+        position: absolute;
+        width: 141px;
+        margin: 8px 0 0 10px;
+      }
+
+      @include mq(wide) {
+        width: 216px;
+      }
+
+      .content__meta-container {
+        top: 337px;
+        margin-bottom: 1rem;
+
+        @include mq(mobileMedium) {
+          top: 300px;
+        }
+
+        @include mq(mobileLandscape) {
+          top: 260px;
+        }
+
+        @include mq(phablet) {
+          top: 200px;
+        }
+
+        @include mq(desktop) {
+          top: 182px;
+          width: 620px;
+        }
+
+        @include mq(leftCol) {
+          width: 100%;
+          position: absolute;
+          top: 205px;
+        }
+
+        .meta__numbers {
+          @include mq(leftCol) {
+            display: none;
+          }
+
+          @include mq(wide) {
+            display: none;
+          }
+        }
+
+        .meta__twitter {
+          text-decoration: none;
+
+          a {
+            font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica,
+              Arial, "Lucida Grande", sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: $secondaryColor;
+          }
+        }
+
+        .social-icon {
+          background-color: transparent;
+          border: 0.0625rem solid #dcdcdc;
+
+          svg {
+            fill: $primaryColor;
+          }
+
+          &:hover {
+            background-color: $thirdColor;
+          }
+        }
+
+        &::before {
+          content: "";
+          background-image: url(https://uploads.guim.co.uk/2020/02/13/byline-lines.svg);
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: left;
+          width: 100%;
+          height: 17px;
+          display: inline-block;
+
+          @include mq(desktop) {
+            height: 29px;
+          }
+
+          @include mq(leftCol) {
+            height: 17px;
+          }
+        }
+
+        .content__dateline-wpd {
+          font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica,
+            Arial, "Lucida Grande", sans-serif;
+          font-size: 14px;
+          font-weight: 300;
+        }
+      }
+
+      &::after {
+        content: "";
+        width: 1px;
+        height: 100vh;
+        // position: absolute;
+        background-color: $secondaryColor;
+      }
+
+      a {
+        font-family: "Guardian Egyptian Web", Georgia, serif;
+        font-weight: 900;
+        font-size: 20px;
+        line-height: 115%;
+        margin: 0;
+        color: $primaryColor;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &__sections {
+    margin-top: 20px;
+
+    @include mq(leftCol) {
+      padding-left: 17px;
+
+      &:before {
+        content: '';
+        width: 1px;
+        height: 150%;
+        background-color: $thirdColor;
+        position: absolute;
+        top: 0;
+        margin-left: -10px;
+      }
+    }
+
+    &__top {
+      display: grid;
+      grid-template-columns: 1fr 50%;
+      grid-template-columns: 40vw auto;
+      grid-template-rows: auto;
+      grid-column-gap: 20px;
+      grid-row-gap: 0px;
+
+      @include mq(mobileLandscape) {
+        grid-template-columns: 30vw auto;
+      }
+
+      @include mq(tablet) {
+        grid-template-columns: 220px 380px;
+        grid-template-rows: auto;
+        grid-column-gap: 20px;
+        grid-row-gap: 0px;
+      }
+
+      height: auto;
+
+      &__meta {
+        grid-area: 2 / 2 / 3 / 3;
+        margin-top: 2px;
+
+        @include mq(mobileLandscape) {
+          margin-top: 3px;
+        }
+
+        @include mq(tablet) {
+          margin-top: 29px;
+          margin-top: 0;
+          grid-area: 2 / 2 / 3 / 3;
+        }
+      }
+    }
+
+    &__image {
+      grid-area: 2 / 1 / 3 / 2;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 40vw;
+      height: 40vw;
+      margin-right: 20px;
+
+      @include mq(mobileLandscape) {
+        width: 30vw;
+        height: 30vw;
+      }
+
+      @include mq(tablet) {
+        grid-area: 1 / 1 / 3 / 2;
+        width: 220px;
+        height: 220px;
+      }
+    }
+
+    &__headline {
+      grid-area: 1 / 1 / 2 / 3;
+      font-family: "Guardian Egyptian Web", Georgia, serif;
+      font-size: 28px;
+      line-height: 115%;
+      font-weight: 300;
+      color: $textColor;
+      margin-top: 0;
+      margin-bottom: 12px;
+
+      @include mq(tablet) {
+        grid-area: 1 / 2 / 2 / 3;
+        font-size: 30px;
+      }
+
+      @include mq(desktop) {
+        font-size: 30px;
+      }
+    }
+
+    &__artistname {
+      font-family: "Guardian Headline Full", "Guardian Egyptian Web", Georgia,
+        serif;
+      font-size: 20px;
+      line-height: 115%;
+      font-weight: 600;
+      margin-bottom: 0;
+      margin-top: 0;
+
+      @include mq(mobileLandscape) {
+        margin-top: 4px;
+      }
+
+      @include mq(tablet) {
+        border-top: 1px solid $thirdColor;
+        margin-top: 0;
+      }
+    }
+
+    &__albumname {
+      font-family: "Guardian Headline Full", "Guardian Egyptian Web", Georgia,
+        serif;
+      font-size: 20px;
+      line-height: 115%;
+      font-weight: 300;
+      margin-bottom: 0;
+    }
+
+    &__stars {
+      background-color: #ffe500;
+      padding: 4px 6px 1px 6px;
+      padding-bottom: 1px;
+
+      @include mq(mobileLandscape) {
+        padding: 6px;
+        padding-bottom: 2px;
+      }
+
+      svg {
+        width: 16px;
+        height: auto;
+
+        @include mq(mobileLandscape) {
+          width: auto;
+        }
+      }
+
+      &__one {
+        svg:nth-child(-n + 1) {
+          fill: #121212;
+        }
+      }
+
+      &__two {
+        svg:nth-child(-n + 2) {
+          fill: #121212;
+        }
+      }
+
+      &__three {
+        svg:nth-child(-n + 3) {
+          fill: #121212;
+        }
+      }
+
+      &__four {
+        svg:nth-child(-n + 4) {
+          fill: #121212;
+        }
+      }
+
+      &__five {
+        svg:nth-child(-n + 5) {
+          fill: #121212;
+        }
+      }
+    }
+
+    a {
+      color: $primaryColor;
+
+      &:hover {
+        border-color: $primaryColor;
+      }
+    }
+
+    ul {
+      list-style: none;
+      margin-left: 0;
+
+      li {
+        margin-left: 0;
+
+        p {
+          &::before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            background-color: $thirdColor;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 4px;
+          }
+        }
+      }
+    }
+
+    figcaption {
+      display: none;
+    }
+
+    p {
+      font-family: "Guardian Text Egyptian Web", Georgia, serif;
+      font-size: 17px;
+      line-height: 135%;
+    }
+
+    &__one,
+    &__two,
+    &__three,
+    &__four,
+    &__five,
+    &__six,
+    &__seven,
+    &__eight,
+    &__nine,
+    &__ten,
+    &__eleven {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid $thirdColor;
+      width: calc(100% - 9px);
+      margin-top: 50px;
+
+      background-image: repeating-linear-gradient(to bottom,
+          #dcdcdc,
+          #dcdcdc 0.0625rem,
+          transparent 0.0625rem,
+          transparent 0.25rem);
+      background-repeat: repeat-x;
+      background-position: top;
+      background-size: 0.0625rem 0.8125rem;
+      margin-top: 0.75rem;
+      padding-top: 1.125rem;
+
+      margin-top: 70px;
+    }
+
+    &__three {
+      .player {
+        margin-bottom: 12px;
+      }
+    }
+
+    &__four {
+      margin-bottom: 60px;
+    }
+
+    &__eleven {
+      margin-bottom: 50px;
+    }
+
+    &__one-content,
+    &__two-content,
+    &__three-content,
+    &__four-content,
+    &__five-content,
+    &__six-content,
+    &__seven-content,
+    &__eight-content,
+    &__nine-content,
+    &__ten-content,
+    &__eleven-content {
+      height: 400px;
+      overflow: hidden;
+
+      @include mq(desktop) {
+        height: 318px;
+        // padding-right: 10px;
+      }
+
+      .open & {
+        height: auto !important;
+      }
+    }
+
+    .open-button {
+      font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial,
+        "Lucida Grande", sans-serif;
+      font-size: 17px;
+      border-radius: 30px;
+      width: fit-content;
+      padding: 7px 18px 8px 0;
+      font-weight: 600;
+      color: #ffffff;
+      background-color: #a1845c;
+      margin-top: 16px;
+      margin-bottom: -20px;
+
+      svg {
+        width: auto;
+        height: 12px;
+        padding-right: 8px;
+        padding-left: 18px;
+      }
+    }
+  }
+}
+
+.hide-on-mobile {
+  display: none !important;
+}
+
+// .atom--snippet__feedback {
+//   display: flex;
+//   align-items: center;
+//   bottom: 28px;
+//   right: 10px;
+//   margin-left: auto;
+//   margin-top: 24px;
+//   bottom: -98px;
+//   z-index: 30;
+//   position: absolute;
+//   margin-bottom: 20px;
+//   z-index: 50;
+
+//   &:hover {
+//     cursor: default;
+//   }
+
+//   &__text {
+//     font-size: 15px;
+//     line-height: 115%;
+//     font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial,
+//       "Lucida Grande", sans-serif;
+//     font-weight: 200;
+//     margin-right: 4px;
+//     color: #2a4b9b;
+//   }
+
+//   button {
+//     margin-left: 4px;
+//     background-color: #121212;
+//     border-radius: 50%;
+//     width: 40px;
+//     height: 40px;
+//     border: none;
+
+//     svg {
+//       width: 20px;
+
+//       &:hover {
+//         cursor: pointer;
+//       }
+//     }
+//   }
+
+//   &__dislike {
+//     transform: scale(-1);
+//   }
+// }
+
+// .nice-message {
+//   display: none;
+//   font-size: 15px;
+//   line-height: 115%;
+//   font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial,
+//     "Lucida Grande", sans-serif;
+//   font-weight: 200;
+//   margin-right: 4px;
+//   margin-bottom: 12px;
+//   color: #2a4b9b;
+// }
+
+// .submitted {
+//   .hide-message {
+//     display: none;
+//   }
+
+//   .nice-message {
+//     display: block;
+//   }
+// }
