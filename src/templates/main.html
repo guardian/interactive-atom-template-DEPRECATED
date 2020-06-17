@@ -10,9 +10,8 @@
         </div>
         {{/header}}
       </div>
-      <!-- <div class="meta">
-        <div class="content__meta-container js-content-meta u-cf
-    ">
+      <div class="meta">
+        <div class="content__meta-container js-content-meta u-cf">
           <div class="meta__contact-wrap">
             <p class="byline" data-link-name="byline" data-component="meta-byline"></p>
             <p class="content__dateline" aria-hidden="true">
@@ -85,7 +84,7 @@
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
 
       <!-- review content blocks -->
       {{#content}}
@@ -132,7 +131,10 @@
                 <p class="all-reviews__sections__albumname">{{albumname}}</p>
               </div>
             </div>
-            <div class="all-reviews__sections__song">{{{spotifylink}}}</div>
+            <div class="all-reviews__sections__song">{{{spotifylink}}}
+              <!-- <div class="playeButton"></div>
+              <audio controls="false" class="player" src=""></audio> -->
+            </div>
             <p class="all-reviews__sections__paragraph">{{{paragraph}}}</p>
           </div>
           <div class="all-reviews__sections__{{classnumber}}-button open-button accordion-{{classnumber}}"
