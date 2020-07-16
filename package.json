@@ -55,7 +55,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.6.1",
     "gulp-sass": "^4.0.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "marked": "^0.8.0",
     "marked-terminal": "^4.0.0",
     "mustache": "^2.3.0",
