@@ -7,15 +7,15 @@
 // Uncomment for full screen (including immersive article main media)
 //@import "fullscreen";
 
-$red: #c70000;
+$blue: #052962;
 
 .element-atom,
 .interactive-atom {
-    margin: 0 !important;
+  margin: 0 !important;
 }
 
 .new-header {
-  background-color: $red;
+  background-color: $blue;
   border-bottom: 1px solid rgba(218, 218, 218, 0.6);
 
   .pillar-link:before {
@@ -26,7 +26,7 @@ $red: #c70000;
 .inline-the-guardian-roundel {
   svg {
     path:nth-child(2) {
-      fill: $red !important;
+      fill: $blue !important;
     }
   }
 }
@@ -35,13 +35,14 @@ $red: #c70000;
   &:before {
     border-right: 1px solid rgba(218, 218, 218, 0.6);
   }
+
   &:after {
     border-left: 1px solid rgba(218, 218, 218, 0.6);
   }
 }
 
 .content__head--interactive {
-  background-color: $red;
+  background-color: $blue;
 }
 
 .label__link-wrapper {
@@ -51,12 +52,12 @@ $red: #c70000;
 .content__headline {
   color: #fff;
   font-size: 38px;
-  line-height: 37px;
-  margin-bottom: 20px;
+  line-height: 110%;
+  margin-bottom: 40px;
 
   @include mq($from: desktop) {
-    font-size: 64px;
-    line-height: 64px;
+    font-size: 58px;
+    line-height: 110%;
     margin-bottom: 40px;
   }
 
@@ -77,7 +78,7 @@ $red: #c70000;
 }
 
 //This styles the copy on composer
-.element-atom + p {
+.element-atom+p {
   padding: 0 0;
   max-width: 600px;
 
@@ -97,11 +98,19 @@ $red: #c70000;
     font-size: 114px;
     font-family: "Guardian Titlepiece";
     line-height: 0.8;
-    margin-right: 12px;
+    margin-right: 8px;
     margin-top: 0;
     float: left;
-    color: $red;
+    color: $blue;
+  }
+}
+
+.content__main-column {
+  p {
+    a {
+      color: #2e4ea2 !important;
     }
+  }
 }
 
 .content__main-column--interactive p {
@@ -118,6 +127,33 @@ $red: #c70000;
 
   @include mq($from: wide) {
     margin-left: 14.375rem;
+  }
+}
+
+.meta__extras {
+  .inline-icon {
+    &:hover {
+      background-color: $blue !important;
+      border: 0.0625rem solid $blue !important;
+
+      svg {
+        path {
+          fill: #fff !important;
+        }
+      }
+    }
+
+    svg {
+      path {
+        fill: $blue !important;
+      }
+    }
+  }
+}
+
+.meta__content-wrap {
+  a {
+    color: $blue !important;
   }
 }
 
@@ -170,10 +206,10 @@ $red: #c70000;
     width: 100% !important;
     max-height: 500px;
     margin-top: 50px !important;
-    margin-bottom: 10px!important;
+    margin-bottom: 10px !important;
 
     @include mq($from: desktop) {
-      margin-bottom: 50px!important;
+      margin-bottom: 50px !important;
       margin-left: 7% !important;
       margin-right: 50px !important;
       flex-direction: row;
@@ -201,7 +237,7 @@ $red: #c70000;
       }
     }
 
-    & + .element--thumbnail {
+    &+.element--thumbnail {
       @include mq($from: desktop) {
         margin-left: 320px !important;
       }
@@ -217,7 +253,7 @@ $red: #c70000;
     width: 100% !important;
     max-height: 500px;
     margin-top: 50px !important;
-    margin-bottom: 10px!important;
+    margin-bottom: 10px !important;
     margin-right: 50px !important;
 
     @include mq($from: desktop) {
@@ -225,7 +261,7 @@ $red: #c70000;
       width: 300px !important;
       flex-direction: row;
       width: 690px !important;
-      margin-bottom: 50px!important;
+      margin-bottom: 50px !important;
     }
 
     img {
@@ -249,6 +285,7 @@ $red: #c70000;
       }
     }
   }
+
   figcaption {
     height: fit-content;
     border-left: 1px solid #ececec;
@@ -263,4 +300,29 @@ $red: #c70000;
       margin-right: 10px;
     }
   }
+}
+
+.ios,
+.android {
+  .article-header {
+    background-color: $blue;
+
+    .headline {
+      color: white;
+    }
+
+    .standfirst {
+      p {
+        color: white;
+      }
+    }
+
+    #published-date {
+      color: white;
+    }
+  }
+}
+
+.content__meta-container {
+  margin-top: 4px;
 }
